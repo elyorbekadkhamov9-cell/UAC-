@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://elyorbekadkhamov9-cell.github.io/uac-website/sitemap.xml
