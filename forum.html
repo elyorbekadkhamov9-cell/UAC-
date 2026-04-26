@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum | UAC — Kimyo savol-javoblar</title>
+    <meta name="description" content="UAC forumida kimyoga oid savollaringizni bering, olimpiada masalalarini muhokama qiling.">
+    <meta name="keywords" content="kimyo forumi, olimpiada masalalari, kimyo savollari, UAC">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Дополнительные стили для форума */
+        .forum-hero {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            text-align: center;
+        }
+        
+        .forum-title {
+            font-size: 44px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #1a2a32;
+        }
+        
+        .forum-subtitle {
+            font-size: 18px;
+            color: #4a5568;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .forum-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid #eef2f6;
+        }
+        
+        .coming-soon-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+        
+        .forum-message {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .forum-message h2 {
+            font-size: 28px;
+            margin-bottom: 16px;
+            color: #1a2a32;
+        }
+        
+        .forum-message p {
+            color: #4a5568;
+            margin-bottom: 32px;
+            font-size: 18px;
+        }
+        
+        .question-form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1a2a32;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .info-note {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 14px;
+            color: #94a3b8;
+        }
+        
+        @media (max-width: 768px) {
+            .forum-title {
+                font-size: 32px;
+            }
+            .forum-card {
+                padding: 24px;
+            }
+            .forum-message h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-decoration"></div>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="https://i.ibb.co/WN4TDFVY/photo-2026-04-01-00-14-37.jpg" alt="UAC Logo">
+                    </div>
+                    <span class="logo-text">UAC</span>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Bosh sahifa</a>
+                    <a href="library.html" class="nav-link">Kutubxona</a>
+                    <a href="forum.html" class="nav-link active">Forum</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="forum-hero">
+            <div class="container">
+                <h1 class="forum-title">💬 Kimyo forumi</h1>
+                <p class="forum-subtitle">Savollar bering, masalalarni muhokama qiling, bilimingizni oshiring</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="forum-card">
+                <div class="forum-message">
+                    <div class="coming-soon-badge">🚀 Tez orada to'liq forum</div>
+                    <h2>Hozircha savollaringizni shu yerga yozing</h2>
+                    <p>Forum to'liq ishga tushguncha, savollaringizni quyidagi forma orqali yuboring. Biz sizga Telegram orqali javob beramiz.</p>
+                    
+                    <form class="question-form" id="forumForm" action="https://formspree.io/f/your-form-id" method="POST">
+                        <div class="form-group">
+                            <label for="name">Ismingiz</label>
+                            <input type="text" id="name" name="name" required placeholder="Elyorbek">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Telegram yoki email</label>
+                            <input type="text" id="email" name="email" required placeholder="@username yoki email@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Sizning savolingiz</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Kimyoga oid savolingizni yoki olimpiada masalasini yozing..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">📨 Savolni yuborish</button>
+                        <div class="info-note">
+                            💡 Javobni Telegram orqali olasiz. Yoki <a href="https://t.me/ChemistryUAC" target="_blank" style="color:#3b82f6;">kanalimizga</a> yozing.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-icon">
+                        <img src="https://i.ibb.co/WN4TDFVY/photo-2026-04-01-00-14-37.jpg" alt="UAC Logo">
+                    </div>
+                    <span>UAC</span>
+                    <p class="footer-tagline">O'zbekiston Kimyogarlar Assotsiatsiyasi</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Bosh sahifa</a>
+                    <a href="library.html">Kutubxona</a>
+                    <a href="forum.html">Forum</a>
+                    <a href="https://t.me/ChemistryUAC" target="_blank">Telegram</a>
+                    <a href="https://www.instagram.com/uac_uz" target="_blank">Instagram</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2026 UAC
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Обработка формы (простое уведомление, так как Formspree работает сам)
+        const form = document.getElementById('forumForm');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                // Formspree сам обработает отправку, просто показываем уведомление
+                setTimeout(() => {
+                    alert('✅ Xabaringiz yuborildi! Tez orada javob olasiz.');
+                }, 100);
+            });
+        }
+    </script>
+</body>
+</html>
