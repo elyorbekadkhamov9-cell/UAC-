@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mendeleev olimpiadasi | UAC</title>
+    <meta name="description" content="Mendeleev olimpiadasi materiallari - masalalar, yechimlar, tajribalar">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .problems-header {
+            background: linear-gradient(135deg, #1a2a32, #2d4a3e);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .problems-header h1 {
+            font-size: 44px;
+            margin-bottom: 16px;
+        }
+        .problems-header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .filter-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-btn.active {
+            background: #3b82f6;
+            color: white;
+        }
+        .filter-btn:hover {
+            background: #e2e8f0;
+        }
+        .years-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        .year-btn {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .year-btn.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        .problems-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 40px 0;
+        }
+        .problem-item {
+            background: white;
+            border-radius: 16px;
+            padding: 20px 24px;
+            border: 1px solid #eef2f6;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .problem-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-color: #cbd5e1;
+        }
+        .problem-info {
+            flex: 1;
+        }
+        .problem-year {
+            font-size: 14px;
+            color: #3b82f6;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .problem-name {
+            font-size: 16px;
+            font-weight: 500;
+            color: #1a2a32;
+        }
+        .problem-folder {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+        .problem-type {
+            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: #f1f5f9;
+            color: #2d3748;
+        }
+        .download-btn {
+            background: #3b82f6;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        .download-btn:hover {
+            background: #2563eb;
+        }
+        .stats {
+            text-align: center;
+            padding: 20px;
+            background: #f8fafc;
+            border-radius: 16px;
+            margin: 20px 0;
+            color: #4a5568;
+        }
+        @media (max-width: 768px) {
+            .problems-header h1 { font-size: 32px; }
+            .problem-item { flex-direction: column; align-items: flex-start; }
+            .download-btn { align-self: stretch; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-decoration"></div>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="https://i.ibb.co/WN4TDFVY/photo-2026-04-01-00-14-37.jpg" alt="UAC Logo">
+                    </div>
+                    <span class="logo-text">UAC</span>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Bosh sahifa</a>
+                    <a href="library.html" class="nav-link">Kutubxona</a>
+                    <a href="forum.html" class="nav-link">Forum</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="problems-header">
+            <div class="container">
+                <h1>🧪 Mendeleev olimpiadasi</h1>
+                <p>1999-yildan beri o'tkaziladigan eng nufuzli xalqaro kimyo olimpiadalaridan biri</p>
+            </div>
+        </div>
+
+        <div class="container">
+          
+            <div class="filters">
+                <button class="filter-btn active" data-type="all">📋 Hammasi</button>
+                <button class="filter-btn" data-type="Задачи">📝 Zadachi</button>
+                <button class="filter-btn" data-type="Решения">✅ Yechimlar</button>
+                <button class="filter-btn" data-type="Практика">🔬 Praktika</button>
+                <button class="filter-btn" data-type="Материалы">📚 Materiallar</button>
+            </div>
+          
+            <div class="years-grid" id="yearsFilter"></div>
+
+
+            <div class="stats" id="stats"></div>
+
+      
+            <div class="problems-list" id="problemsList"></div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-icon">
+                        <img src="https://i.ibb.co/WN4TDFVY/photo-2026-04-01-00-14-37.jpg" alt="UAC Logo">
+                    </div>
+                    <span>UAC</span>
+                    <p class="footer-tagline">O'zbekiston Kimyogarlar Assotsiatsiyasi</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Bosh sahifa</a>
+                    <a href="library.html">Kutubxona</a>
+                    <a href="forum.html">Forum</a>
+                    <a href="https://t.me/ChemistryUAC" target="_blank">Telegram</a>
+                    <a href="https://www.instagram.com/uac_uz" target="_blank">Instagram</a>
+                </div>
+                <div class="footer-copyright">
+                    © 2026 UAC
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const problemsData = [mendel.json];
+
+        let currentType = 'all';
+        let currentYear = 'all';
+
+        function render() {
+            let filtered = problemsData;
+
+
+            if (currentType !== 'all') {
+                filtered = filtered.filter(p => p.type === currentType);
+            }
+
+
+            if (currentYear !== 'all') {
+                filtered = filtered.filter(p => p.year === currentYear);
+            }
+
+        
+            const statsDiv = document.getElementById('stats');
+            const uniqueYears = [...new Set(filtered.map(p => p.year))];
+            statsDiv.innerHTML = `📊 Jami: ${filtered.length} ta material | ${uniqueYears.length} xil yil`;
+
+  
+            const container = document.getElementById('problemsList');
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="stats">❌ Hech narsa topilmadi</div>';
+                return;
+            }
+
+            container.innerHTML = filtered.map(p => `
+                <div class="problem-item">
+                    <div class="problem-info">
+                        <div class="problem-year">📅 ${p.year}</div>
+                        <div class="problem-name">📄 ${p.file}</div>
+                        <div class="problem-folder">📁 ${p.folder}</div>
+                    </div>
+                    <div class="problem-type">${p.type}</div>
+                    <a href="${p.url}" class="download-btn" download>📥 Yuklab olish</a>
+                </div>
+            `).join('');
+        }
+
+        function setupFilters() {
+            // Фильтры по типу
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentType = btn.dataset.type;
+                    render();
+                });
+            });
+
+            // Фильтры по годам
+            const years = [...new Set(problemsData.map(p => p.year))].sort();
+            const yearsContainer = document.getElementById('yearsFilter');
+            yearsContainer.innerHTML = `<button class="year-btn active" data-year="all">📅 Barcha yillar</button>`;
+            years.forEach(year => {
+                yearsContainer.innerHTML += `<button class="year-btn" data-year="${year}">${year}</button>`;
+            });
+
+            document.querySelectorAll('.year-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentYear = btn.dataset.year;
+                    render();
+                });
+            });
+        }
+        if (problemsData.length) {
+            setupFilters();
+            render();
+        } else {
+            document.getElementById('problemsList').innerHTML = '<div class="stats">⏳ Maʼlumotlar yuklanmoqda...</div>';
+        }
+    </script>
+</body>
+</html>
