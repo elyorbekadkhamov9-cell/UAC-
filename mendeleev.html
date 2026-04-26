@@ -28,6 +28,381 @@
             flex-wrap: wrap;
             gap: 12px;
             justify-content: center;
+            margin: 30px 0 10px 0;
+        }
+        .filter-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+        .filter-btn.active {
+            background: #3b82f6;
+            color: white;
+        }
+        .filter-btn:hover:not(.active) {
+            background: #e2e8f0;
+        }
+        .years-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin: 16px 0 32px 0;
+        }
+        .year-btn {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .year-btn.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        .year-btn:hover:not(.active) {
+            background: #f1f5f9;
+        }
+        .problems-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0 40px 0;
+        }
+        .problem-item {
+            background: white;
+            border-radius: 16px;
+            padding: 18px 24px;
+            border: 1px solid #eef2f6;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .problem-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-color: #cbd5e1;
+        }
+        .problem-info { flex: 1; min-width: 200px; }
+        .problem-year {
+            font-size: 13px;
+            color: #3b82f6;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .problem-name {
+            font-size: 15px;
+            font-weight: 500;
+            color: #1a2a32;
+        }
+        .problem-folder {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 3px;
+        }
+        .problem-type {
+            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: #f1f5f9;
+            color: #2d3748;
+            white-space: nowrap;
+        }
+        .problem-type.zadachi   { background: #fef3e8; color: #d97706; }
+        .problem-type.resheniya { background: #d1fae5; color: #059669; }
+        .problem-type.materialy { background: #e0f2fe; color: #0284c7; }
+
+        .download-btn {
+            background: #3b82f6;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .download-btn:hover { background: #2563eb; }
+
+        .stats {
+            text-align: center;
+            padding: 14px 20px;
+            background: #f8fafc;
+            border-radius: 12px;
+            margin: 0 0 20px 0;
+            color: #4a5568;
+            font-size: 14px;
+        }
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin: 0 0 20px 0;
+        }
+        .search-bar input {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px 20px;
+            border-radius: 40px;
+            border: 1px solid #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: border 0.2s;
+        }
+        .search-bar input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+        }
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #94a3b8;
+            font-size: 16px;
+        }
+        .loading-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #4a5568;
+        }
+        @media (max-width: 768px) {
+            .problems-header h1 { font-size: 28px; }
+            .problems-header p  { font-size: 15px; }
+            .problem-item { flex-direction: column; align-items: flex-start; }
+            .download-btn { align-self: stretch; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-decoration"></div>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="https://i.ibb.co/WN4TDFVY/photo-2026-04-01-00-14-37.jpg" alt="UAC Logo">
+                    </div>
+                    <span class="logo-text">UAC</span>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Bosh sahifa</a>
+                    <a href="library.html" class="nav-link">Kutubxona</a>
+                    <a href="mendeleev.html" class="nav-link active">Mendeleev</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="problems-header">
+            <div class="container">
+                <h1>🧪 Mendeleev olimpiadasi</h1>
+                <p>2005–2026 yillar masalalari, yechimlari va tajriba turlari</p>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <!-- Qidiruv -->
+            <div class="search-bar" style="margin-top: 30px;">
+                <input type="text" id="searchInput" placeholder="🔍 Fayl nomi bo'yicha qidirish...">
+            </div>
+
+            <!-- Tur filtri -->
+            <div class="filters">
+                <button class="filter-btn active" data-type="all">📋 Hammasi</button>
+                <button class="filter-btn" data-type="Задачи">📝 Zadachi</button>
+                <button class="filter-btn" data-type="Решения">✅ Yechimlar</button>
+                <button class="filter-btn" data-type="Материалы">📚 Materiallar</button>
+            </div>
+
+            <!-- Yillar filtri -->
+            <div class="years-grid" id="yearsFilter"></div>
+
+            <!-- Statistika -->
+            <div class="stats" id="stats">⏳ Yuklanmoqda...</div>
+
+            <!-- Ro'yxat -->
+            <div class="problems-list" id="problemsList">
+                <div class="loading-state">⏳ Ma'lumotlar yuklanmoqda...</div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-icon">
+                        <img src="https://i.ibb.co/WN4TDFVY/photo-2026-04-01-00-14-37.jpg" alt="UAC Logo">
+                    </div>
+                    <span>UAC</span>
+                    <p class="footer-tagline">O'zbekiston Kimyogarlar Assotsiatsiyasi</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Bosh sahifa</a>
+                    <a href="library.html">Kutubxona</a>
+                    <a href="https://t.me/ChemistryUAC" target="_blank">Telegram</a>
+                    <a href="https://www.instagram.com/uac_uz" target="_blank">Instagram</a>
+                </div>
+                <div class="footer-copyright">© 2026 UAC</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let allData = [];
+        let currentType = 'all';
+        let currentYear = 'all';
+        let searchQuery = '';
+
+        function getTypeClass(type) {
+            if (type === 'Задачи')   return 'zadachi';
+            if (type === 'Решения')  return 'resheniya';
+            return 'materialy';
+        }
+
+        function render() {
+            let filtered = allData;
+
+            if (currentType !== 'all') {
+                filtered = filtered.filter(p => p.type === currentType);
+            }
+            if (currentYear !== 'all') {
+                filtered = filtered.filter(p => p.year === currentYear);
+            }
+            if (searchQuery) {
+                const q = searchQuery.toLowerCase();
+                filtered = filtered.filter(p =>
+                    p.file.toLowerCase().includes(q) ||
+                    p.folder.toLowerCase().includes(q)
+                );
+            }
+
+            const uniqueYears = [...new Set(filtered.map(p => p.year))];
+            document.getElementById('stats').innerHTML =
+                `📊 Jami: <strong>${filtered.length}</strong> ta material | <strong>${uniqueYears.length}</strong> ta yil`;
+
+            const container = document.getElementById('problemsList');
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="empty-state">❌ Hech narsa topilmadi</div>';
+                return;
+            }
+
+            // Yil bo'yicha saralash (yangi → eski)
+            filtered.sort((a, b) => parseInt(b.year) - parseInt(a.year));
+
+            container.innerHTML = filtered.map(p => `
+                <div class="problem-item">
+                    <div class="problem-info">
+                        <div class="problem-year">📅 ${p.year}</div>
+                        <div class="problem-name">📄 ${p.file}</div>
+                        <div class="problem-folder">📁 ${p.folder}</div>
+                    </div>
+                    <span class="problem-type ${getTypeClass(p.type)}">${p.type}</span>
+                    <a href="${p.url}" class="download-btn" target="_blank">📥 Yuklab olish</a>
+                </div>
+            `).join('');
+        }
+
+        function setupYearButtons() {
+            const years = [...new Set(allData.map(p => p.year))].sort((a,b) => b - a);
+            const container = document.getElementById('yearsFilter');
+            container.innerHTML =
+                `<button class="year-btn active" data-year="all">📅 Barcha yillar</button>` +
+                years.map(y => `<button class="year-btn" data-year="${y}">${y}</button>`).join('');
+
+            container.querySelectorAll('.year-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    container.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentYear = btn.dataset.year;
+                    render();
+                });
+            });
+        }
+
+        // Fetch ma'lumotlari
+        fetch('mendel.json')
+            .then(res => {
+                if (!res.ok) throw new Error('JSON topilmadi');
+                return res.json();
+            })
+            .then(data => {
+                allData = data;
+
+                setupYearButtons();
+
+                // Tur filtri
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        currentType = btn.dataset.type;
+                        render();
+                    });
+                });
+
+                // Qidiruv
+                document.getElementById('searchInput').addEventListener('input', e => {
+                    searchQuery = e.target.value.trim();
+                    render();
+                });
+
+                render();
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById('stats').innerHTML = '';
+                document.getElementById('problemsList').innerHTML =
+                    '<div class="empty-state">❌ mendel.json fayli topilmadi. Iltimos, faylni sayt bilan birga joylashtiring.</div>';
+            });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="google840c8d1588a80b36" />
+    <title>Mendeleev olimpiadasi | UAC</title>
+    <meta name="description" content="Mendeleev olimpiadasi materiallari - masalalar, yechimlar, tajribalar">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .problems-header {
+            background: linear-gradient(135deg, #1a2a32, #2d4a3e);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .problems-header h1 {
+            font-size: 44px;
+            margin-bottom: 16px;
+        }
+        .problems-header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
             margin: 30px 0;
         }
         .filter-btn {
