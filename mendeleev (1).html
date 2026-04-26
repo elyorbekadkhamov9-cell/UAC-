@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="google840c8d1588a80b36" />
+    <title>Mendeleev olimpiadasi | UAC</title>
+    <meta name="description" content="Mendeleev olimpiadasi materiallari - masalalar, yechimlar, tajribalar">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .page-hero {
+            background: linear-gradient(135deg, #1a2a32, #2d4a3e);
+            color: white;
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+        .page-hero h1 { font-size: 40px; margin-bottom: 12px; }
+        .page-hero p  { font-size: 17px; opacity: 0.85; }
+
+        .tab-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin: 32px auto 0;
+            max-width: 340px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50px;
+            padding: 4px;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 12px 0;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s;
+            background: transparent;
+            color: rgba(255,255,255,0.75);
+        }
+        .tab-btn.active {
+            background: white;
+            color: #1a2a32;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .section-panel { display: none; padding: 48px 0 80px; }
+        .section-panel.visible { display: block; }
+
+        /* KITOBLAR */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .book-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            border: 1px solid #eef2f6;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            transition: all 0.25s;
+        }
+        .book-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(59,130,246,0.12);
+            border-color: #cbd5e1;
+        }
+        .book-tag {
+            display: inline-block;
+            background: #e6f7f9;
+            color: #0891b2;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+        .book-title { font-size: 17px; font-weight: 700; color: #1a2a32; margin-bottom: 8px; }
+        .book-desc  { font-size: 13px; color: #4a5568; line-height: 1.55; margin-bottom: 14px; }
+        .book-tags  { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+        .tag { background: #f1f5f9; padding: 3px 10px; border-radius: 12px; font-size: 11px; color: #2d3748; }
+        .book-btn {
+            display: block;
+            text-align: center;
+            background: #3b82f6;
+            color: white;
+            padding: 10px 0;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .book-btn:hover { background: #2563eb; }
+
+        /* MASALALAR — YEARS */
+        .years-section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a2a32;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .years-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 16px;
+        }
+        .year-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 22px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .year-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 6px 20px rgba(59,130,246,0.15);
+            transform: translateY(-3px);
+        }
+        .year-num   { font-size: 26px; font-weight: 800; color: #1a2a32; display: block; margin-bottom: 4px; }
+        .year-count { font-size: 12px; color: #94a3b8; }
+
+        /* FILES VIEW */
+        .files-view { display: none; }
+        .files-view.visible { display: block; }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #f1f5f9;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            color: #2d3748;
+            transition: background 0.2s;
+            margin-bottom: 28px;
+        }
+        .back-btn:hover { background: #e2e8f0; }
+
+        .year-heading    { font-size: 30px; font-weight: 800; color: #1a2a32; margin-bottom: 4px; }
+        .year-subheading { font-size: 14px; color: #64748b; margin-bottom: 32px; }
+
+        .folder-group  { margin-bottom: 28px; }
+        .folder-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #3b82f6;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 10px;
+            padding-left: 2px;
+        }
+        .files-list { display: flex; flex-direction: column; gap: 10px; }
+
+        .file-item {
+            background: white;
+            border-radius: 14px;
+            padding: 16px 20px;
+            border: 1px solid #eef2f6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            transition: all 0.2s;
+        }
+        .file-item:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .file-name {
+            font-size: 15px;
+            font-weight: 500;
+            color: #1a2a32;
+            flex: 1;
+            min-width: 0;
+            word-break: break-word;
+        }
+        .file-badge {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .badge-z { background: #fef3e8; color: #d97706; }
+        .badge-r { background: #dcfce7; color: #16a34a; }
+        .badge-m { background: #f1f5f9; color: #475569; }
+
+        .dl-btn {
+            background: #3b82f6;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            transition: background 0.2s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .dl-btn:hover { background: #2563eb; }
+
+        .empty-msg { text-align: center; padding: 48px 0; color: #94a3b8; font-size: 15px; }
+
+        @media (max-width: 768px) {
+            .page-hero h1 { font-size: 28px; }
+            .years-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+            .file-item { flex-direction: column; align-items: flex-start; }
+            .dl-btn { align-self: stretch; text-align: center; }
+            .books-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-decoration"></div>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="https://i.ibb.co/WN4TDFVY/photo-2026-04-01-00-14-37.jpg" alt="UAC Logo">
+                    </div>
+                    <span class="logo-text">UAC</span>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Bosh sahifa</a>
+                    <a href="library.html" class="nav-link active">Kutubxona</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-hero">
+            <div class="container">
+                <h1>🧪 Mendeleev olimpiadasi</h1>
+                <p>1999-yildan beri o'tkaziladigan eng nufuzli xalqaro kimyo olimpiadalaridan biri</p>
+                <div class="tab-switcher">
+                    <button class="tab-btn active" onclick="switchTab('kitoblar')">📚 Kitoblar</button>
+                    <button class="tab-btn"        onclick="switchTab('masalalar')">📝 Masalalar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <!-- ===== KITOBLAR ===== -->
+            <div class="section-panel visible" id="panelKitoblar">
+                <div class="books-grid">
+                    <div class="book-card">
+                        <span class="book-tag">📖 Kitob</span>
+                        <div class="book-title">"Inorganic Chemistry" — Housecroft</div>
+                        <div class="book-desc">Noorganik kimyo bo'yicha klassik darslik. Nazariya, elementlar kimyosi, spektroskopiya.</div>
+                        <div class="book-tags"><span class="tag">noorganika</span><span class="tag">inglizcha</span></div>
+                        <a href="https://drive.google.com/uc?export=download&id=1g-1ZaP38b6HKfOUU3pkFAjGaaj-DHQ4V" class="book-btn" target="_blank">📥 Yuklab olish →</a>
+                    </div>
+                    <div class="book-card">
+                        <span class="book-tag">📖 Kitob</span>
+                        <div class="book-title">"Неорганическая химия" — Третьяков</div>
+                        <div class="book-desc">Rus tilidagi noorganik kimyo darsligi. Universitetlar uchun asosiy adabiyot.</div>
+                        <div class="book-tags"><span class="tag">noorganika</span><span class="tag">ruscha</span></div>
+                        <a href="https://drive.google.com/uc?export=download&id=1PSZlVRvEvXEyxmT5tJaH06EXemU85qb6" class="book-btn" target="_blank">📥 Yuklab olish →</a>
+                    </div>
+                    <div class="book-card">
+                        <span class="book-tag">📖 Kitob</span>
+                        <div class="book-title">"Organik kimyo" — Clayden (1-qism)</div>
+                        <div class="book-desc">Organik kimyo bo'yicha eng mashhur darslik. Reaksiya mexanizmlari, stereokimyo, sintez.</div>
+                        <div class="book-tags"><span class="tag">organika</span><span class="tag">inglizcha</span></div>
+                        <a href="https://drive.google.com/uc?export=download&id=14Nje3WlZ07K1YUNmTSBB97YIXei6_IFx" class="book-btn" target="_blank">📥 Yuklab olish →</a>
+                    </div>
+                    <div class="book-card">
+                        <span class="book-tag">📖 Kitob</span>
+                        <div class="book-title">"Organik kimyo" — Clayden (2-qism)</div>
+                        <div class="book-desc">Organik kimyo bo'yicha eng mashhur darslik. Reaksiya mexanizmlari, stereokimyo, sintez.</div>
+                        <div class="book-tags"><span class="tag">organika</span><span class="tag">inglizcha</span></div>
+                        <a href="https://drive.google.com/uc?export=download&id=1aMHSlMkbdB5niUCNCK6iS9vtdZhXhoVx" class="book-btn" target="_blank">📥 Yuklab olish →</a>
+                    </div>
+                    <div class="book-card">
+                        <span class="book-tag">📖 Kitob</span>
+                        <div class="book-title">"Organik kimyo" — Clayden (3-qism)</div>
+                        <div class="book-desc">Organik kimyo bo'yicha eng mashhur darslik. Reaksiya mexanizmlari, stereokimyo, sintez.</div>
+                        <div class="book-tags"><span class="tag">organika</span><span class="tag">inglizcha</span></div>
+                        <a href="https://drive.google.com/uc?export=download&id=14J2lCk735tg8y2pb1P7aWgMKniiMN8nv" class="book-btn" target="_blank">📥 Yuklab olish →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== MASALALAR ===== -->
+            <div class="section-panel" id="panelMasalalar">
+
+                <!-- Years grid -->
+                <div id="yearsView">
+                    <p class="years-section-title">📅 Yilni tanlang</p>
+                    <div class="years-grid" id="yearsGrid">
+                        <div class="empty-msg">⏳ Yuklanmoqda...</div>
+                    </div>
+                </div>
+
+                <!-- Files for selected year -->
+                <div class="files-view" id="filesView">
+                    <button class="back-btn" onclick="goBack()">← Orqaga</button>
+                    <div class="year-heading"    id="filesYearTitle"></div>
+                    <div class="year-subheading" id="filesYearSub"></div>
+                    <div id="filesContainer"></div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-icon">
+                        <img src="https://i.ibb.co/WN4TDFVY/photo-2026-04-01-00-14-37.jpg" alt="UAC Logo">
+                    </div>
+                    <span>UAC</span>
+                    <p class="footer-tagline">O'zbekiston Kimyogarlar Assotsiatsiyasi</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Bosh sahifa</a>
+                    <a href="library.html">Kutubxona</a>
+                    <a href="https://t.me/ChemistryUAC" target="_blank">Telegram</a>
+                    <a href="https://www.instagram.com/uac_uz" target="_blank">Instagram</a>
+                </div>
+                <div class="footer-copyright">© 2026 UAC</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let allData = [];
+
+        function switchTab(tab) {
+            document.getElementById('panelKitoblar').classList.toggle('visible', tab === 'kitoblar');
+            document.getElementById('panelMasalalar').classList.toggle('visible', tab === 'masalalar');
+            document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+                btn.classList.toggle('active', (i === 0 && tab === 'kitoblar') || (i === 1 && tab === 'masalalar'));
+            });
+        }
+
+        function goBack() {
+            document.getElementById('filesView').classList.remove('visible');
+            document.getElementById('yearsView').style.display = 'block';
+        }
+
+        function badgeClass(type) {
+            if (type === 'Задачи')   return 'badge-z';
+            if (type === 'Решения') return 'badge-r';
+            return 'badge-m';
+        }
+        function badgeLabel(type) {
+            if (type === 'Задачи')   return '📝 Zadachi';
+            if (type === 'Решения') return '✅ Yechim';
+            return '📄 Material';
+        }
+
+        function openYear(year) {
+            const items = allData.filter(p => p.year === year);
+
+            // Group by folder
+            const folders = {};
+            items.forEach(p => {
+                if (!folders[p.folder]) folders[p.folder] = [];
+                folders[p.folder].push(p);
+            });
+
+            let html = '';
+            Object.keys(folders).sort().forEach(folder => {
+                html += `<div class="folder-group">
+                    <div class="folder-name">📁 ${folder}</div>
+                    <div class="files-list">`;
+                folders[folder].forEach(f => {
+                    html += `<div class="file-item">
+                        <span class="file-name">${f.file}</span>
+                        <span class="file-badge ${badgeClass(f.type)}">${badgeLabel(f.type)}</span>
+                        <a href="${f.url}" class="dl-btn" target="_blank">📥 Yuklab olish</a>
+                    </div>`;
+                });
+                html += `</div></div>`;
+            });
+
+            document.getElementById('filesYearTitle').textContent = `📅 ${year}-yil`;
+            document.getElementById('filesYearSub').textContent   = `${items.length} ta fayl`;
+            document.getElementById('filesContainer').innerHTML   = html;
+
+            document.getElementById('yearsView').style.display = 'none';
+            document.getElementById('filesView').classList.add('visible');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function buildYearsGrid() {
+            const years = [...new Set(allData.map(p => p.year))].sort((a, b) => b - a);
+            document.getElementById('yearsGrid').innerHTML = years.map(year => {
+                const count = allData.filter(p => p.year === year).length;
+                return `<div class="year-card" onclick="openYear('${year}')">
+                    <span class="year-num">${year}</span>
+                    <span class="year-count">${count} ta fayl</span>
+                </div>`;
+            }).join('');
+        }
+
+        fetch('mendel.json')
+            .then(r => r.json())
+            .then(data => {
+                allData = data;
+                buildYearsGrid();
+            })
+            .catch(() => {
+                document.getElementById('yearsGrid').innerHTML =
+                    '<div class="empty-msg">❌ Ma\'lumotlar yuklanmadi. mendel.json faylini tekshiring.</div>';
+            });
+    </script>
+</body>
+</html>
