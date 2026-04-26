@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="google840c8d1588a80b36" />
+    <title>IMChO — Mendeleev olimpiadasi | UAC</title>
+    <meta name="description" content="Mendeleev xalqaro kimyo olimpiadasi masalalari va yechimlari. 2005-2026 yillar.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .page-top {
+            padding: 56px 0 48px;
+            border-bottom: 1px solid #f1f5f9;
+            margin-bottom: 48px;
+        }
+        .breadcrumb {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 16px;
+        }
+        .breadcrumb a {
+            color: #94a3b8;
+            text-decoration: none;
+        }
+        .breadcrumb a:hover { color: #3b82f6; }
+        .breadcrumb span { margin: 0 6px; }
+        .page-top h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1a2a32;
+            margin-bottom: 6px;
+        }
+        .page-top p {
+            font-size: 16px;
+            color: #64748b;
+        }
+
+        /* YEARS VIEW */
+        .view-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        .years-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 12px;
+            margin-bottom: 80px;
+        }
+        .year-card {
+            padding: 20px 12px;
+            background: white;
+            border: 1px solid #eef2f6;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.18s;
+        }
+        .year-card:hover {
+            border-color: #3b82f6;
+            background: #f8faff;
+            transform: translateY(-2px);
+        }
+        .year-num   { font-size: 22px; font-weight: 800; color: #1a2a32; display: block; }
+        .year-count { font-size: 11px; color: #94a3b8; margin-top: 4px; display: block; }
+
+        /* FILES VIEW */
+        .files-view { display: none; padding-bottom: 80px; }
+        .files-view.visible { display: block; }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: none;
+            background: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #64748b;
+            cursor: pointer;
+            padding: 0;
+            margin-bottom: 32px;
+            transition: color 0.2s;
+        }
+        .back-btn:hover { color: #1a2a32; }
+
+        .files-year-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1a2a32;
+            margin-bottom: 4px;
+        }
+        .files-year-sub {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 40px;
+        }
+
+        .folder-block { margin-bottom: 36px; }
+        .folder-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 12px;
+        }
+
+        .file-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            background: white;
+            border: 1px solid #eef2f6;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            gap: 12px;
+            transition: border-color 0.18s;
+        }
+        .file-row:hover { border-color: #cbd5e1; }
+
+        .file-info { flex: 1; min-width: 0; }
+        .file-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #1a2a32;
+            word-break: break-word;
+        }
+        .file-badge {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 9px;
+            border-radius: 20px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .bz { background: #fef3e8; color: #d97706; }
+        .br { background: #dcfce7; color: #16a34a; }
+        .bm { background: #f1f5f9; color: #64748b; }
+
+        .dl-btn {
+            font-size: 13px;
+            font-weight: 600;
+            color: #3b82f6;
+            text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: color 0.18s;
+        }
+        .dl-btn:hover { color: #2563eb; }
+
+        .empty { text-align: center; padding: 60px 0; color: #94a3b8; }
+
+        @media (max-width: 768px) {
+            .page-top h1 { font-size: 26px; }
+            .years-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
+            .file-row { flex-wrap: wrap; }
+            .dl-btn { margin-left: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-decoration"></div>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="https://i.ibb.co/WN4TDFVY/photo-2026-04-01-00-14-37.jpg" alt="UAC Logo">
+                    </div>
+                    <span class="logo-text">UAC</span>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Bosh sahifa</a>
+                    <a href="library.html" class="nav-link">Kutubxona</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="page-top">
+                <div class="breadcrumb">
+                    <a href="library.html">Kutubxona</a>
+                    <span>/</span>
+                    <a href="library.html">Masalalar</a>
+                    <span>/</span>
+                    IMChO
+                </div>
+                <h1>Mendeleev olimpiadasi</h1>
+                <p>Xalqaro Mendeleev kimyo olimpiadasi — 2005 yildan buyon</p>
+            </div>
+
+            <!-- YEARS -->
+            <div id="yearsView">
+                <div class="view-label">Yilni tanlang</div>
+                <div class="years-grid" id="yearsGrid">
+                    <div class="empty">Yuklanmoqda...</div>
+                </div>
+            </div>
+
+            <!-- FILES -->
+            <div class="files-view" id="filesView">
+                <button class="back-btn" onclick="goBack()">← Orqaga</button>
+                <div class="files-year-title" id="filesTitle"></div>
+                <div class="files-year-sub"   id="filesSub"></div>
+                <div id="filesContainer"></div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-icon">
+                        <img src="https://i.ibb.co/WN4TDFVY/photo-2026-04-01-00-14-37.jpg" alt="UAC Logo">
+                    </div>
+                    <span>UAC</span>
+                    <p class="footer-tagline">O'zbekiston Kimyogarlar Assotsiatsiyasi</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Bosh sahifa</a>
+                    <a href="library.html">Kutubxona</a>
+                    <a href="https://t.me/ChemistryUAC" target="_blank">Telegram</a>
+                    <a href="https://www.instagram.com/uac_uz" target="_blank">Instagram</a>
+                </div>
+                <div class="footer-copyright">© 2026 UAC</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let allData = [];
+
+        function goBack() {
+            document.getElementById('filesView').classList.remove('visible');
+            document.getElementById('yearsView').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function badgeClass(type) {
+            if (type === 'Задачи')  return 'bz';
+            if (type === 'Решения') return 'br';
+            return 'bm';
+        }
+        function badgeText(type) {
+            if (type === 'Задачи')  return 'Zadachi';
+            if (type === 'Решения') return 'Yechim';
+            return 'Material';
+        }
+
+        function openYear(year) {
+            const items = allData.filter(p => p.year === year);
+
+            const folders = {};
+            items.forEach(p => {
+                if (!folders[p.folder]) folders[p.folder] = [];
+                folders[p.folder].push(p);
+            });
+
+            let html = '';
+            Object.keys(folders).sort().forEach(folder => {
+                html += `<div class="folder-block">
+                    <div class="folder-label">${folder}</div>`;
+                folders[folder].forEach(f => {
+                    html += `<div class="file-row">
+                        <div class="file-info">
+                            <div class="file-name">${f.file}</div>
+                        </div>
+                        <span class="file-badge ${badgeClass(f.type)}">${badgeText(f.type)}</span>
+                        <a href="${f.url}" class="dl-btn" target="_blank">Yuklab olish</a>
+                    </div>`;
+                });
+                html += `</div>`;
+            });
+
+            document.getElementById('filesTitle').textContent = year + '-yil';
+            document.getElementById('filesSub').textContent   = items.length + ' ta fayl';
+            document.getElementById('filesContainer').innerHTML = html;
+
+            document.getElementById('yearsView').style.display = 'none';
+            document.getElementById('filesView').classList.add('visible');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function buildYears() {
+            const years = [...new Set(allData.map(p => p.year))].sort((a, b) => b - a);
+            document.getElementById('yearsGrid').innerHTML = years.map(y => {
+                const count = allData.filter(p => p.year === y).length;
+                return `<div class="year-card" onclick="openYear('${y}')">
+                    <span class="year-num">${y}</span>
+                    <span class="year-count">${count} fayl</span>
+                </div>`;
+            }).join('');
+        }
+
+        fetch('mendel.json')
+            .then(r => r.json())
+            .then(data => { allData = data; buildYears(); })
+            .catch(() => {
+                document.getElementById('yearsGrid').innerHTML =
+                    '<div class="empty">mendel.json fayl topilmadi</div>';
+            });
+    </script>
+</body>
+</html>

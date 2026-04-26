@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kutubxona | UAC</title>
+    <meta name="description" content="Kimyo fanidan kitoblar va olimpiada masalalari. IChO, IMChO, ARBIChO, Uzbek saralash materiallari.">
+    <meta name="robots" content="index, follow">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .lib-hero {
+            padding: 64px 0 0;
+            text-align: center;
+        }
+        .lib-hero h1 {
+            font-size: 40px;
+            font-weight: 800;
+            color: #1a2a32;
+            margin-bottom: 10px;
+        }
+        .lib-hero p {
+            font-size: 17px;
+            color: #64748b;
+            margin-bottom: 36px;
+        }
+
+        /* TAB SWITCHER */
+        .tab-row {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 56px;
+        }
+        .tab-btn {
+            padding: 12px 36px;
+            border-radius: 50px;
+            border: 1.5px solid #e2e8f0;
+            background: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: #1a2a32;
+            color: white;
+            border-color: #1a2a32;
+        }
+        .tab-btn:hover:not(.active) {
+            border-color: #94a3b8;
+            color: #1a2a32;
+        }
+
+        /* PANELS */
+        .panel { display: none; padding-bottom: 80px; }
+        .panel.visible { display: block; }
+
+        /* BOOKS */
+        .books-category { margin-bottom: 52px; }
+        .cat-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 20px;
+        }
+        .book-card {
+            background: white;
+            border: 1px solid #eef2f6;
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.2s;
+        }
+        .book-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+            transform: translateY(-2px);
+        }
+        .book-lang {
+            font-size: 11px;
+            font-weight: 600;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+        .book-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1a2a32;
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+        .book-desc {
+            font-size: 13px;
+            color: #64748b;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        .book-dl {
+            display: block;
+            text-align: center;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            color: #1a2a32;
+            padding: 9px 0;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .book-dl:hover {
+            background: #1a2a32;
+            color: white;
+            border-color: #1a2a32;
+        }
+
+        /* OLYMPIAD FOLDERS */
+        .folders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+        }
+        .folder-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 24px;
+            background: white;
+            border: 1px solid #eef2f6;
+            border-radius: 14px;
+            text-decoration: none;
+            color: #1a2a32;
+            transition: all 0.2s;
+        }
+        .folder-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 4px 16px rgba(59,130,246,0.1);
+            transform: translateY(-2px);
+        }
+        .folder-left {}
+        .folder-name {
+            font-size: 17px;
+            font-weight: 700;
+            color: #1a2a32;
+            margin-bottom: 3px;
+        }
+        .folder-sub {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+        .folder-arrow {
+            font-size: 18px;
+            color: #cbd5e1;
+            transition: color 0.2s;
+        }
+        .folder-card:hover .folder-arrow {
+            color: #3b82f6;
+        }
+
+        .section-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        @media (max-width: 768px) {
+            .lib-hero h1 { font-size: 28px; }
+            .folders-grid { grid-template-columns: 1fr; }
+            .books-grid { grid-template-columns: 1fr; }
+            .tab-btn { padding: 10px 24px; font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-decoration"></div>
+
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="https://i.ibb.co/WN4TDFVY/photo-2026-04-01-00-14-37.jpg" alt="UAC Logo">
+                    </div>
+                    <span class="logo-text">UAC</span>
+                </div>
+                <nav class="nav">
+                    <a href="index.html" class="nav-link">Bosh sahifa</a>
+                    <a href="library.html" class="nav-link active">Kutubxona</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="lib-hero">
+            <div class="container">
+                <h1>Kutubxona</h1>
+                <p>Kimyo bo'yicha kitoblar va olimpiada masalalari</p>
+                <div class="tab-row">
+                    <button class="tab-btn active" onclick="switchTab('kitoblar')">Kitoblar</button>
+                    <button class="tab-btn"        onclick="switchTab('masalalar')">Masalalar</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+
+            <!-- ===== KITOBLAR ===== -->
+            <div class="panel visible" id="panelKitoblar">
+
+                <div class="books-category">
+                    <div class="cat-title">Noorganik kimyo</div>
+                    <div class="books-grid">
+                        <div class="book-card">
+                            <div class="book-lang">Inglizcha</div>
+                            <div class="book-title">Inorganic Chemistry — Housecroft</div>
+                            <div class="book-desc">Noorganik kimyo bo'yicha klassik darslik. Nazariya, elementlar kimyosi, spektroskopiya.</div>
+                            <a href="https://drive.google.com/uc?export=download&id=1g-1ZaP38b6HKfOUU3pkFAjGaaj-DHQ4V" class="book-dl" target="_blank">Yuklab olish</a>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-lang">Ruscha</div>
+                            <div class="book-title">Неорганическая химия — Третьяков</div>
+                            <div class="book-desc">Rus tilidagi noorganik kimyo darsligi. Universitetlar uchun asosiy adabiyot.</div>
+                            <a href="https://drive.google.com/uc?export=download&id=1PSZlVRvEvXEyxmT5tJaH06EXemU85qb6" class="book-dl" target="_blank">Yuklab olish</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="books-category">
+                    <div class="cat-title">Organik kimyo</div>
+                    <div class="books-grid">
+                        <div class="book-card">
+                            <div class="book-lang">Inglizcha</div>
+                            <div class="book-title">Organik kimyo — Clayden (1-qism)</div>
+                            <div class="book-desc">Organik kimyo bo'yicha eng mashhur darslik. Reaksiya mexanizmlari, stereokimyo, sintez.</div>
+                            <a href="https://drive.google.com/uc?export=download&id=14Nje3WlZ07K1YUNmTSBB97YIXei6_IFx" class="book-dl" target="_blank">Yuklab olish</a>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-lang">Inglizcha</div>
+                            <div class="book-title">Organik kimyo — Clayden (2-qism)</div>
+                            <div class="book-desc">Organik kimyo bo'yicha eng mashhur darslik. Reaksiya mexanizmlari, stereokimyo, sintez.</div>
+                            <a href="https://drive.google.com/uc?export=download&id=1aMHSlMkbdB5niUCNCK6iS9vtdZhXhoVx" class="book-dl" target="_blank">Yuklab olish</a>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-lang">Inglizcha</div>
+                            <div class="book-title">Organik kimyo — Clayden (3-qism)</div>
+                            <div class="book-desc">Organik kimyo bo'yicha eng mashhur darslik. Reaksiya mexanizmlari, stereokimyo, sintez.</div>
+                            <a href="https://drive.google.com/uc?export=download&id=14J2lCk735tg8y2bp1P7aWgMKniiMN8nv" class="book-dl" target="_blank">Yuklab olish</a>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-lang">Ruscha</div>
+                            <div class="book-title">Органическая химия для олимпиадников — Сальников</div>
+                            <div class="book-desc">Olimpiadalarga tayyorgarlik uchun maxsus adabiyot. Murakkab masalalar va reaksiyalar.</div>
+                            <a href="https://drive.google.com/uc?export=download&id=1E97zcIZA8lU_xSzVyoaHh713L_WhaikR" class="book-dl" target="_blank">Yuklab olish</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="books-category">
+                    <div class="cat-title">Analitik kimyo</div>
+                    <div class="books-grid">
+                        <div class="book-card">
+                            <div class="book-lang">Ruscha</div>
+                            <div class="book-title">Основы аналитической химии — Золотов (1-qism)</div>
+                            <div class="book-desc">Analitik kimyo bo'yicha klassik darslik. Nazariy asoslar, metodlar.</div>
+                            <a href="https://drive.google.com/uc?export=download&id=1Q46DM_3glZ5zOdLKAtuFV2qYhDANVJGb" class="book-dl" target="_blank">Yuklab olish</a>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-lang">Ruscha</div>
+                            <div class="book-title">Основы аналитической химии — Золотов (2-qism)</div>
+                            <div class="book-desc">Analitik kimyo bo'yicha klassik darslik. Amaliy masalalar, usullar.</div>
+                            <a href="https://drive.google.com/uc?export=download&id=1K_4seI_u1P-fWW3ZgxGDvQfhbPLWRlu4" class="book-dl" target="_blank">Yuklab olish</a>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-lang">Ruscha</div>
+                            <div class="book-title">Качественный анализ — Алексеев</div>
+                            <div class="book-desc">Sifat tahlili bo'yicha klassik qo'llanma. Kationlar va anionlarni aniqlash.</div>
+                            <a href="https://drive.google.com/uc?export=download&id=1K_4seI_u1P-fWW3ZgxGDvQfhbPLWRlu4" class="book-dl" target="_blank">Yuklab olish</a>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-lang">Ruscha</div>
+                            <div class="book-title">Количественный анализ — Алексеев</div>
+                            <div class="book-desc">Miqdoriy tahlil bo'yicha qo'llanma. Titrimetriya, gravimetriya.</div>
+                            <a href="https://drive.google.com/uc?export=download&id=1DM2l1kzvLtjGYpCwAB8JG4wiOp4Dq6Bw" class="book-dl" target="_blank">Yuklab olish</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="books-category">
+                    <div class="cat-title">Fizikaviy kimyo</div>
+                    <div class="books-grid">
+                        <div class="book-card">
+                            <div class="book-lang">Inglizcha</div>
+                            <div class="book-title">Physical Chemistry — Atkins</div>
+                            <div class="book-desc">Fizikaviy kimyo bo'yicha dunyodagi eng mashhur darslik. Termodinamika, kinetika, kvant kimyosi.</div>
+                            <a href="https://drive.google.com/uc?export=download&id=1DApiEZ2y97tOyv_7cEI5UDTEXgMSoxxN" class="book-dl" target="_blank">Yuklab olish</a>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-lang">Ruscha</div>
+                            <div class="book-title">Математическая и теоретическая химия</div>
+                            <div class="book-desc">Kimyoda qo'llaniladigan matematik usullar va nazariy asoslar.</div>
+                            <a href="https://drive.google.com/uc?export=download&id=1tITtnTTnWmiwAR_S1KIh8IN0sFzhf1l4" class="book-dl" target="_blank">Yuklab olish</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="books-category">
+                    <div class="cat-title">Biokimyo</div>
+                    <div class="books-grid">
+                        <div class="book-card">
+                            <div class="book-lang">Inglizcha</div>
+                            <div class="book-title">Biokimyo — Lehninger (1-qism)</div>
+                            <div class="book-desc">Biokimyo bo'yicha klassik darslik. Oqsillar, fermentlar, membranalar.</div>
+                            <a href="https://drive.google.com/uc?export=download&id=1uoDw8Cs4AkDYUwWiHwZjwGlKGkn8sN23" class="book-dl" target="_blank">Yuklab olish</a>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-lang">Inglizcha</div>
+                            <div class="book-title">Biokimyo — Lehninger (2-qism)</div>
+                            <div class="book-desc">Biokimyo bo'yicha klassik darslik. Uglevodlar, lipidlar, nuklein kislotalar.</div>
+                            <a href="https://drive.google.com/uc?export=download&id=1bJejNYJyaiLBJAXKlF58Sg6iUW0E0MYx" class="book-dl" target="_blank">Yuklab olish</a>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-lang">Inglizcha</div>
+                            <div class="book-title">Biokimyo — Lehninger (3-qism)</div>
+                            <div class="book-desc">Biokimyo bo'yicha klassik darslik. Metabolizm, energiya almashinuvi.</div>
+                            <a href="https://drive.google.com/uc?export=download&id=18VSpVU1ewGbQJIhT6tTeG2ursWNNu8Zd" class="book-dl" target="_blank">Yuklab olish</a>
+                        </div>
+                        <div class="book-card">
+                            <div class="book-lang">Ruscha</div>
+                            <div class="book-title">Наглядная биохимия — Кольман</div>
+                            <div class="book-desc">Biokimyo bo'yicha vizual qo'llanma. Rasmli, tushunarli.</div>
+                            <a href="https://drive.google.com/uc?export=download&id=1V2IoJy7OAEgT70xkoN223PxklXkM3Xb1" class="book-dl" target="_blank">Yuklab olish</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ===== MASALALAR ===== -->
+            <div class="panel" id="panelMasalalar">
+                <div class="section-label">Olimpiadani tanlang</div>
+                <div class="folders-grid">
+                    <a href="icho.html" class="folder-card">
+                        <div class="folder-left">
+                            <div class="folder-name">IChO</div>
+                            <div class="folder-sub">Xalqaro kimyo olimpiadasi</div>
+                        </div>
+                        <span class="folder-arrow">→</span>
+                    </a>
+                    <a href="mendeleev.html" class="folder-card">
+                        <div class="folder-left">
+                            <div class="folder-name">IMChO</div>
+                            <div class="folder-sub">Mendeleev olimpiadasi</div>
+                        </div>
+                        <span class="folder-arrow">→</span>
+                    </a>
+                    <a href="arbicho.html" class="folder-card">
+                        <div class="folder-left">
+                            <div class="folder-name">ARBIChO</div>
+                            <div class="folder-sub">Arab mintaqasi kimyo olimpiadasi</div>
+                        </div>
+                        <span class="folder-arrow">→</span>
+                    </a>
+                    <a href="uzbek.html" class="folder-card">
+                        <div class="folder-left">
+                            <div class="folder-name">Uzbek saralashlar</div>
+                            <div class="folder-sub">O'zbekiston milliy saralash</div>
+                        </div>
+                        <span class="folder-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo-icon">
+                        <img src="https://i.ibb.co/WN4TDFVY/photo-2026-04-01-00-14-37.jpg" alt="UAC Logo">
+                    </div>
+                    <span>UAC</span>
+                    <p class="footer-tagline">O'zbekiston Kimyogarlar Assotsiatsiyasi</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Bosh sahifa</a>
+                    <a href="library.html">Kutubxona</a>
+                    <a href="https://t.me/ChemistryUAC" target="_blank">Telegram</a>
+                    <a href="https://www.instagram.com/uac_uz" target="_blank">Instagram</a>
+                </div>
+                <div class="footer-copyright">© 2026 UAC</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function switchTab(tab) {
+            document.getElementById('panelKitoblar').classList.toggle('visible', tab === 'kitoblar');
+            document.getElementById('panelMasalalar').classList.toggle('visible', tab === 'masalalar');
+            document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+                btn.classList.toggle('active',
+                    (i === 0 && tab === 'kitoblar') || (i === 1 && tab === 'masalalar'));
+            });
+        }
+    </script>
+</body>
+</html>
