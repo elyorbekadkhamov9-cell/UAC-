@@ -9,6 +9,86 @@
     <meta name="robots" content="index, follow">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Дополнительные стили для списка задач */
+        .problems-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .problem-item {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            border: 1px solid #eef2f6;
+        }
+        .problem-info {
+            flex: 1;
+        }
+        .problem-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #1a2a32;
+        }
+        .problem-meta {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 4px;
+        }
+        .problem-type {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            background: #e2e8f0;
+            color: #334155;
+        }
+        .download-small {
+            background: #3b82f6;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .download-small:hover {
+            background: #2563eb;
+        }
+        .show-all-btn {
+            background: none;
+            border: 1px solid #3b82f6;
+            color: #3b82f6;
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin-top: 16px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+        }
+        .show-all-btn:hover {
+            background: #3b82f6;
+            color: white;
+        }
+        .section-header-with-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        .view-all-link {
+            color: #3b82f6;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    </style>
 </head>
 <body>
     <div class="bg-decoration"></div>
@@ -39,6 +119,25 @@
             </div>
         </section>
 
+        <!-- ========== MENDELEEV OLIMPIADASI (DINAMIK) ========== -->
+        <section class="materials-section alt-bg">
+            <div class="container">
+                <div class="section-header-with-link">
+                    <div>
+                        <h2 class="section-title-small">🏆 Mendeleev olimpiadasi</h2>
+                        <p class="section-subtitle-small">2005-2026 yillar masalalari va yechimlari</p>
+                    </div>
+                    <a href="mendeleev.html" class="view-all-link">📂 Barchasini ko'rish →</a>
+                </div>
+                <div id="mendeleevPreview" class="problems-list">
+                    <div style="text-align: center; padding: 20px;">⏳ Yuklanmoqda...</div>
+                </div>
+                <div style="text-align: center;">
+                    <button id="showAllMendeleevBtn" class="show-all-btn">📖 Barcha materiallarni ko'rish</button>
+                </div>
+            </div>
+        </section>
+
         <!-- ========== 1. NOORGANIK KIMYO KITOBLARI ========== -->
         <section class="materials-section">
             <div class="container">
@@ -47,13 +146,10 @@
                     <p class="section-subtitle-small">Asosiy va qo'shimcha adabiyotlar</p>
                 </div>
                 <div class="materials-grid">
-                    <!-- Inorganic Chemistry Housecroft -->
                     <div class="material-card">
                         <div class="material-type book">📖 Kitob</div>
                         <h3 class="material-title">"Inorganic Chemistry" - Housecroft</h3>
-                        <p class="material-description">
-                            Noorganik kimyo bo'yicha klassik darslik. Nazariya, elementlar kimyosi, spektroskopiya.
-                        </p>
+                        <p class="material-description">Noorganik kimyo bo'yicha klassik darslik. Nazariya, elementlar kimyosi, spektroskopiya.</p>
                         <div class="material-tags">
                             <span class="tag">nazariya</span>
                             <span class="tag">noorganika</span>
@@ -61,14 +157,10 @@
                         </div>
                         <a href="https://drive.google.com/uc?export=download&id=1g-1ZaP38b6HKfOUU3pkFAjGaaj-DHQ4V" class="material-button" target="_blank">📥 Yuklab olish →</a>
                     </div>
-
-                    <!-- Неорганическая химия Третьяков -->
                     <div class="material-card">
                         <div class="material-type book">📖 Kitob</div>
                         <h3 class="material-title">"Неорганическая химия" - Третьяков</h3>
-                        <p class="material-description">
-                            Rus tilidagi noorganik kimyo darsligi. Universitetlar uchun asosiy adabiyot.
-                        </p>
+                        <p class="material-description">Rus tilidagi noorganik kimyo darsligi. Universitetlar uchun asosiy adabiyot.</p>
                         <div class="material-tags">
                             <span class="tag">nazariya</span>
                             <span class="tag">noorganika</span>
@@ -88,63 +180,32 @@
                     <p class="section-subtitle-small">Klassik darsliklar va olimpiada adabiyotlari</p>
                 </div>
                 <div class="materials-grid">
-                    <!-- Клейден 1 -->
                     <div class="material-card">
                         <div class="material-type book">📖 Kitob</div>
                         <h3 class="material-title">"Organik kimyo" - Clayden (1-qism)</h3>
-                        <p class="material-description">
-                            Organik kimyo bo'yicha eng mashhur darslik. Reaksiya mexanizmlari, stereokimyo, sintez.
-                        </p>
-                        <div class="material-tags">
-                            <span class="tag">nazariya</span>
-                            <span class="tag">organika</span>
-                            <span class="tag">inglizcha</span>
-                        </div>
+                        <p class="material-description">Organik kimyo bo'yicha eng mashhur darslik. Reaksiya mexanizmlari, stereokimyo, sintez.</p>
+                        <div class="material-tags"><span class="tag">nazariya</span><span class="tag">organika</span><span class="tag">inglizcha</span></div>
                         <a href="https://drive.google.com/uc?export=download&id=14Nje3WlZ07K1YUNmTSBB97YIXei6_IFx" class="material-button" target="_blank">📥 Yuklab olish →</a>
                     </div>
-
-                    <!-- Клейден 2 -->
                     <div class="material-card">
                         <div class="material-type book">📖 Kitob</div>
                         <h3 class="material-title">"Organik kimyo" - Clayden (2-qism)</h3>
-                        <p class="material-description">
-                            Organik kimyo bo'yicha eng mashhur darslik. Reaksiya mexanizmlari, stereokimyo, sintez.
-                        </p>
-                        <div class="material-tags">
-                            <span class="tag">nazariya</span>
-                            <span class="tag">organika</span>
-                            <span class="tag">inglizcha</span>
-                        </div>
+                        <p class="material-description">Organik kimyo bo'yicha eng mashhur darslik. Reaksiya mexanizmlari, stereokimyo, sintez.</p>
+                        <div class="material-tags"><span class="tag">nazariya</span><span class="tag">organika</span><span class="tag">inglizcha</span></div>
                         <a href="https://drive.google.com/uc?export=download&id=1aMHSlMkbdB5niUCNCK6iS9vtdZhXhoVx" class="material-button" target="_blank">📥 Yuklab olish →</a>
                     </div>
-
-                    <!-- Клейден 3 -->
                     <div class="material-card">
                         <div class="material-type book">📖 Kitob</div>
                         <h3 class="material-title">"Organik kimyo" - Clayden (3-qism)</h3>
-                        <p class="material-description">
-                            Organik kimyo bo'yicha eng mashhur darslik. Reaksiya mexanizmlari, stereokimyo, sintez.
-                        </p>
-                        <div class="material-tags">
-                            <span class="tag">nazariya</span>
-                            <span class="tag">organika</span>
-                            <span class="tag">inglizcha</span>
-                        </div>
+                        <p class="material-description">Organik kimyo bo'yicha eng mashhur darslik. Reaksiya mexanizmlari, stereokimyo, sintez.</p>
+                        <div class="material-tags"><span class="tag">nazariya</span><span class="tag">organika</span><span class="tag">inglizcha</span></div>
                         <a href="https://drive.google.com/uc?export=download&id=14J2lCk735tg8y2bp1P7aWgMKniiMN8nv" class="material-button" target="_blank">📥 Yuklab olish →</a>
                     </div>
-
-                    <!-- Органическая химия для олимпиадников -->
                     <div class="material-card">
                         <div class="material-type book">📖 Kitob</div>
                         <h3 class="material-title">"Органическая химия для олимпиадников" - Сальников</h3>
-                        <p class="material-description">
-                            Olimpiadalarga tayyorgarlik uchun maxsus adabiyot. Murakkab masalalar va reaksiyalar.
-                        </p>
-                        <div class="material-tags">
-                            <span class="tag">olimpiada</span>
-                            <span class="tag">organika</span>
-                            <span class="tag">ruscha</span>
-                        </div>
+                        <p class="material-description">Olimpiadalarga tayyorgarlik uchun maxsus adabiyot. Murakkab masalalar va reaksiyalar.</p>
+                        <div class="material-tags"><span class="tag">olimpiada</span><span class="tag">organika</span><span class="tag">ruscha</span></div>
                         <a href="https://drive.google.com/uc?export=download&id=1E97zcIZA8lU_xSzVyoaHh713L_WhaikR" class="material-button" target="_blank">📥 Yuklab olish →</a>
                     </div>
                 </div>
@@ -159,78 +220,39 @@
                     <p class="section-subtitle-small">Sifat va miqdoriy tahlil asoslari</p>
                 </div>
                 <div class="materials-grid">
-                    <!-- Золотов 1 -->
                     <div class="material-card">
                         <div class="material-type book">📖 Kitob</div>
                         <h3 class="material-title">"Основы аналитической химии" - Золотов (1-qism)</h3>
-                        <p class="material-description">
-                            Analitik kimyo bo'yicha klassik darslik. Nazariy asoslar, metodlar.
-                        </p>
-                        <div class="material-tags">
-                            <span class="tag">nazariya</span>
-                            <span class="tag">analitika</span>
-                            <span class="tag">ruscha</span>
-                        </div>
+                        <p class="material-description">Analitik kimyo bo'yicha klassik darslik. Nazariy asoslar, metodlar.</p>
+                        <div class="material-tags"><span class="tag">nazariya</span><span class="tag">analitika</span><span class="tag">ruscha</span></div>
                         <a href="https://drive.google.com/uc?export=download&id=1Q46DM_3glZ5zOdLKAtuFV2qYhDANVJGb" class="material-button" target="_blank">📥 Yuklab olish →</a>
                     </div>
-
-                    <!-- Золотов 2 -->
                     <div class="material-card">
                         <div class="material-type book">📖 Kitob</div>
                         <h3 class="material-title">"Основы аналитической химии" - Золотов (2-qism)</h3>
-                        <p class="material-description">
-                            Analitik kimyo bo'yicha klassik darslik. Amaliy masalalar, usullar.
-                        </p>
-                        <div class="material-tags">
-                            <span class="tag">nazariya</span>
-                            <span class="tag">analitika</span>
-                            <span class="tag">ruscha</span>
-                        </div>
+                        <p class="material-description">Analitik kimyo bo'yicha klassik darslik. Amaliy masalalar, usullar.</p>
+                        <div class="material-tags"><span class="tag">nazariya</span><span class="tag">analitika</span><span class="tag">ruscha</span></div>
                         <a href="https://drive.google.com/uc?export=download&id=1K_4seI_u1P-fWW3ZgxGDvQfhbPLWRlu4" class="material-button" target="_blank">📥 Yuklab olish →</a>
                     </div>
-
-                    <!-- Качественный анализ Алексеев -->
                     <div class="material-card">
                         <div class="material-type book">📖 Kitob</div>
                         <h3 class="material-title">"Качественный анализ" - Алексеев</h3>
-                        <p class="material-description">
-                            Sifat tahlili bo'yicha klassik qo'llanma. Kationlar va anionlarni aniqlash.
-                        </p>
-                        <div class="material-tags">
-                            <span class="tag">sifat tahlil</span>
-                            <span class="tag">analitika</span>
-                            <span class="tag">ruscha</span>
-                        </div>
+                        <p class="material-description">Sifat tahlili bo'yicha klassik qo'llanma. Kationlar va anionlarni aniqlash.</p>
+                        <div class="material-tags"><span class="tag">sifat tahlil</span><span class="tag">analitika</span><span class="tag">ruscha</span></div>
                         <a href="https://drive.google.com/uc?export=download&id=1K_4seI_u1P-fWW3ZgxGDvQfhbPLWRlu4" class="material-button" target="_blank">📥 Yuklab olish →</a>
                     </div>
-
-                    <!-- Количественный анализ Алексеев -->
                     <div class="material-card">
                         <div class="material-type book">📖 Kitob</div>
                         <h3 class="material-title">"Количественный анализ" - Алексеев</h3>
-                        <p class="material-description">
-                            Miqdoriy tahlil bo'yicha qo'llanma. Titrimetriya, gravimetriya.
-                        </p>
-                        <div class="material-tags">
-                            <span class="tag">miqdoriy tahlil</span>
-                            <span class="tag">analitika</span>
-                            <span class="tag">ruscha</span>
-                        </div>
+                        <p class="material-description">Miqdoriy tahlil bo'yicha qo'llanma. Titrimetriya, gravimetriya.</p>
+                        <div class="material-tags"><span class="tag">miqdoriy tahlil</span><span class="tag">analitika</span><span class="tag">ruscha</span></div>
                         <a href="https://drive.google.com/uc?export=download&id=1DM2l1kzvLtjGYpCwAB8JG4wiOp4Dq6Bw" class="material-button" target="_blank">📥 Yuklab olish →</a>
                     </div>
-
-                    <!-- Задачи по аналитической химии Прохорова -->
                     <div class="material-card">
                         <div class="material-type book">📖 Kitob</div>
                         <h3 class="material-title">"Задачи и вопросы по аналитической химии" - Прохорова</h3>
-                        <p class="material-description">
-                            Analitik kimyo bo'yicha masalalar va savollar to'plami.
-                        </p>
-                        <div class="material-tags">
-                            <span class="tag">masalalar</span>
-                            <span class="tag">analitika</span>
-                            <span class="tag">ruscha</span>
-                        </div>
+                        <p class="material-description">Analitik kimyo bo'yicha masalalar va savollar to'plami.</p>
+                        <div class="material-tags"><span class="tag">masalalar</span><span class="tag">analitika</span><span class="tag">ruscha</span></div>
                         <a href="https://drive.google.com/uc?export=download&id=1DM2l1kzvLtjGYpCwAB8JG4wiOp4Dq6Bw" class="material-button" target="_blank">📥 Yuklab olish →</a>
                     </div>
                 </div>
@@ -245,34 +267,18 @@
                     <p class="section-subtitle-small">Termodinamika, kinetika, kvant kimyosi</p>
                 </div>
                 <div class="materials-grid">
-                    <!-- Physical Chemistry Atkins -->
                     <div class="material-card">
                         <div class="material-type book">📖 Kitob</div>
                         <h3 class="material-title">"Physical Chemistry" - Atkins</h3>
-                        <p class="material-description">
-                            Fizikaviy kimyo bo'yicha dunyodagi eng mashhur darslik. Termodinamika, kinetika, kvant kimyosi.
-                        </p>
-                        <div class="material-tags">
-                            <span class="tag">nazariya</span>
-                            <span class="tag">termodinamika</span>
-                            <span class="tag">kinetika</span>
-                            <span class="tag">inglizcha</span>
-                        </div>
+                        <p class="material-description">Fizikaviy kimyo bo'yicha dunyodagi eng mashhur darslik. Termodinamika, kinetika, kvant kimyosi.</p>
+                        <div class="material-tags"><span class="tag">nazariya</span><span class="tag">termodinamika</span><span class="tag">kinetika</span><span class="tag">inglizcha</span></div>
                         <a href="https://drive.google.com/uc?export=download&id=1DApiEZ2y97tOyv_7cEI5UDTEXgMSoxxN" class="material-button" target="_blank">📥 Yuklab olish →</a>
                     </div>
-
-                    <!-- Математическая и теоретическая химия -->
                     <div class="material-card">
                         <div class="material-type book">📖 Kitob</div>
                         <h3 class="material-title">"Математическая и теоретическая химия"</h3>
-                        <p class="material-description">
-                            Kimyoda qo'llaniladigan matematik usullar va nazariy asoslar.
-                        </p>
-                        <div class="material-tags">
-                            <span class="tag">nazariya</span>
-                            <span class="tag">matematika</span>
-                            <span class="tag">ruscha</span>
-                        </div>
+                        <p class="material-description">Kimyoda qo'llaniladigan matematik usullar va nazariy asoslar.</p>
+                        <div class="material-tags"><span class="tag">nazariya</span><span class="tag">matematika</span><span class="tag">ruscha</span></div>
                         <a href="https://drive.google.com/uc?export=download&id=1tITtnTTnWmiwAR_S1KIh8IN0sFzhf1l4" class="material-button" target="_blank">📥 Yuklab olish →</a>
                     </div>
                 </div>
@@ -287,158 +293,33 @@
                     <p class="section-subtitle-small">Oqsillar, fermentlar, metabolizm</p>
                 </div>
                 <div class="materials-grid">
-                    <!-- Ленинджер 1 -->
                     <div class="material-card">
                         <div class="material-type book">📖 Kitob</div>
                         <h3 class="material-title">"Biokimyo" - Lehninger (1-qism)</h3>
-                        <p class="material-description">
-                            Biokimyo bo'yicha klassik darslik. Oqsillar, fermentlar, membranalar.
-                        </p>
-                        <div class="material-tags">
-                            <span class="tag">nazariya</span>
-                            <span class="tag">biokimyo</span>
-                            <span class="tag">inglizcha</span>
-                        </div>
+                        <p class="material-description">Biokimyo bo'yicha klassik darslik. Oqsillar, fermentlar, membranalar.</p>
+                        <div class="material-tags"><span class="tag">nazariya</span><span class="tag">biokimyo</span><span class="tag">inglizcha</span></div>
                         <a href="https://drive.google.com/uc?export=download&id=1uoDw8Cs4AkDYUwWiHwZjwGlKGkn8sN23" class="material-button" target="_blank">📥 Yuklab olish →</a>
                     </div>
-
-                    <!-- Ленинджер 2 -->
                     <div class="material-card">
                         <div class="material-type book">📖 Kitob</div>
                         <h3 class="material-title">"Biokimyo" - Lehninger (2-qism)</h3>
-                        <p class="material-description">
-                            Biokimyo bo'yicha klassik darslik. Uglevodlar, lipidlar, nuklein kislotalar.
-                        </p>
-                        <div class="material-tags">
-                            <span class="tag">nazariya</span>
-                            <span class="tag">biokimyo</span>
-                            <span class="tag">inglizcha</span>
-                        </div>
+                        <p class="material-description">Biokimyo bo'yicha klassik darslik. Uglevodlar, lipidlar, nuklein kislotalar.</p>
+                        <div class="material-tags"><span class="tag">nazariya</span><span class="tag">biokimyo</span><span class="tag">inglizcha</span></div>
                         <a href="https://drive.google.com/uc?export=download&id=1bJejNYJyaiLBJAXKlF58Sg6iUW0E0MYx" class="material-button" target="_blank">📥 Yuklab olish →</a>
                     </div>
-
-                    <!-- Ленинджер 3 -->
                     <div class="material-card">
                         <div class="material-type book">📖 Kitob</div>
                         <h3 class="material-title">"Biokimyo" - Lehninger (3-qism)</h3>
-                        <p class="material-description">
-                            Biokimyo bo'yicha klassik darslik. Metabolizm, energiya almashinuvi.
-                        </p>
-                        <div class="material-tags">
-                            <span class="tag">nazariya</span>
-                            <span class="tag">biokimyo</span>
-                            <span class="tag">inglizcha</span>
-                        </div>
+                        <p class="material-description">Biokimyo bo'yicha klassik darslik. Metabolizm, energiya almashinuvi.</p>
+                        <div class="material-tags"><span class="tag">nazariya</span><span class="tag">biokimyo</span><span class="tag">inglizcha</span></div>
                         <a href="https://drive.google.com/uc?export=download&id=18VSpVU1ewGbQJIhT6tTeG2ursWNNu8Zd" class="material-button" target="_blank">📥 Yuklab olish →</a>
                     </div>
-
-                    <!-- Наглядная биохимия -->
                     <div class="material-card">
                         <div class="material-type book">📖 Kitob</div>
                         <h3 class="material-title">"Наглядная биохимия" - Кольман</h3>
-                        <p class="material-description">
-                            Biokimyo bo'yicha vizual qo'llanma. Rasmli, tushunarli.
-                        </p>
-                        <div class="material-tags">
-                            <span class="tag">nazariya</span>
-                            <span class="tag">biokimyo</span>
-                            <span class="tag">ruscha</span>
-                        </div>
+                        <p class="material-description">Biokimyo bo'yicha vizual qo'llanma. Rasmli, tushunarli.</p>
+                        <div class="material-tags"><span class="tag">nazariya</span><span class="tag">biokimyo</span><span class="tag">ruscha</span></div>
                         <a href="https://drive.google.com/uc?export=download&id=1V2IoJy7OAEgT70xkoN223PxklXkM3Xb1" class="material-button" target="_blank">📥 Yuklab olish →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-         <!-- ========== OLIMPIADA MASALALARI (VAQTINCHA BO'SH) ========== -->
-        <section class="materials-section alt-bg">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title-small">🏆 Olimpiada masalalari</h2>
-                    <p class="section-subtitle-small">Tez orada qo'shiladi</p>
-                </div>
-                <div class="materials-grid">
-                    <div class="material-card coming-soon">
-                        ...
-                    </div>
-                    <!-- Там 4 карточки "Tez orada" -->
-                </div>
-            </div>
-        </section>
-
-                    <div class="material-card coming-soon">
-                        <div class="material-type tasks">⏳ Tez orada</div>
-                        <h3 class="material-title">IMChO masalalari</h3>
-                        <p class="material-description">
-                            Mendeleev olimpiadasi masalalari to'plami tez orada qo'shiladi.
-                        </p>
-                        <button class="material-button disabled" disabled>Tez orada</button>
-                    </div>
-
-                    <div class="material-card coming-soon">
-                        <div class="material-type tasks">⏳ Tez orada</div>
-                        <h3 class="material-title">ARBIChO masalalari</h3>
-                        <p class="material-description">
-                            Arab olimpiadasi masalalari to'plami tez orada qo'shiladi.
-                        </p>
-                        <button class="material-button disabled" disabled>Tez orada</button>
-                    </div>
-
-                    <div class="material-card coming-soon">
-                        <div class="material-type tasks">⏳ Tez orada</div>
-                        <h3 class="material-title">O'zbekiston olimpiadalari</h3>
-                        <p class="material-description">
-                            Respublika va viloyat bosqichlari masalalari tez orada qo'shiladi.
-                        </p>
-                        <button class="material-button disabled" disabled>Tez orada</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ========== TEMATIK MASALALAR (VAQTINCHA BO'SH) ========== -->
-        <section class="materials-section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="section-title-small">📝 Tematik masalalar</h2>
-                    <p class="section-subtitle-small">Tez orada qo'shiladi</p>
-                </div>
-                <div class="materials-grid">
-                    <div class="material-card coming-soon">
-                        <div class="material-type tasks">⏳ Tez orada</div>
-                        <h3 class="material-title">OVR masalalari</h3>
-                        <p class="material-description">
-                            Oksidlanish-qaytarilish reaksiyalari bo'yicha masalalar to'plami tez orada qo'shiladi.
-                        </p>
-                        <button class="material-button disabled" disabled>Tez orada</button>
-                    </div>
-
-                    <div class="material-card coming-soon">
-                        <div class="material-type tasks">⏳ Tez orada</div>
-                        <h3 class="material-title">Kislotalar va asoslar</h3>
-                        <p class="material-description">
-                            pH hisoblash, bufer eritmalar bo'yicha masalalar tez orada qo'shiladi.
-                        </p>
-                        <button class="material-button disabled" disabled>Tez orada</button>
-                    </div>
-
-                    <div class="material-card coming-soon">
-                        <div class="material-type tasks">⏳ Tez orada</div>
-                        <h3 class="material-title">Termodinamika masalalari</h3>
-                        <p class="material-description">
-                            Entalpiya, entropiya, Gibbs energiyasi bo'yicha masalalar tez orada qo'shiladi.
-                        </p>
-                        <button class="material-button disabled" disabled>Tez orada</button>
-                    </div>
-
-                    <div class="material-card coming-soon">
-                        <div class="material-type tasks">⏳ Tez orada</div>
-                        <h3 class="material-title">Kinetika masalalari</h3>
-                        <p class="material-description">
-                            Reaksiya tezligi, tartibi, aktivlanish energiyasi bo'yicha masalalar tez orada qo'shiladi.
-                        </p>
-                        <button class="material-button disabled" disabled>Tez orada</button>
                     </div>
                 </div>
             </div>
@@ -479,5 +360,46 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Загрузка данных из mendel.json
+        fetch('mendel.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('JSON fayl topilmadi');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Показываем последние 5 файлов (новые года)
+                const sorted = [...data].sort((a, b) => parseInt(b.year) - parseInt(a.year));
+                const latest = sorted.slice(0, 5);
+                
+                const container = document.getElementById('mendeleevPreview');
+                container.innerHTML = latest.map(item => `
+                    <div class="problem-item">
+                        <div class="problem-info">
+                            <div class="problem-name">📄 ${item.file}</div>
+                            <div class="problem-meta">${item.year} | ${item.folder}</div>
+                        </div>
+                        <div class="problem-type">${item.type}</div>
+                        <a href="${item.url}" class="download-small" download>📥 Yuklab olish</a>
+                    </div>
+                `).join('');
+                
+                // Кнопка "Barchasini ko'rish" ведёт на отдельную страницу
+                document.getElementById('showAllMendeleevBtn').addEventListener('click', () => {
+                    window.location.href = 'mendeleev.html';
+                });
+            })
+            .catch(error => {
+                console.error('Xato:', error);
+                document.getElementById('mendeleevPreview').innerHTML = `
+                    <div style="text-align: center; padding: 20px; color: #ef4444;">
+                        ❌ Ma'lumotlarni yuklab bo'lmadi. JSON fayl mavjudligini tekshiring.
+                    </div>
+                `;
+            });
+    </script>
 </body>
 </html>
