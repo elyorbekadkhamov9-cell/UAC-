@@ -4,27 +4,168 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IChO | UAC</title>
+    <meta name="description" content="Xalqaro kimyo olimpiadasi (IChO) masalalari va yechimlari. 2000-2026 yillar.">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        .page-top { padding: 56px 0 48px; border-bottom: 1px solid #f1f5f9; margin-bottom: 48px; }
-        .breadcrumb { font-size: 13px; color: #94a3b8; margin-bottom: 16px; }
-        .breadcrumb a { color: #94a3b8; text-decoration: none; }
+        .page-top {
+            padding: 56px 0 48px;
+            border-bottom: 1px solid #f1f5f9;
+            margin-bottom: 48px;
+        }
+        .breadcrumb {
+            font-size: 13px;
+            color: #94a3b8;
+            margin-bottom: 16px;
+        }
+        .breadcrumb a {
+            color: #94a3b8;
+            text-decoration: none;
+        }
         .breadcrumb a:hover { color: #3b82f6; }
         .breadcrumb span { margin: 0 6px; }
-        .page-top h1 { font-size: 36px; font-weight: 800; color: #1a2a32; margin-bottom: 6px; }
-        .page-top p { font-size: 16px; color: #64748b; }
-        .coming-box {
-            text-align: center;
-            padding: 80px 20px;
-            color: #94a3b8;
+        .page-top h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #1a2a32;
+            margin-bottom: 6px;
         }
-        .coming-box h2 { font-size: 22px; font-weight: 700; color: #1a2a32; margin-bottom: 10px; }
-        .coming-box p  { font-size: 15px; }
+        .page-top p {
+            font-size: 16px;
+            color: #64748b;
+        }
+
+        .view-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        .years-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 12px;
+            margin-bottom: 80px;
+        }
+        .year-card {
+            padding: 20px 12px;
+            background: white;
+            border: 1px solid #eef2f6;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.18s;
+        }
+        .year-card:hover {
+            border-color: #3b82f6;
+            background: #f8faff;
+            transform: translateY(-2px);
+        }
+        .year-num   { font-size: 22px; font-weight: 800; color: #1a2a32; display: block; }
+        .year-count { font-size: 11px; color: #94a3b8; margin-top: 4px; display: block; }
+
+        .files-view { display: none; padding-bottom: 80px; }
+        .files-view.visible { display: block; }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: none;
+            background: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: #64748b;
+            cursor: pointer;
+            padding: 0;
+            margin-bottom: 32px;
+            transition: color 0.2s;
+        }
+        .back-btn:hover { color: #1a2a32; }
+
+        .files-year-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #1a2a32;
+            margin-bottom: 4px;
+        }
+        .files-year-sub {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 40px;
+        }
+
+        .folder-block { margin-bottom: 36px; }
+        .folder-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 12px;
+        }
+
+        .file-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            background: white;
+            border: 1px solid #eef2f6;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            gap: 12px;
+            transition: border-color 0.18s;
+        }
+        .file-row:hover { border-color: #cbd5e1; }
+
+        .file-info { flex: 1; min-width: 0; }
+        .file-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #1a2a32;
+            word-break: break-word;
+        }
+        .file-badge {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 9px;
+            border-radius: 20px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .task { background: #fef3e8; color: #d97706; }
+        .solution { background: #dcfce7; color: #16a34a; }
+        .prep { background: #e0f2fe; color: #0284c7; }
+        .other { background: #f1f5f9; color: #64748b; }
+
+        .dl-btn {
+            font-size: 13px;
+            font-weight: 600;
+            color: #3b82f6;
+            text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: color 0.18s;
+        }
+        .dl-btn:hover { color: #2563eb; }
+
+        .empty { text-align: center; padding: 60px 0; color: #94a3b8; }
+
+        @media (max-width: 768px) {
+            .page-top h1 { font-size: 26px; }
+            .years-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
+            .file-row { flex-wrap: wrap; }
+            .dl-btn { margin-left: auto; }
+        }
     </style>
 </head>
 <body>
     <div class="bg-decoration"></div>
+
     <header class="header">
         <div class="container">
             <div class="header-content">
@@ -41,6 +182,7 @@
             </div>
         </div>
     </header>
+
     <main>
         <div class="container">
             <div class="page-top">
@@ -52,14 +194,25 @@
                     IChO
                 </div>
                 <h1>IChO</h1>
-                <p>Xalqaro kimyo olimpiadasi masalalari</p>
+                <p>Xalqaro kimyo olimpiadasi — 2000 yildan 2026 yilgacha</p>
             </div>
-            <div class="coming-box">
-                <h2>Tez orada</h2>
-                <p>Masalalar yaqinda qo'shiladi</p>
+
+            <div id="yearsView">
+                <div class="view-label">Yilni tanlang</div>
+                <div class="years-grid" id="yearsGrid">
+                    <div class="empty">Yuklanmoqda...</div>
+                </div>
+            </div>
+
+            <div class="files-view" id="filesView">
+                <button class="back-btn" onclick="goBack()">← Orqaga</button>
+                <div class="files-year-title" id="filesTitle"></div>
+                <div class="files-year-sub" id="filesSub"></div>
+                <div id="filesContainer"></div>
             </div>
         </div>
     </main>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -80,5 +233,79 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        let allData = [];
+
+        function goBack() {
+            document.getElementById('filesView').classList.remove('visible');
+            document.getElementById('yearsView').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function getFileTypeBadge(filename) {
+            const name = filename.toLowerCase();
+            if (name.includes('prep') || name.includes('preparatory')) return { class: 'prep', text: 'Tayyorlov' };
+            if (name.includes('sol') || name.includes('solution') || name.includes('yechim')) return { class: 'solution', text: 'Yechim' };
+            if (name.includes('theory') || name.includes('teor') || name.includes('task')) return { class: 'task', text: 'Masala' };
+            if (name.includes('practical') || name.includes('pract')) return { class: 'task', text: 'Amaliy' };
+            return { class: 'other', text: 'Material' };
+        }
+
+        function openYear(year) {
+            const items = allData.filter(p => p.year === year);
+            
+            const folders = {};
+            items.forEach(p => {
+                let folderName = p.folder || year;
+                if (!folders[folderName]) folders[folderName] = [];
+                folders[folderName].push(p);
+            });
+
+            let html = '';
+            Object.keys(folders).sort((a,b) => b - a).forEach(folder => {
+                html += `<div class="folder-block">
+                    <div class="folder-label">${folder}</div>`;
+                folders[folder].forEach(f => {
+                    const badge = getFileTypeBadge(f.name);
+                    html += `<div class="file-row">
+                        <div class="file-info">
+                            <div class="file-name">${f.name}</div>
+                        </div>
+                        <span class="file-badge ${badge.class}">${badge.text}</span>
+                        <a href="${f.url}" class="dl-btn" target="_blank">Yuklab olish</a>
+                    </div>`;
+                });
+                html += `</div>`;
+            });
+
+            document.getElementById('filesTitle').textContent = year + '-yil';
+            document.getElementById('filesSub').textContent = items.length + ' ta fayl';
+            document.getElementById('filesContainer').innerHTML = html;
+
+            document.getElementById('yearsView').style.display = 'none';
+            document.getElementById('filesView').classList.add('visible');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function buildYears() {
+            const years = [...new Set(allData.map(p => p.year))].sort((a, b) => b - a);
+            document.getElementById('yearsGrid').innerHTML = years.map(y => {
+                const count = allData.filter(p => p.year === y).length;
+                return `<div class="year-card" onclick="openYear('${y}')">
+                    <span class="year-num">${y}</span>
+                    <span class="year-count">${count} fayl</span>
+                </div>`;
+            }).join('');
+        }
+
+        fetch('icho_complete.json')
+            .then(r => r.json())
+            .then(data => { allData = data; buildYears(); })
+            .catch(() => {
+                document.getElementById('yearsGrid').innerHTML =
+                    '<div class="empty">icho_complete.json fayli topilmadi</div>';
+            });
+    </script>
 </body>
 </html>
