@@ -2,16 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://elyorbekadkhamov9-cell.github.io/uac-website/</loc>
-        <lastmod>2026-04-01</lastmod>
+        <lastmod>2026-04-27</lastmod>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://elyorbekadkhamov9-cell.github.io/uac-website/library.html</loc>
-        <lastmod>2026-04-01</lastmod>
+        <lastmod>2026-04-27</lastmod>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://elyorbekadkhamov9-cell.github.io/uac-website/</loc>
+        <loc>https://elyorbekadkhamov9-cell.github.io/uac-website/mendeleev</loc>
         <lastmod>2026-04-27</lasmod>
         <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://elyorbekadkhamov9-cell.github.io/uac-website/arbicho</loc>
+        <lastmod>2026-04-27</lasmod>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://elyorbekadkhamov9-cell.github.io/uac-website/uzbek</loc>
+        <lastmod>2026-04-27</lasmod>
+        <priority>0.5</priority>
+    </url>
 </urlset>
