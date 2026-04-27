@@ -6,111 +6,59 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #0B3B3F 0%, #1A5F5F 50%, #2D8F8F 100%);
-    color: #E8F5E9;
-    min-height: 100vh;
-    overflow-x: hidden;
+    background-color: #ffffff;
+    color: #1a2a32;
+    line-height: 1.5;
     position: relative;
+    overflow-x: hidden;
 }
 
-/* HARAKATLANUVCHI TO'LQINLAR */
-.ocean-bg {
+/* ========== ФОНОВЫЕ ДЕКОРАЦИИ ========== */
+.bg-decoration {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -2;
+    pointer-events: none;
+    z-index: -1;
     overflow: hidden;
 }
 
-.wave {
+.bg-decoration::before {
+    content: "🧪";
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100px;
-    background: repeating-linear-gradient(transparent 0px, transparent 97px, rgba(255,255,255,0.08) 98px);
-    animation: waveMove 8s ease-in-out infinite;
+    font-size: 300px;
+    opacity: 0.03;
+    bottom: -50px;
+    right: -50px;
+    transform: rotate(-15deg);
 }
 
-.wave:nth-child(2) { animation-duration: 12s; opacity: 0.5; bottom: 30px; }
-.wave:nth-child(3) { animation-duration: 18s; opacity: 0.3; bottom: 60px; }
-
-@keyframes waveMove {
-    0%, 100% { transform: translateX(0) translateY(0); }
-    50% { transform: translateX(-50px) translateY(-15px); }
+.bg-decoration::after {
+    content: "⚗️";
+    position: absolute;
+    font-size: 250px;
+    opacity: 0.03;
+    top: 100px;
+    left: -80px;
+    transform: rotate(10deg);
 }
 
-/* SUV KUZGI YORUG'I (CAUSTICS) */
-.caustics {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
-    animation: causticsMove 15s infinite alternate;
-    z-index: -1;
-    pointer-events: none;
-}
-
-@keyframes causticsMove {
-    0% { transform: scale(1) translate(0, 0); opacity: 0.4; }
-    100% { transform: scale(1.3) translate(5%, 5%); opacity: 0.8; }
-}
-
-/* SUZIB YURGAN TOSHBQALAR */
-.floating-turtle {
-    position: fixed;
-    bottom: 40px;
-    right: 20px;
-    width: 80px;
-    height: 80px;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><ellipse cx="50" cy="55" rx="30" ry="20" fill="%233D8F7E" stroke="%23E9C46A" stroke-width="2"/><circle cx="30" cy="50" r="8" fill="%23265C4C"/><circle cx="70" cy="50" r="8" fill="%23265C4C"/><ellipse cx="50" cy="55" rx="15" ry="10" fill="%23E9C46A" opacity="0.6"/><circle cx="50" cy="52" r="3" fill="%23F4A261"/></svg>') center/contain no-repeat;
-    animation: floatTurtle 6s ease-in-out infinite;
-    z-index: 10;
-    pointer-events: none;
-}
-
-@keyframes floatTurtle {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(5deg); }
-}
-
-/* KICHIK BALIQLAR */
-.fish {
-    position: fixed;
-    font-size: 24px;
-    pointer-events: none;
-    z-index: 9;
-    animation: swim linear infinite;
-}
-
-@keyframes swim {
-    0% { transform: translateX(-100px); opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { transform: translateX(calc(100vw + 100px)); opacity: 0; }
-}
-
-/* CONTAINER */
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 24px;
-    position: relative;
-    z-index: 5;
+    padding: 0 20px;
 }
 
-/* HEADER */
+/* ========== HEADER ========== */
 .header {
-    background: rgba(11, 59, 63, 0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(233, 196, 106, 0.3);
+    background-color: rgba(255, 255, 255, 0.98);
+    border-bottom: 1px solid #e2e8f0;
     position: sticky;
     top: 0;
     z-index: 100;
+    backdrop-filter: blur(10px);
 }
 
 .header-content {
@@ -127,33 +75,31 @@ body {
 }
 
 .logo-icon {
-    width: 45px;
-    height: 45px;
-    background: linear-gradient(135deg, #E9C46A, #F4A261);
+    width: 56px;
+    height: 56px;
+    overflow: hidden;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: pulseGlow 2s ease-in-out infinite;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.25);
+    transition: transform 0.3s;
+}
+
+.logo-icon:hover {
+    transform: scale(1.05);
 }
 
 .logo-icon img {
-    width: 35px;
-    height: 35px;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 50%;
-}
-
-@keyframes pulseGlow {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(233, 196, 106, 0.4); }
-    50% { box-shadow: 0 0 0 10px rgba(233, 196, 106, 0); }
 }
 
 .logo-text {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 800;
-    color: #E9C46A;
-    letter-spacing: 2px;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .nav {
@@ -163,21 +109,21 @@ body {
 
 .nav-link {
     text-decoration: none;
-    font-size: 15px;
+    color: #2d3748;
     font-weight: 500;
-    color: #D1F2EB;
     transition: all 0.3s;
+    font-size: 16px;
     position: relative;
 }
 
 .nav-link::after {
     content: '';
     position: absolute;
-    bottom: -5px;
+    bottom: -4px;
     left: 0;
     width: 0;
     height: 2px;
-    background: #E9C46A;
+    background: #3b82f6;
     transition: width 0.3s;
 }
 
@@ -186,122 +132,709 @@ body {
     width: 100%;
 }
 
-.nav-link:hover, .nav-link.active {
-    color: #E9C46A;
+.nav-link:hover,
+.nav-link.active {
+    color: #3b82f6;
 }
 
-/* KARTOCCHKALAR */
-.year-card, .book-card, .folder-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(233, 196, 106, 0.3);
-    border-radius: 20px;
-    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    cursor: pointer;
+/* ========== HERO SECTION ========== */
+.hero {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+    position: relative;
 }
 
-.year-card:hover, .book-card:hover, .folder-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    background: rgba(233, 196, 106, 0.15);
-    border-color: #E9C46A;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+.hero-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeInUp 0.8s ease;
 }
 
-.year-num {
-    font-size: 28px;
-    font-weight: 800;
-    color: #E9C46A;
-    display: block;
-}
-
-.year-count {
-    font-size: 12px;
-    color: #A8E6CF;
-}
-
-/* FILE ITEMS */
-.file-item {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(233, 196, 106, 0.2);
-    border-radius: 12px;
-    transition: all 0.3s;
-}
-
-.file-item:hover {
-    background: rgba(233, 196, 106, 0.12);
-    border-color: #E9C46A;
-}
-
-.download-simple {
-    background: linear-gradient(135deg, #E9C46A, #F4A261);
-    border-radius: 30px;
-    color: #0B3B3F;
-    font-weight: 600;
-    transition: all 0.3s;
-}
-
-.download-simple:hover {
-    transform: scale(0.96);
-    box-shadow: 0 5px 20px rgba(233, 196, 106, 0.4);
-}
-
-/* KNOBKA VA TUGMALAR */
-.tab-btn, .book-dl, .pdf-button, .telegram-button, .instagram-button {
-    background: rgba(233, 196, 106, 0.2);
-    border: 1px solid #E9C46A;
+.hero-badge {
+    display: inline-block;
+    background: #e0f2fe;
+    color: #0284c7;
+    padding: 6px 16px;
     border-radius: 40px;
-    color: #E9C46A;
-    transition: all 0.3s;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 24px;
 }
 
-.tab-btn.active {
-    background: #E9C46A;
-    color: #0B3B3F;
-}
-
-.tab-btn:hover, .book-dl:hover, .pdf-button:hover {
-    background: #E9C46A;
-    color: #0B3B3F;
-    transform: translateY(-2px);
-}
-
-/* HERO SECTION */
 .hero-title {
-    font-size: 56px;
+    font-size: 52px;
     font-weight: 800;
     line-height: 1.2;
+    margin-bottom: 24px;
+    color: #1a2a32;
 }
 
 .highlight {
-    color: #E9C46A;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
     position: relative;
-    display: inline-block;
-    animation: textGlow 2s ease-in-out infinite;
-}
-
-@keyframes textGlow {
-    0%, 100% { text-shadow: 0 0 5px #E9C46A; }
-    50% { text-shadow: 0 0 20px #F4A261; }
 }
 
 .hero-description {
+    font-size: 20px;
+    color: #4a5568;
+    margin-bottom: 32px;
+}
+
+/* ========== ORGANIZERS SECTION ========== */
+.organizers {
+    padding: 80px 0;
+    background-color: #ffffff;
+}
+
+.section-title {
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 48px;
+    color: #1a2a32;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    border-radius: 3px;
+}
+
+.organizers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+}
+
+.organizer-card {
+    background: #ffffff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s;
+    border: 1px solid #eef2f6;
+}
+
+.organizer-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+    border-color: #3b82f6;
+}
+
+.organizer-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background-color: #eef2f6;
+}
+
+.organizer-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.organizer-card:hover .organizer-photo img {
+    transform: scale(1.08);
+}
+
+.organizer-name {
+    font-size: 22px;
+    font-weight: 700;
+    padding: 20px 20px 12px 20px;
+    color: #1a2a32;
+}
+
+.organizer-achievements {
+    padding: 0 20px 24px 20px;
+    list-style: none;
+}
+
+.organizer-achievements li {
+    padding: 8px 0;
+    color: #4a5568;
+    font-size: 14px;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.organizer-achievements li:last-child {
+    border-bottom: none;
+}
+
+/* ========== OLIMPIADA KNOBKA ========== */
+.olympiada-button-section {
+    padding: 40px 0 20px 0;
+    text-align: center;
+}
+
+.olympiada-button-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.olympiada-main-btn {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+    border: none;
+    padding: 16px 48px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+    font-family: 'Inter', sans-serif;
+}
+
+.olympiada-main-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(59, 130, 246, 0.5);
+}
+
+/* ========== OLIMPIADA MAZMUNI ========== */
+.olympiada-content-hidden {
+    display: none;
+}
+
+.olympiada-content-visible {
+    display: block;
+    animation: fadeInUp 0.5s ease;
+}
+
+/* Matn */
+.olympiada-text {
+    background: linear-gradient(135deg, #f8fafc, #ffffff);
+    border-radius: 24px;
+    padding: 32px;
+    text-align: center;
+    margin-bottom: 48px;
+    border: 1px solid #e2e8f0;
+}
+
+.olympiada-text p {
     font-size: 18px;
-    color: #A8E6CF;
+    color: #1e293b;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-/* FOOTER */
+/* Gallery */
+.gallery-section {
+    margin-bottom: 48px;
+}
+
+.gallery-title {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 32px;
+    color: #1a2a32;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.gallery-item {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    cursor: pointer;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+/* PDF Button */
+.results-pdf-wrapper {
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.pdf-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    color: white;
+    padding: 14px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.pdf-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal-close:hover {
+    color: #3b82f6;
+}
+
+/* ========== SOCIAL BUTTONS ========== */
+.social-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.telegram-button {
+    display: inline-block;
+    background-color: white;
+    color: #2563eb;
+    padding: 14px 32px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.instagram-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+    color: white;
+    padding: 14px 32px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.telegram-button:hover,
+.instagram-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ========== TELEGRAM SECTION ========== */
+.telegram-section {
+    padding: 60px 0 80px 0;
+}
+
+.telegram-card {
+    background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+    border-radius: 32px;
+    padding: 48px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+}
+
+.telegram-card.small {
+    padding: 32px;
+}
+
+.telegram-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.telegram-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.telegram-description {
+    font-size: 18px;
+    margin-bottom: 32px;
+    opacity: 0.95;
+}
+
+.telegram-note {
+    font-size: 16px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+/* ========== LIBRARY PAGE ========== */
+.library-hero {
+    padding: 60px 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+    text-align: center;
+}
+
+.library-title {
+    font-size: 44px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    color: #1a2a32;
+}
+
+.library-subtitle {
+    font-size: 18px;
+    color: #4a5568;
+}
+
+.materials-section {
+    padding: 60px 0;
+}
+
+.materials-section.alt-bg {
+    background: #f8fafc;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section-title-small {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a2a32;
+    margin-bottom: 8px;
+}
+
+.section-subtitle-small {
+    font-size: 16px;
+    color: #4a5568;
+}
+
+.materials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 32px;
+}
+
+.material-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    border: 1px solid #eef2f6;
+    transition: all 0.3s;
+}
+
+.material-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(59, 130, 246, 0.12);
+    border-color: #cbd5e1;
+}
+
+.material-type {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.material-type.book {
+    background-color: #e6f7f9;
+    color: #0891b2;
+}
+
+.material-type.tasks {
+    background-color: #fef3e8;
+    color: #d97706;
+}
+
+.material-type.inter {
+    background-color: #e0f2fe;
+    color: #0284c7;
+}
+
+.material-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #1a2a32;
+}
+
+.material-description {
+    color: #4a5568;
+    font-size: 14px;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.material-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.tag {
+    background-color: #f1f5f9;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: #2d3748;
+}
+
+.material-button {
+    display: inline-block;
+    background-color: #3b82f6;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    width: 100%;
+    text-align: center;
+}
+
+.material-button:hover {
+    background-color: #2563eb;
+}
+
+.library-telegram {
+    background: #f8fafc;
+    padding: 40px 0 60px 0;
+}
+
+/* ========== FOOTER ========== */
 .footer {
-    background: rgba(11, 59, 63, 0.9);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(233, 196, 106, 0.3);
-    margin-top: 80px;
+    background-color: #1a2a32;
+    color: #94a3b8;
+    padding: 48px 0 24px 0;
 }
 
-/* RESPONSIVE */
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+}
+
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-logo .logo-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+}
+
+.footer-logo span {
+    font-size: 22px;
+    font-weight: 700;
+    color: white;
+}
+
+.footer-tagline {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-top: 4px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #3b82f6;
+}
+
+.footer-copyright {
+    font-size: 12px;
+    color: #64748b;
+    padding-top: 16px;
+    border-top: 1px solid #334155;
+    width: 100%;
+    text-align: center;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* ========== ADAPTIVE ========== */
 @media (max-width: 768px) {
-    .hero-title { font-size: 32px; }
-    .container { padding: 0 16px; }
-    .nav { gap: 16px; }
-    .floating-turtle { width: 50px; height: 50px; bottom: 20px; right: 10px; }
+    .hero-title {
+        font-size: 32px;
+    }
+    
+    .hero-description {
+        font-size: 18px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .organizers-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .materials-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .telegram-card {
+        padding: 32px 20px;
+    }
+    
+    .telegram-title {
+        font-size: 24px;
+    }
+    
+    .library-title {
+        font-size: 32px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .nav {
+        gap: 24px;
+    }
+    
+    .social-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .olympiada-main-btn {
+        padding: 12px 32px;
+        font-size: 18px;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .olympiada-text p {
+        font-size: 16px;
+    }
+    
+    .gallery-title {
+        font-size: 24px;
+    }
+    
+    .pdf-button {
+        padding: 12px 28px;
+        font-size: 16px;
+    }
+    
+    .section-title-small {
+        font-size: 24px;
+    }
+    /* Coming Soon Cards */
+.coming-soon {
+    opacity: 0.8;
+    background: #f8fafc;
+}
+
+.coming-soon .material-button.disabled {
+    background-color: #94a3b8;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.coming-soon .material-button.disabled:hover {
+    background-color: #94a3b8;
+    transform: none;
 }
