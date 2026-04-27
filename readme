@@ -1,2 +1,4 @@
 создал бесплатный сервер на render
 корневой репозиторий назвал reptoor
+pip install -r requirements.txt
+gunicorn main:mai
