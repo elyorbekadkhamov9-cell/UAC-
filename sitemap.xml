@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://https://elyorbekadkhamov9-cell.github.io/UAC-/</loc>
+        <loc>https://elyorbekadkhamov9-cell.github.io/UAC-/</loc>
         <lastmod>2026-04-27</lastmod>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://https://elyorbekadkhamov9-cell.github.io/UAC-/library.html</loc>
+        <loc>https://elyorbekadkhamov9-cell.github.io/UAC-/library.html</loc>
         <lastmod>2026-04-27</lastmod>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://https://elyorbekadkhamov9-cell.github.io/UAC-/mendeleev.html</loc>
-        <lastmod>2026-04-27</lasmod>
+        <loc>https://elyorbekadkhamov9-cell.github.io/UAC-/icho.html</loc>
+        <lastmod>2026-04-27</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://elyorbekadkhamov9-cell.github.io/UAC-/mendeleev.html</loc>
+        <lastmod>2026-04-27</lastmod>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://https://elyorbekadkhamov9-cell.github.io/UAC-/arbicho.html</loc>
-        <lastmod>2026-04-27</lasmod>
+        <loc>https://elyorbekadkhamov9-cell.github.io/UAC-/arbicho.html</loc>
+        <lastmod>2026-04-27</lastmod>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://https://elyorbekadkhamov9-cell.github.io/UAC-/uzbek.html</loc>
-        <lastmod>2026-04-27</lasmod>
+        <loc>https://elyorbekadkhamov9-cell.github.io/UAC-/uzbek.html</loc>
+        <lastmod>2026-04-27</lastmod>
         <priority>0.5</priority>
     </url>
 </urlset>
