@@ -6,297 +6,893 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-    
       gtag('config', 'G-8YB7JX7F8F');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="google840c8d1588a80b36" />
-    <title>UAC | O'zbekiston Kimyogarlar Assotsiatsiyasi | Kimyo darslari</title>
-    <meta name="description" content="O'zbekiston Kimyogarlar Assotsiatsiyasi. Xalqaro olimpiadalar g'oliblari, IChO 2026 ilmiy qo'mita a'zolari. Kimyo fanidan darslar, materiallar va masalalar to'plamlari.">
+    <title>UAC</title>
+    <meta name="description" content="O'zbekiston Kimyogarlar Assotsiatsiyasi. Xalqaro olimpiadalar g'oliblari, IChO 2026 ilmiy qo'mita a'zolari.">
     <meta name="keywords" content="kimyo, kimyo darslari, O'zbekiston kimyogarlari, IChO, ARBIChO, kimyo olimpiadasi, UAC">
     <meta name="author" content="Uzbek Association of Chemists">
     <meta name="robots" content="index, follow">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #2563eb;
+            --blue-light: #3b82f6;
+            --blue-faint: #e0f2fe;
+            --dark: #0f1a24;
+            --dark-2: #1a2a32;
+            --mid: #4a5568;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+            color: var(--dark-2);
+            overflow-x: hidden;
+        }
+
+        /* ── HEADER ── */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 0 0 2px var(--blue-light);
+        }
+
+        .logo-name {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--blue), var(--blue-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        nav { display: flex; gap: 28px; }
+
+        .nav-link {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--dark-2);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--blue-light);
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active { color: var(--blue); }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            background: var(--light);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            padding: 3px;
+            gap: 2px;
+        }
+
+        .lang-btn {
+            border: none;
+            background: transparent;
+            padding: 5px 12px;
+            border-radius: 40px;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--mid);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active {
+            background: var(--blue);
+            color: white;
+        }
+
+        .lang-btn:hover:not(.active) { color: var(--blue); }
+
+        /* ── HERO ── */
+        .hero {
+            padding: 100px 24px 80px;
+            text-align: center;
+            background: linear-gradient(160deg, #f0f7ff 0%, var(--white) 60%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            max-width: 760px;
+            margin: 0 auto;
+            position: relative;
+            animation: fadeUp 0.7s ease both;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--blue-faint);
+            color: #0284c7;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            margin-bottom: 28px;
+        }
+
+        .hero-title {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(38px, 6vw, 64px);
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--dark);
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero-title .accent {
+            background: linear-gradient(135deg, var(--blue), var(--blue-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-sub {
+            font-size: 18px;
+            color: var(--mid);
+            line-height: 1.6;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* ── SECTION BASE ── */
+        .section { padding: 80px 24px; }
+        .section.alt { background: var(--light); }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .section-label {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 800;
+            color: var(--dark);
+            text-align: center;
+            margin-bottom: 56px;
+            letter-spacing: -0.5px;
+            position: relative;
+        }
+
+        .section-label::after {
+            content: '';
+            display: block;
+            width: 48px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue), var(--blue-light));
+            border-radius: 3px;
+            margin: 14px auto 0;
+        }
+
+        /* ── TEAM GRID ── */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 28px;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 36px rgba(37,99,235,0.12);
+            border-color: var(--blue-light);
+        }
+
+        .card-photo {
+            width: 100%;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            background: var(--light);
+        }
+
+        .card-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .card:hover .card-photo img { transform: scale(1.06); }
+
+        .card-body { padding: 20px 20px 24px; }
+
+        .card-name {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .card-achievements {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .card-achievements li {
+            font-size: 13px;
+            color: var(--mid);
+            padding-bottom: 6px;
+            border-bottom: 1px solid #f1f5f9;
+            line-height: 1.4;
+        }
+
+        .card-achievements li:last-child { border-bottom: none; padding-bottom: 0; }
+
+        /* ── OLYMPIAD SECTION ── */
+        .olympiad-toggle-wrap {
+            text-align: center;
+            padding: 20px 24px 0;
+        }
+
+        .btn-toggle {
+            background: linear-gradient(135deg, var(--blue), var(--blue-light));
+            color: white;
+            border: none;
+            padding: 16px 48px;
+            border-radius: 60px;
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(37,99,235,0.35);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-toggle:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 32px rgba(37,99,235,0.45);
+        }
+
+        .olympiad-content { display: none; animation: fadeUp 0.4s ease; }
+        .olympiad-content.open { display: block; }
+
+        .olympiad-desc {
+            background: linear-gradient(135deg, #f0f7ff, var(--white));
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            font-size: 17px;
+            color: var(--dark-2);
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 40px auto 48px;
+        }
+
+        .gallery-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 28px;
+            color: var(--dark);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 28px rgba(37,99,235,0.18);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .pdf-wrap { text-align: center; margin: 40px 0 8px; }
+
+        .btn-pdf {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--blue), var(--blue-light));
+            color: white;
+            padding: 14px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 4px 16px rgba(37,99,235,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-pdf:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(37,99,235,0.4); }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.88);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .modal.open { display: flex; }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 36px;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .modal-close:hover { color: var(--blue-light); }
+
+        /* ── SOCIAL SECTION ── */
+        .social-card {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-light) 100%);
+            border-radius: 28px;
+            padding: 56px 40px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 20px 48px rgba(37,99,235,0.3);
+        }
+
+        .social-icon { font-size: 48px; margin-bottom: 16px; }
+
+        .social-title {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(22px, 3vw, 30px);
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .social-sub {
+            font-size: 16px;
+            opacity: 0.92;
+            margin-bottom: 36px;
+            line-height: 1.6;
+        }
+
+        .social-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+        .btn-tg {
+            background: white;
+            color: var(--blue);
+            padding: 13px 32px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .btn-ig {
+            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+            color: white;
+            padding: 13px 32px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .btn-tg:hover, .btn-ig:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--dark);
+            color: #94a3b8;
+            padding: 48px 24px 24px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            text-align: center;
+        }
+
+        .footer-logo { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+
+        .footer-logo img {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .footer-logo-name {
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: white;
+        }
+
+        .footer-tagline { font-size: 13px; }
+
+        .footer-links { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover { color: var(--blue-light); }
+
+        .footer-copy {
+            font-size: 12px;
+            color: #475569;
+            border-top: 1px solid #1e3a4a;
+            width: 100%;
+            padding-top: 20px;
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── MOBILE ── */
+        @media (max-width: 768px) {
+            .header-inner { height: auto; padding: 12px 16px; flex-wrap: wrap; gap: 12px; }
+            .header-right { flex-wrap: wrap; gap: 12px; }
+            nav { gap: 16px; }
+            .hero { padding: 64px 16px 56px; }
+            .section { padding: 56px 16px; }
+            .team-grid { grid-template-columns: 1fr; }
+            .social-card { padding: 36px 20px; }
+            .social-btns { flex-direction: column; align-items: center; }
+            .gallery-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-    <div class="bg-decoration"></div>
 
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <div class="logo-icon">
-                        <img src="https://i.ibb.co/WN4TDFVY/photo-2026-04-01-00-14-37.jpg" alt="UAC Logo">
-                    </div>
-                    <span class="logo-text">UAC</span>
-                </div>
-                <nav class="nav">
-                    <a href="index.html" class="nav-link active">Bosh sahifa</a>
-                    <a href="library.html" class="nav-link">Kutubxona</a>
-                    <!-- <a href="https://uac-8xhd.onrender.com" class="nav-link" target="_blank">💬 Forum</a> -->
-                </nav>
+<!-- ── HEADER ── -->
+<header class="header">
+    <div class="header-inner">
+        <a href="index.html" class="logo">
+            <img src="https://i.ibb.co/WN4TDFVY/photo-2026-04-01-00-14-37.jpg" alt="UAC Logo" class="logo-img">
+            <span class="logo-name">UAC</span>
+        </a>
+        <div class="header-right">
+            <nav>
+                <a href="index.html" class="nav-link active" data-i18n="nav_home">Bosh sahifa</a>
+                <a href="library.html" class="nav-link" data-i18n="nav_library">Kutubxona</a>
+            </nav>
+            <div class="lang-switcher">
+                <button class="lang-btn active" onclick="setLang('uz')">UZ</button>
+                <button class="lang-btn" onclick="setLang('ru')">RU</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
             </div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <main>
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <div class="hero-badge">O'zbekiston kimyogarlari</div>
-                    <h1 class="hero-title">
-                        Kimyo <span class="highlight">hammaga tushunarli</span>
-                    </h1>
-                    <p class="hero-description">
-                        Xalqaro olimpiadalar g'oliblari va IChO 2026 ilmiy qo'mita a'zolari bilan birga
-                    </p>
+<!-- ── HERO ── -->
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-badge" data-i18n="hero_badge">O'zbekiston kimyogarlari</div>
+        <h1 class="hero-title">
+            <span data-i18n="hero_title_1">Kimyo </span><span class="accent" data-i18n="hero_title_2">hammaga tushunarli</span>
+        </h1>
+        <p class="hero-sub" data-i18n="hero_sub">
+            Xalqaro olimpiadalar g'oliblari va IChO 2026 ilmiy qo'mita a'zolari bilan birga
+        </p>
+    </div>
+</section>
+
+<!-- ── TEAM ── -->
+<section class="section alt">
+    <div class="container">
+        <h2 class="section-label" data-i18n="team_title">Bizning jamoa</h2>
+        <div class="team-grid">
+
+            <div class="card">
+                <div class="card-photo"><img src="https://i.ibb.co/nsBS6v3Y/photo-2026-04-01-00-14-07.jpg" alt="Adkhamov Elyorbek"></div>
+                <div class="card-body">
+                    <div class="card-name">Adkhamov Elyorbek</div>
+                    <ul class="card-achievements">
+                        <li>🥉 IMChO — 2×</li>
+                        <li>🥇 ARBIChO</li>
+                        <li>📚 IChO 2026 & ARBIChO <span data-i18n="committee">ilmiy qo'mita a'zosi</span></li>
+                    </ul>
                 </div>
             </div>
-        </section>
 
-        <section class="organizers">
-            <div class="container">
-                <h2 class="section-title">Bizning jamoa</h2>
-                <div class="organizers-grid">
-                    <!-- Adkhamov Elyorbek -->
-                    <div class="organizer-card">
-                        <div class="organizer-photo">
-                            <img src="https://i.ibb.co/nsBS6v3Y/photo-2026-04-01-00-14-07.jpg" alt="Adkhamov Elyorbek">
-                        </div>
-                        <h3 class="organizer-name">Adkhamov Elyorbek</h3>
-                        <ul class="organizer-achievements">
-                            <li>🥉 IMChO — 2 karra bronza</li>
-                            <li>🥇 ARBIChO — oltin</li>
-                            <li>📚 IChO 2026 va ARBIChO ilmiy qo'mita a'zosi</li>
-                        </ul>
-                    </div>
-
-                    <!-- Rakhimov Daler -->
-                    <div class="organizer-card">
-                        <div class="organizer-photo">
-                            <img src="https://i.ibb.co/7xv06pVN/photo-2026-04-01-00-14-17.jpg" alt="Rakhimov Daler">
-                        </div>
-                        <h3 class="organizer-name">Rakhimov Daler</h3>
-                        <ul class="organizer-achievements">
-                            <li>🥇 IChO — 2 karra oltin</li>
-                            <li>🥈 IMChO — 2 karra kumush medal sovrindori</li>
-                            <li>📚 IChO 2026 va ARBIChO ilmiy qo'mita a'zosi</li>
-                        </ul>
-                    </div>
-
-                    <!-- Bahodirov Ahrorbek -->
-                    <div class="organizer-card">
-                        <div class="organizer-photo">
-                            <img src="https://i.ibb.co/pr9VgNKh/photo-2026-04-01-00-16-57.jpg" alt="Bahodirov Ahrorbek">
-                        </div>
-                        <h3 class="organizer-name">Bahodirov Ahrorbek</h3>
-                        <ul class="organizer-achievements">
-                            <li>🥈 IChO — kumush</li>
-                            <li>🥈 ARBIChO — kumush</li>
-                            <li>📚 IChO 2026 va ARBIChO ilmiy qo'mita a'zosi</li>
-                        </ul>
-                    </div>
-
-                    <!-- Timurov Ibrokhim -->
-                    <div class="organizer-card">
-                        <div class="organizer-photo">
-                            <img src="https://i.ibb.co/YFqSzJBW/photo-2026-04-01-00-14-13.jpg" alt="Timurov Ibrokhim">
-                        </div>
-                        <h3 class="organizer-name">Timurov Ibrokhim</h3>
-                        <ul class="organizer-achievements">
-                            <li>🥇 IChO — oltin</li>
-                            <li>🥇 IMChO — oltin</li>
-                            <li>📚 IChO 2026 va ARBIChO ilmiy qo'mita a'zosi</li>
-                        </ul>
-                    </div>
-
-                    <!-- Zukhriddinov Biloliddin -->
-                    <div class="organizer-card">
-                        <div class="organizer-photo">
-                            <img src="https://i.ibb.co/BKyvkVQP/photo-2025-08-11-10-20-20.jpg" alt="Zukhriddinov Biloliddin">
-                        </div>
-                        <h3 class="organizer-name">Zukhriddinov Biloliddin</h3>
-                        <ul class="organizer-achievements">
-                            <li>🥈 IChO — kumush</li>
-                            <li>🥇 ARBIChO — oltin</li>
-                            <li>📚 IChO 2026 va ARBIChO ilmiy qo'mita a'zosi</li>
-                        </ul>
-                    </div>
-
-                    <!-- Mukhammadov Mirjakhon -->
-                    <div class="organizer-card">
-                        <div class="organizer-photo">
-                            <img src="https://i.ibb.co/9mQtNQ5R/image.png" alt="Mukhammadov Mirjakhon" border="0" />
-                        </div>
-                        <h3 class="organizer-name">Mukhammadov Mirjakhon</h3>
-                        <ul class="organizer-achievements">
-                            <li>🥇 IChO — oltin</li>
-                            <li>🥇 IMChO — oltin</li>
-                            <li>📚 IChO 2026 va ARBIChO ilmiy qo'mita a'zosi</li>
-                                                    </ul>
-                    </div>
-                    
-                     <!-- Mirakbarov Mirumid -->
-                     <div class="organizer-card">
-                         <div class="organizer-photo">
-                            <img src="https://i.ibb.co/gZz4mDhQ/image.png" alt="Mirakbarov Mirumid" border="0" />
-                         </div>
-                       <h3 class="organizer-name">Mirakbarov Mirumid</h3>
-                       <ul class="organizer-achievements">
-                          <li>🥇 IMChO — oltin medal</li>
-                          <li>🥈 IChO — kumush medal</li>
-                           <li>🎓 BSc, MSc in Chemistry - Oliy Iqtisodiyot Maktabi (Rossiya)</li>
-        <li>📚 IChO 2026 va ARBIChO ilmiy qo'mita a'zosi</li>
-                                            </ul>
-                    </div>
-
-                    <!-- Eldar -->
-                    <div class="organizer-card">
-                        <div class="organizer-photo">
-                            <img src="https://i.ibb.co/1Gmsf695/image.png" alt="Eldar Ilxambekov" border="0" />
-                        </div>
-                        <h3 class="organizer-name">Eldar Ilxambekov</h3>
-                        <ul class="organizer-achievements">
-                            <li>🎓 Kimyo ta'limi</li>
-                            <li>🏅 Kimyo olimpiadalari tashkilotchisi</li>
-                            <li>⭐ Loyiha koordinatori</li>
-                        </ul>
-                    </div>
+            <div class="card">
+                <div class="card-photo"><img src="https://i.ibb.co/7xv06pVN/photo-2026-04-01-00-14-17.jpg" alt="Rakhimov Daler"></div>
+                <div class="card-body">
+                    <div class="card-name">Rakhimov Daler</div>
+                    <ul class="card-achievements">
+                        <li>🥇 IChO — 2×</li>
+                        <li>🥈 IMChO — 2×</li>
+                        <li>📚 IChO 2026 & ARBIChO <span data-i18n="committee">ilmiy qo'mita a'zosi</span></li>
+                    </ul>
                 </div>
             </div>
-        </section>
 
-        <!-- ========== OLIMPIADA KNOBKA ========== -->
-        <section class="olympiada-button-section">
-            <div class="container">
-                <div class="olympiada-button-wrapper">
-                    <button id="olympiadaToggleBtn" class="olympiada-main-btn">
-                        🧪 O'z olimpiadamizni tashkil qildik
-                    </button>
+            <div class="card">
+                <div class="card-photo"><img src="https://i.ibb.co/pr9VgNKh/photo-2026-04-01-00-16-57.jpg" alt="Bahodirov Ahrorbek"></div>
+                <div class="card-body">
+                    <div class="card-name">Bahodirov Ahrorbek</div>
+                    <ul class="card-achievements">
+                        <li>🥈 IChO</li>
+                        <li>🥈 ARBIChO</li>
+                        <li>📚 IChO 2026 & ARBIChO <span data-i18n="committee">ilmiy qo'mita a'zosi</span></li>
+                    </ul>
                 </div>
             </div>
-        </section>
 
-        <!-- ========== OLIMPIADA MAZMUNI (yashirin) ========== -->
-        <section id="olympiadaContent" class="olympiada-content-hidden">
-            <div class="container">
-                <!-- Matn -->
-                <div class="olympiada-text">
-                    <p>UAC jamoasi sifatida yosh kimyogarlar uchun olimpiada o'tkazdik. Maqsad — iqtidorli yoshlarni aniqlash va ularni xalqaro musobaqalarga tayyorlash.</p>
-                </div>
-
-                <!-- Galereya -->
-                <div class="gallery-section">
-                    <h3 class="gallery-title">📸 Olimpiada suratlari</h3>
-                    <div class="gallery-grid">
-                        <div class="gallery-item" onclick="openModal(this)">
-                            <img src="https://i.ibb.co/Kc8xVzxZ/photo-2026-04-01-02-40-58.jpg" alt="Olimpiada surati 1">
-                        </div>
-                        <div class="gallery-item" onclick="openModal(this)">
-                            <img src="https://i.ibb.co/Lz8vLWKh/photo-2026-04-01-02-40-59.jpg" alt="Olimpiada surati 2">
-                        </div>
-                        <div class="gallery-item" onclick="openModal(this)">
-                            <img src="https://i.ibb.co/7NTZ3WNY/photo-2026-04-01-02-41-00.jpg" alt="Olimpiada surati 3">
-                        </div>
-                        <div class="gallery-item" onclick="openModal(this)">
-                            <img src="https://i.ibb.co/351NKgNP/photo-2026-04-01-02-41-01.jpg" alt="Olimpiada surati 4">
-                        </div>
-                        <div class="gallery-item" onclick="openModal(this)">
-                            <img src="https://i.ibb.co/svTmq71s/photo-2026-04-01-02-40-57.jpg" alt="Olimpiada surati 5">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PDF kno'bkasi -->
-                <div class="results-pdf-wrapper">
-                    <a href="https://drive.google.com/uc?export=download&id=1owxsqj4b19xdztHHd6Fp8ceelDLL9GsJ" class="pdf-button" target="_blank">
-                        📄 Natijalar (PDF) →
-                    </a>
+            <div class="card">
+                <div class="card-photo"><img src="https://i.ibb.co/YFqSzJBW/photo-2026-04-01-00-14-13.jpg" alt="Timurov Ibrokhim"></div>
+                <div class="card-body">
+                    <div class="card-name">Timurov Ibrokhim</div>
+                    <ul class="card-achievements">
+                        <li>🥇 IChO</li>
+                        <li>🥇 IMChO</li>
+                        <li>📚 IChO 2026 & ARBIChO <span data-i18n="committee">ilmiy qo'mita a'zosi</span></li>
+                    </ul>
                 </div>
             </div>
-        </section>
 
-        <!-- Modal для увеличения фото -->
-        <div id="imageModal" class="modal" onclick="closeModal()">
-            <span class="modal-close">&times;</span>
-            <img class="modal-content" id="modalImage">
+            <div class="card">
+                <div class="card-photo"><img src="https://i.ibb.co/BKyvkVQP/photo-2025-08-11-10-20-20.jpg" alt="Zukhriddinov Biloliddin"></div>
+                <div class="card-body">
+                    <div class="card-name">Zukhriddinov Biloliddin</div>
+                    <ul class="card-achievements">
+                        <li>🥈 IChO</li>
+                        <li>🥇 ARBIChO</li>
+                        <li>📚 IChO 2026 & ARBIChO <span data-i18n="committee">ilmiy qo'mita a'zosi</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-photo"><img src="https://i.ibb.co/9mQtNQ5R/image.png" alt="Mukhammadov Mirjakhon"></div>
+                <div class="card-body">
+                    <div class="card-name">Mukhammadov Mirjakhon</div>
+                    <ul class="card-achievements">
+                        <li>🥇 IChO</li>
+                        <li>🥇 IMChO</li>
+                        <li>📚 IChO 2026 & ARBIChO <span data-i18n="committee">ilmiy qo'mita a'zosi</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-photo"><img src="https://i.ibb.co/gZz4mDhQ/image.png" alt="Mirakbarov Mirumid"></div>
+                <div class="card-body">
+                    <div class="card-name">Mirakbarov Mirumid</div>
+                    <ul class="card-achievements">
+                        <li>🥇 IMChO</li>
+                        <li>🥈 IChO</li>
+                        <li>🎓 BSc, MSc — HSE Russia</li>
+                        <li>📚 IChO 2026 & ARBIChO <span data-i18n="committee">ilmiy qo'mita a'zosi</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-photo"><img src="https://i.ibb.co/1Gmsf695/image.png" alt="Eldar Ilxambekov"></div>
+                <div class="card-body">
+                    <div class="card-name">Eldar Ilxambekov</div>
+                    <ul class="card-achievements">
+                        <li>🎓 <span data-i18n="eldar_1">Kimyo ta'limi</span></li>
+                        <li>🏅 <span data-i18n="eldar_2">Kimyo olimpiadalari tashkilotchisi</span></li>
+                        <li>⭐ <span data-i18n="eldar_3">Loyiha koordinatori</span></li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
+    </div>
+</section>
 
-        <section class="telegram-section">
-            <div class="container">
-                <div class="telegram-card">
-                    <div class="telegram-icon">📱</div>
-                    <h2 class="telegram-title">Telegram kanalimizga qo'shiling</h2>
-                    <p class="telegram-description">
-                        Kunlik tahlillar, bepul materiallar, darslar haqida e'lonlar
-                    </p>
-                    <div class="social-buttons">
-                        <a href="https://t.me/ChemistryUAC" class="telegram-button" target="_blank">
-                            Telegram → 
-                        </a>
-                        <a href="https://www.instagram.com/uac_uz" class="instagram-button" target="_blank">
-                            Instagram → 
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+<!-- ── OLYMPIAD TOGGLE ── -->
+<div class="olympiad-toggle-wrap" style="padding: 60px 24px 0;">
+    <button class="btn-toggle" id="olympBtn" data-i18n="olymp_btn">🧪 O'z olimpiadamizni tashkil qildik</button>
+</div>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <div class="logo-icon">
-                        <img src="https://i.ibb.co/WN4TDFVY/photo-2026-04-01-00-14-37.jpg" alt="UAC Logo">
-                    </div>
-                    <span>UAC</span>
-                    <p class="footer-tagline">O'zbekiston Kimyogarlar Assotsiatsiyasi</p>
-                </div>
-                <div class="footer-links">
-                    <a href="index.html">Bosh sahifa</a>
-                    <a href="library.html">Kutubxona</a>
-                    <!-- <a href="https://uac-8xhd.onrender.com" class="nav-link" target="_blank">💬 Forum</a> -->
-                    <a href="https://t.me/ChemistryUAC" target="_blank">Telegram</a>
-                    <a href="https://www.instagram.com/uac_uz" target="_blank">Instagram</a>
-                </div>
-                <div class="footer-copyright">
-                    © 2026 UAC
-                </div>
+<section class="section" id="olympContent" style="display:none;">
+    <div class="container">
+        <p class="olympiad-desc" data-i18n="olymp_desc">
+            UAC jamoasi sifatida yosh kimyogarlar uchun olimpiada o'tkazdik. Maqsad — iqtidorli yoshlarni aniqlash va ularni xalqaro musobaqalarga tayyorlash.
+        </p>
+        <h3 class="gallery-title" data-i18n="gallery_title">📸 Olimpiada suratlari</h3>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openModal(this)"><img src="https://i.ibb.co/Kc8xVzxZ/photo-2026-04-01-02-40-58.jpg" alt="Olimpiada 1"></div>
+            <div class="gallery-item" onclick="openModal(this)"><img src="https://i.ibb.co/Lz8vLWKh/photo-2026-04-01-02-40-59.jpg" alt="Olimpiada 2"></div>
+            <div class="gallery-item" onclick="openModal(this)"><img src="https://i.ibb.co/7NTZ3WNY/photo-2026-04-01-02-41-00.jpg" alt="Olimpiada 3"></div>
+            <div class="gallery-item" onclick="openModal(this)"><img src="https://i.ibb.co/351NKgNP/photo-2026-04-01-02-41-01.jpg" alt="Olimpiada 4"></div>
+            <div class="gallery-item" onclick="openModal(this)"><img src="https://i.ibb.co/svTmq71s/photo-2026-04-01-02-40-57.jpg" alt="Olimpiada 5"></div>
+        </div>
+        <div class="pdf-wrap">
+            <a href="https://drive.google.com/uc?export=download&id=1owxsqj4b19xdztHHd6Fp8ceelDLL9GsJ" class="btn-pdf" target="_blank" data-i18n="pdf_btn">📄 Natijalar (PDF) →</a>
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal" id="modal" onclick="closeModal()">
+    <span class="modal-close">&times;</span>
+    <img id="modalImg" src="" alt="">
+</div>
+
+<!-- ── SOCIAL ── -->
+<section class="section alt">
+    <div class="container">
+        <div class="social-card">
+            <div class="social-icon">📱</div>
+            <h2 class="social-title" data-i18n="social_title">Telegram kanalimizga qo'shiling</h2>
+            <p class="social-sub" data-i18n="social_sub">Kunlik tahlillar, bepul materiallar, darslar haqida e'lonlar</p>
+            <div class="social-btns">
+                <a href="https://t.me/ChemistryUAC" class="btn-tg" target="_blank">Telegram →</a>
+                <a href="https://www.instagram.com/uac_uz" class="btn-ig" target="_blank">Instagram →</a>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script>
-        // Toggle для олимпиады
-        const toggleBtn = document.getElementById('olympiadaToggleBtn');
-        const content = document.getElementById('olympiadaContent');
-        
-        toggleBtn.addEventListener('click', () => {
-            if (content.classList.contains('olympiada-content-hidden')) {
-                content.classList.remove('olympiada-content-hidden');
-                content.classList.add('olympiada-content-visible');
-                toggleBtn.innerHTML = '🧪 Olimpiada yopish';
-            } else {
-                content.classList.remove('olympiada-content-visible');
-                content.classList.add('olympiada-content-hidden');
-                toggleBtn.innerHTML = '🧪 O\'z olimpiadamizni tashkil qildik';
-            }
-        });
+<!-- ── FOOTER ── -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-logo">
+            <img src="https://i.ibb.co/WN4TDFVY/photo-2026-04-01-00-14-37.jpg" alt="UAC">
+            <span class="footer-logo-name">UAC</span>
+            <p class="footer-tagline" data-i18n="footer_tag">O'zbekiston Kimyogarlar Assotsiatsiyasi</p>
+        </div>
+        <div class="footer-links">
+            <a href="index.html" data-i18n="nav_home">Bosh sahifa</a>
+            <a href="library.html" data-i18n="nav_library">Kutubxona</a>
+            <a href="https://t.me/ChemistryUAC" target="_blank">Telegram</a>
+            <a href="https://www.instagram.com/uac_uz" target="_blank">Instagram</a>
+        </div>
+        <div class="footer-copy">© 2026 UAC</div>
+    </div>
+</footer>
 
-        // Modal для фото
-        function openModal(element) {
-            const modal = document.getElementById('imageModal');
-            const modalImg = document.getElementById('modalImage');
-            modal.style.display = "flex";
-            modalImg.src = element.querySelector('img').src;
+<script>
+// ── TRANSLATIONS ──
+const i18n = {
+    uz: {
+        nav_home: "Bosh sahifa",
+        nav_library: "Kutubxona",
+        hero_badge: "O'zbekiston kimyogarlari",
+        hero_title_1: "Kimyo ",
+        hero_title_2: "hammaga tushunarli",
+        hero_sub: "Xalqaro olimpiadalar g'oliblari va IChO 2026 ilmiy qo'mita a'zolari bilan birga",
+        team_title: "Bizning jamoa",
+        committee: "ilmiy qo'mita a'zosi",
+        eldar_1: "Kimyo ta'limi",
+        eldar_2: "Kimyo olimpiadalari tashkilotchisi",
+        eldar_3: "Loyiha koordinatori",
+        olymp_btn: "🧪 O'z olimpiadamizni tashkil qildik",
+        olymp_desc: "UAC jamoasi sifatida yosh kimyogarlar uchun olimpiada o'tkazdik. Maqsad — iqtidorli yoshlarni aniqlash va ularni xalqaro musobaqalarga tayyorlash.",
+        gallery_title: "📸 Olimpiada suratlari",
+        pdf_btn: "📄 Natijalar (PDF) →",
+        social_title: "Telegram kanalimizga qo'shiling",
+        social_sub: "Kunlik tahlillar, bepul materiallar, darslar haqida e'lonlar",
+        footer_tag: "O'zbekiston Kimyogarlar Assotsiatsiyasi"
+    },
+    ru: {
+        nav_home: "Главная",
+        nav_library: "Библиотека",
+        hero_badge: "Химики Узбекистана",
+        hero_title_1: "Химия ",
+        hero_title_2: "доступна каждому",
+        hero_sub: "Вместе с призёрами международных олимпиад и членами научного комитета IChO 2026",
+        team_title: "Наша команда",
+        committee: "член научного комитета",
+        eldar_1: "Преподавание химии",
+        eldar_2: "Организатор химических олимпиад",
+        eldar_3: "Координатор проекта",
+        olymp_btn: "🧪 Мы провели свою олимпиаду",
+        olymp_desc: "Как команда UAC мы организовали олимпиаду для молодых химиков. Цель — выявить талантливых участников и подготовить их к международным соревнованиям.",
+        gallery_title: "📸 Фотографии с олимпиады",
+        pdf_btn: "📄 Результаты (PDF) →",
+        social_title: "Присоединяйтесь к нашему Telegram каналу",
+        social_sub: "Ежедневный разбор задач, бесплатные материалы, анонсы уроков",
+        footer_tag: "Узбекская Ассоциация Химиков"
+    },
+    en: {
+        nav_home: "Home",
+        nav_library: "Library",
+        hero_badge: "Chemists of Uzbekistan",
+        hero_title_1: "Chemistry ",
+        hero_title_2: "made accessible",
+        hero_sub: "With international olympiad winners and members of the IChO 2026 scientific committee",
+        team_title: "Our Team",
+        committee: "scientific committee member",
+        eldar_1: "Chemistry education",
+        eldar_2: "Chemistry olympiad organizer",
+        eldar_3: "Project coordinator",
+        olymp_btn: "🧪 We held our own olympiad",
+        olymp_desc: "As a team, UAC organized a chemistry olympiad for young students. The goal — to identify talented youth and prepare them for international competitions.",
+        gallery_title: "📸 Olympiad Photos",
+        pdf_btn: "📄 Results (PDF) →",
+        social_title: "Join our Telegram channel",
+        social_sub: "Daily problem sets, free materials, lesson announcements",
+        footer_tag: "Uzbek Association of Chemists"
+    }
+};
+
+let currentLang = localStorage.getItem('uac_lang') || 'uz';
+
+function setLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('uac_lang', lang);
+    document.documentElement.lang = lang;
+
+    // Update all translated elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[lang][key] !== undefined) {
+            el.textContent = i18n[lang][key];
         }
+    });
 
-        function closeModal() {
-            document.getElementById('imageModal').style.display = "none";
-        }
-    </script>
+    // Update lang buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+    });
+
+    // Update olympiad button text if content is open
+    const olympBtn = document.getElementById('olympBtn');
+    const isOpen = document.getElementById('olympContent').style.display !== 'none';
+    if (isOpen) {
+        olympBtn.textContent = lang === 'uz' ? '🧪 Yopish' : lang === 'ru' ? '🧪 Скрыть' : '🧪 Hide';
+    }
+}
+
+// Olympiad toggle
+document.getElementById('olympBtn').addEventListener('click', () => {
+    const content = document.getElementById('olympContent');
+    const btn = document.getElementById('olympBtn');
+    const isOpen = content.style.display !== 'none';
+    if (isOpen) {
+        content.style.display = 'none';
+        btn.textContent = i18n[currentLang].olymp_btn;
+    } else {
+        content.style.display = 'block';
+        btn.textContent = currentLang === 'uz' ? '🧪 Yopish' : currentLang === 'ru' ? '🧪 Скрыть' : '🧪 Hide';
+    }
+});
+
+// Modal
+function openModal(el) {
+    document.getElementById('modalImg').src = el.querySelector('img').src;
+    document.getElementById('modal').classList.add('open');
+}
+function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+}
+
+// Init
+setLang(currentLang);
+</script>
 </body>
 </html>
