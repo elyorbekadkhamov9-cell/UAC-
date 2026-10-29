@@ -41,15 +41,20 @@
 .files-head span{color:var(--muted);font-size:16px}
 .flist{list-style:none;margin:14px 0 0;padding:0;border-top:1px solid var(--line)}
 .flist li{border-bottom:1px solid var(--line)}
-.flist a{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;align-items:center;padding:14px 4px;text-decoration:none;color:var(--ink);border-radius:10px;transition:background .2s}
-.flist a:hover{background:var(--band)}
-.flist .nm{font-weight:550;line-height:1.35}
-.flist .raw{display:block;font-size:13px;color:var(--muted);margin-top:2px;overflow-wrap:anywhere}
-.flist .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-.flist .tag{font-size:12px;font-weight:500;padding:3px 9px;border-radius:999px;background:var(--band);color:var(--navy)}
-.flist .dl{display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:14px;color:var(--navy);padding:8px 14px;border-radius:999px;border:1.5px solid var(--line-strong);background:var(--surface);transition:background .2s,color .2s,border-color .2s}
-.flist a:hover .dl{background:var(--navy);color:#fff;border-color:var(--navy)}
+.frow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 18px;align-items:center;padding:14px 6px;border-radius:12px;transition:background .2s}
+.frow:hover{background:var(--band)}
+.frow.many{grid-template-columns:minmax(0,1fr)}
+.frow.many .btns{justify-content:flex-start}
+.flist .nm{font-weight:600;line-height:1.3}
+.flist .sub{display:block;font-size:13.5px;color:var(--muted);margin-top:3px}
+.btns{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.flist .dl{display:inline-flex;align-items:center;gap:7px;min-height:44px;font-weight:600;font-size:14px;color:var(--navy);padding:0 14px;border-radius:999px;border:1.5px solid var(--line-strong);background:var(--surface);text-decoration:none;transition:background .2s,color .2s,border-color .2s}
+.flist .dl.sol{border-color:#9CC8E6;background:#EEF6FC}
+.flist .dl:hover,.flist .dl:focus-visible{background:var(--navy);color:#fff;border-color:var(--navy)}
+.flist .dl small{font-size:11px;font-weight:600;letter-spacing:.06em;padding:2px 6px;border-radius:6px;background:var(--band);color:var(--navy)}
+.flist .dl:hover small{background:rgba(255,255,255,.18);color:#fff}
 .flist .dl svg{width:16px;height:16px}
+@media (max-width:640px){ .frow{grid-template-columns:minmax(0,1fr)} .btns{justify-content:flex-start} }
 .recent{padding-block:80px 110px}
 .recent-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px 40px;margin-bottom:24px}
 .recent-title{font-family:var(--f-display);font-weight:700;font-size:clamp(32px,4.4vw,60px);line-height:1;letter-spacing:-.035em;color:var(--navy)}
@@ -149,7 +154,7 @@
     var s=name.toLowerCase(), t=[];
     if(/prep|preparat|подгот/.test(s)) t.push("Tayyorgarlik");
     if(/theor|teor|теор/.test(s)) t.push("Nazariy tur");
-    if(/pract|prakt|практ|эксп|eksp|lab/.test(s)) t.push("Amaliy tur");
+    if(/pract|prakt|практ|эксп|eksp|experim|lab/.test(s)) t.push("Amaliy tur");
     if(/sol|yechim|reshen|решен|ответ/.test(s)&&!/answer.?sheet/.test(s)) t.push("Yechim");
     if(/\beng?\b|english/.test(s)) t.push("EN");
     if(/\brus\b|рус|russian|[а-яё]/.test(s)) t.push("RU");
@@ -163,7 +168,7 @@
     if(t.indexOf("Nazariy tur")>=0) parts.push("Nazariy tur");
     if(t.indexOf("Amaliy tur")>=0) parts.push("Amaliy tur");
     var base=parts.join(", ");
-    var tour=/(?:tour|тур|tur)\s*-?\s*(\d)(?!\d)|(?:^|\D)(\d)\s*-?\s*(?:тур|tur|теор)/.exec(s), bos=/(\d)\s*-?\s*bosqich/.exec(s), part=/part\s*(\d)|(\d)\s*-?\s*qism/.exec(s);
+    var tour=/(?:tour|тур|tur)\s*-?\s*(\d)(?!\d)|(?:^|\D)(\d)\s*-?\s*(?:тур|tour|tur|теор)/.exec(s), bos=/(\d)\s*-?\s*bosqich/.exec(s), part=/part\s*(\d)|(\d)\s*-?\s*qism/.exec(s);
     if(tour){ var n=tour[1]||tour[2]; base=n+"-tur"+(base?", "+base.toLowerCase():""); }
     if(bos) base=bos[1]+"-bosqich"+(base?", "+base.toLowerCase():"");
     if(!base && /zadan|задан|tasks?\b|problems?\b/.test(s)) base="Masalalar";
@@ -174,6 +179,74 @@
     base=base+(sol?" — yechimlar":"");
     if(part) base+=", "+(part[1]||part[2])+"-qism";
     return base.charAt(0).toUpperCase()+base.slice(1);
+  }
+  /* files that belong together (task-1 + sol-1, "theory task eng" + "theory sol") become one row */
+  var SUBJ={anal:"Analitik kimyo",inorg:"Noorganik kimyo",org:"Organik kimyo",phys:"Fizikaviy kimyo",life:"Hayot fanlari"};
+  function kindOf(s){
+    if(/answer.?sheet|\dash\b|blank/.test(s)) return "sheet";
+    if(/sol|yechim|reshen|resh|решен|ответ|answer|\bdes\b|\bdec\b/.test(s)) return "sol";
+    return "task";
+  }
+  function langOf(s){
+    if(/\beng?\b|english/.test(s)) return "EN";
+    if(/\buzb|\buz(?=\d|\b)/.test(s)) return "UZ";
+    if(/\brus\b|russian|рус|\bru(?=\d|\b)|[а-яё]/.test(s)) return "RU";
+    return "";
+  }
+  function keyOf(s,ol){
+    var k=s.replace(/answer.?sheet|answers?|solutions?|sol|tasks?|problems?|zadan|задани[ея]|задач[аи]?|решени[яе]|reshen[a-zа-яё]*|resh[a-zа-яё]*|yechim[a-zа-яё]*|topshiriq[a-zа-яё]*|blanks?|\bdes\b|\bdec\b/g," ")
+      .replace(/(\d)ash\b/g,"$1")
+      .replace(/theor[a-zа-яё]*|teor[a-zа-яё]*|теор[a-zа-яё]*/g," theory ").replace(/pract[a-zа-яё]*|prakt[a-zа-яё]*|experim[a-zа-яё]*|эксп[a-zа-яё]*/g," practical ").replace(/prep[a-zа-яё]*|preparo?t[a-zа-яё]*|подгот[a-zа-яё]*/g," prep ")
+      .replace(/(\d)\s*-?\s*(?:tour|tur|тур)\b/g," tour$1 ").replace(/(?:tour|tur|тур)\s*-?\s*(\d)(?!\d)/g," tour$1 ")
+      .replace(/english|\beng?\b|russian|\brus\b|рус[a-zа-яё]*|uzbek|\buzb\b|\b(?:ru|uz)(?=\d|\b)|official|public|final|full|exam|\bdoc\b|\bv\d\b|bosqich|kimyo/g," ")
+      .replace(/kimyo20\d\d|\b20\d{6}\b|\b20\d\d\b|icho\d*|mend[a-zа-яё]*|ммо|beruni[a-zа-яё]*|al beruny|arbicho/g," ")
+      .replace(/[^a-z0-9а-яё]+/g," ").replace(/\s+/g," ").trim();
+    if(ol==="saralash") k=k.replace(/^tour(\d)$/,"$1 saralash");
+    return k;
+  }
+  var KIND={task:"Masalalar",sheet:"Javob varag‘i",sol:"Yechim"}, ORDER={task:0,sheet:1,sol:2};
+  function groups(files,ol){
+    var map={}, keys=[];
+    files.forEach(function(f){ var s=f[0].toLowerCase(), k=keyOf(s,ol)||s; if(!map[k]){ map[k]=[]; keys.push(k); } map[k].push({raw:f[0],id:f[1],kind:kindOf(s),lang:langOf(s)}); });
+    keys.slice().forEach(function(k){ var m=/^(.*\S) \d$/.exec(k); if(m && map[m[1]] && m[1]!==k){ map[m[1]]=map[m[1]].concat(map[k]); delete map[k]; keys.splice(keys.indexOf(k),1); } });
+    /* a solutions-only group joins the one task group whose name contains all of its words */
+    keys.slice().forEach(function(k){
+      if(!map[k] || !map[k].every(function(x){ return x.kind==="sol"; })) return;
+      var tk=k.split(" "), hits=keys.filter(function(o){ if(o===k||!map[o]||map[o].every(function(x){ return x.kind==="sol"; })) return false; var ot=o.split(" "); return tk.every(function(t){ return ot.indexOf(t)>=0; }); });
+      if(hits.length===1){ map[hits[0]]=map[hits[0]].concat(map[k]); delete map[k]; keys.splice(keys.indexOf(k),1); }
+    });
+    keys.sort(function(a,b){ return a.localeCompare(b,undefined,{numeric:true}); });
+    var rows=keys.map(function(k){
+      var items=map[k].sort(function(a,b){ return ORDER[a.kind]-ORDER[b.kind] || a.lang.localeCompare(b.lang) || a.raw.localeCompare(b.raw,undefined,{numeric:true}); });
+      var rep=items.filter(function(x){ return x.kind==="task"; })[0]||items[0];
+      var lb=(label(rep.raw)||"").replace(/ — (yechimlar|javob varag‘i)$/,"");
+      if(/^(Masalalar|Yechimlar|Saralash masalalari)$/.test(lb)) lb="";
+      var bits=[]; if(lb) bits.push(lb);
+      var num=(k.match(/(?:^|\s)(\d{1,2})(?=\s|$)/)||[])[1];
+      if(num && !/tur|qism|bosqich/i.test(lb)) bits.push(num+"-qism");
+      var sub=Object.keys(SUBJ).filter(function(w){ return new RegExp("(^|\\s)"+w+"(\\s|$)").test(k); })[0];
+      if(sub) bits.push(SUBJ[sub]);
+      var sar=/(?:^|\s)(\d) saralash(?: (\d))?/.exec(k);
+      if(sar) bits=[sar[1]+"-saralash"+(sar[2]?", "+sar[2]+"-bosqich":"")];
+      var dup=items.some(function(x,i){ return items.some(function(y,j){ return j!==i && y.raw===x.raw; }); });
+      if(dup) bits=bits.filter(function(b){ return !/-qism$/.test(b); });
+      var title=bits.join(" · ") || (items.length>1 ? "Masalalar va yechimlar" : (label(rep.raw)||rep.raw));
+      var seen={};
+      items.forEach(function(x){ var t=KIND[x.kind]; seen[t+x.lang]=(seen[t+x.lang]||0)+1; x.n=seen[t+x.lang]; });
+      items.forEach(function(x){ var t=KIND[x.kind]; x.text=t+(seen[t+x.lang]>1?" "+x.n:""); });
+      return {title:title, items:items};
+    });
+    var lone=rows.filter(function(r){ return r.title==="Yechimlar"; }), rest=rows.filter(function(r){ return r.title!=="Yechimlar"; });
+    var needSol=rest.filter(function(r){ return !r.items.some(function(x){ return x.kind==="sol"; }); });
+    if(lone.length===1 && needSol.length===1){ needSol[0].items=needSol[0].items.concat(lone[0].items); rows=rest; }
+    var byT={}, out=[];
+    rows.forEach(function(r){ if(byT[r.title]){ byT[r.title].items=byT[r.title].items.concat(r.items); } else { byT[r.title]=r; out.push(r); } });
+    out.forEach(function(r){
+      r.items.sort(function(a,b){ return ORDER[a.kind]-ORDER[b.kind] || a.lang.localeCompare(b.lang) || a.raw.localeCompare(b.raw,undefined,{numeric:true}); });
+      var cnt={}, n={}; r.items.forEach(function(x){ var t=KIND[x.kind]+x.lang; cnt[t]=(cnt[t]||0)+1; });
+      r.items.forEach(function(x){ var t=KIND[x.kind]+x.lang; n[t]=(n[t]||0)+1; x.text=KIND[x.kind]+(cnt[t]>1?" "+n[t]:""); });
+    });
+    return out;
   }
   var state={k:"icho",y:null};
   var tabs=document.getElementById("tabs"), years=document.getElementById("years"), list=document.getElementById("flist");
@@ -187,12 +260,14 @@
     years.innerHTML=ys.map(function(y){ return '<button type="button" class="yb" data-y="'+y+'" aria-pressed="'+(y===state.y)+'" data-hover>'+y+'<small>'+d[y].length+'</small></button>'; }).join("");
     var files=d[state.y]||[];
     document.getElementById("fTitle").textContent=o.code+" "+state.y;
-    document.getElementById("fCount").textContent=files.length+" ta fayl";
-    list.innerHTML=files.map(function(f){
-      var tg=tags(f[0]).filter(function(x){ return /^(EN|RU|UZ)$/.test(x); }).map(function(x){ return '<span class="tag">'+x+'</span>'; }).join("");
-      var lb=label(f[0]);
-      return '<li><a href="'+D+f[1]+'" target="_blank" rel="noopener" data-sfx="page"><span><span class="nm">'+esc(lb||f[0])+'</span>'+(lb?'<span class="raw">'+esc(f[0])+'.pdf</span>':'')+(tg?'<span class="tags">'+tg+'</span>':'')+'</span>'+
-        '<span class="dl">PDF <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg></span></a></li>';
+    var dlIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>';
+    var gs=groups(files,o.k);
+    document.getElementById("fCount").textContent=files.length+" ta fayl"+(gs.length<files.length?", "+gs.length+" ta bo‘lim":"");
+    list.innerHTML=gs.map(function(g){
+      return '<li><div class="frow'+(g.items.length>2?' many':'')+'"><span><span class="nm">'+esc(g.title)+'</span>'+(g.items.length>1?'<span class="sub">'+g.items.length+' ta fayl</span>':'')+'</span><span class="btns">'+
+        g.items.map(function(x){
+          return '<a class="dl'+(x.kind==="sol"?" sol":"")+'" href="'+D+x.id+'" target="_blank" rel="noopener" data-sfx="page" title="'+esc(x.raw)+'.pdf" aria-label="'+esc(g.title+": "+x.text+(x.lang?" ("+x.lang+")":"")+", PDF yuklab olish")+'">'+esc(x.text)+(x.lang?' <small>'+x.lang+'</small>':'')+' '+dlIcon+'</a>';
+        }).join("")+'</span></div></li>';
     }).join("");
     var h="#"+o.k+"-"+state.y; if(location.hash!==h){ try{ history.replaceState(null,"",h); }catch(e){} }
   }
