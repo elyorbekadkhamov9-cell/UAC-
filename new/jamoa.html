@@ -27,7 +27,7 @@
 .hex .ph{position:absolute;inset:0;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);background:linear-gradient(150deg,#E4EFF8,#BFDBEF);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--navy);overflow:hidden}
 .hex .ph b{font-family:var(--f-display);font-weight:700;font-size:28px;letter-spacing:-.03em;line-height:1}
 .hex .ph small{font-size:10.5px;font-weight:600;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
-.hex .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hex .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 28%;background:#E4EFF8}
 .pt:hover .hex::before{transform:translate(10px,8px) rotate(4deg)}
 .who{display:flex;flex-direction:column;min-width:0}
 .who b{font-family:var(--f-display);font-weight:700;font-size:19px;line-height:1.1;letter-spacing:-.02em;color:var(--navy)}
@@ -42,7 +42,12 @@
 .olymp-box h2{font-family:var(--f-display);font-weight:900;font-size:clamp(34px,4.8vw,66px);line-height:.95;letter-spacing:-.045em;margin-top:10px}
 .olymp-box p{color:#D3E3F1;margin-top:18px;max-width:30em}
 .olymp-box .art{aspect-ratio:1/1;max-width:300px;width:100%;justify-self:center}
-@media (max-width:820px){ .olymp-box{grid-template-columns:minmax(0,1fr)} }
+.gallery{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:14px}
+.gallery:empty{display:none}
+.gallery figure{margin:0;aspect-ratio:4/3;border-radius:18px;overflow:hidden;background:var(--band)}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.gallery figure:hover img{transform:scale(1.05)}
+@media (max-width:820px){ .olymp-box{grid-template-columns:minmax(0,1fr)} .gallery{grid-template-columns:repeat(2,minmax(0,1fr))} }
 </style>
 </head>
 <body>
@@ -67,7 +72,7 @@
   <section class="page-head" data-shape="atom" data-look="2.95,1.15,0.8,0.6" data-look-n="0.8,1.8,0.42,0.28" aria-labelledby="h1">
     <div class="wrap">
       <p class="mono eyebrow">Jamoa</p>
-      <h1 class="page-title" id="h1">Masalalarni <em>kim tuzadi</em></h1>
+      <h1 class="page-title" id="h1">Bizning <em>jamoa</em></h1>
       <p class="page-sub">Jamoada sakkiz kishi. Yettitasi xalqaro olimpiadalarda medal olgan va IChO 2026 hamda ARBIChO ilmiy qo’mitasida ishlaydi.</p>
     </div>
   </section>
@@ -86,6 +91,8 @@
         </div>
         <div class="art"><canvas class="mini" data-mini="flask" data-scale="0.8" aria-hidden="true" style="filter:brightness(2.2) saturate(.7)"></canvas></div>
       </div>
+    
+      <div class="gallery" aria-label="Olimpiadadan suratlar"><figure><img src="https://i.ibb.co/svTmq71s/photo-2026-04-01-02-40-57.jpg" alt="UAC olimpiadasidan surat 1" loading="lazy" onerror="this.closest('figure').remove()"></figure><figure><img src="https://i.ibb.co/Kc8xVzxZ/photo-2026-04-01-02-40-58.jpg" alt="UAC olimpiadasidan surat 2" loading="lazy" onerror="this.closest('figure').remove()"></figure><figure><img src="https://i.ibb.co/Lz8vLWKh/photo-2026-04-01-02-40-59.jpg" alt="UAC olimpiadasidan surat 3" loading="lazy" onerror="this.closest('figure').remove()"></figure><figure><img src="https://i.ibb.co/7NTZ3WNY/photo-2026-04-01-02-41-00.jpg" alt="UAC olimpiadasidan surat 4" loading="lazy" onerror="this.closest('figure').remove()"></figure><figure><img src="https://i.ibb.co/351NKgNP/photo-2026-04-01-02-41-01.jpg" alt="UAC olimpiadasidan surat 5" loading="lazy" onerror="this.closest('figure').remove()"></figure></div>
     </div>
   </section>
 </main>
@@ -110,18 +117,18 @@
   var G="#F2B415", S="#AEB9C4", B="#C47A3C", I="#3E9BD8";
   /* photo: put each person's photo path here (for example "assets/team/daler.jpg") */
   var TEAM=[
-    {ini:"EA",sym:"Ea",name:"Elyorbek Adkhamov",n:3,photo:null,m:[[G,"ARBIChO · oltin"],[B,"IMChO · bronza ×2"]],role:"IChO 2026 va ARBIChO ilmiy qo’mitasi"},
-    {ini:"DR",sym:"Dr",name:"Daler Rahimov",n:4,photo:null,m:[[G,"IChO · oltin ×2"],[S,"IMChO · kumush ×2"]],role:"IChO 2026 va ARBIChO ilmiy qo’mitasi"},
-    {ini:"AB",sym:"Ab",name:"Ahrorbek Bahodirov",n:2,photo:null,m:[[S,"IChO · kumush"],[S,"ARBIChO · kumush"]],role:"IChO 2026 va ARBIChO ilmiy qo’mitasi"},
-    {ini:"IT",sym:"It",name:"Ibrokhim Timurov",n:2,photo:null,m:[[G,"IChO · oltin"],[G,"IMChO · oltin"]],role:"IChO 2026 va ARBIChO ilmiy qo’mitasi"},
-    {ini:"BZ",sym:"Bz",name:"Biloliddin Zukhriddinov",n:2,photo:null,m:[[S,"IChO · kumush"],[G,"ARBIChO · oltin"]],role:"IChO 2026 va ARBIChO ilmiy qo’mitasi"},
-    {ini:"MM",sym:"Mm",name:"Mirjakhon Mukhammadov",n:2,photo:null,m:[[G,"IChO · oltin"],[G,"IMChO · oltin"]],role:"IChO 2026 va ARBIChO ilmiy qo’mitasi"},
-    {ini:"MM",sym:"Mr",name:"Mirumid Mirakbarov",n:2,photo:null,m:[[G,"IMChO · oltin"],[S,"IChO · kumush"],[I,"BSc, MSc — HSE"]],role:"IChO 2026 va ARBIChO ilmiy qo’mitasi"},
-    {ini:"EI",sym:"Ei",name:"Eldar Ilxambekov",n:"—",photo:null,m:[[I,"Kimyo ta’limi"],[I,"Olimpiadalar tashkilotchisi"]],role:"Loyiha koordinatori"}
+    {ini:"EA",sym:"Ea",name:"Elyorbek Adkhamov",n:3,photo:"https://i.ibb.co/nsBS6v3Y/photo-2026-04-01-00-14-07.jpg",m:[[G,"ARBIChO · oltin"],[B,"IMChO · bronza ×2"]],role:"IChO 2026 va ARBIChO ilmiy qo’mitasi"},
+    {ini:"DR",sym:"Dr",name:"Daler Rahimov",n:4,photo:"https://i.ibb.co/7xv06pVN/photo-2026-04-01-00-14-17.jpg",m:[[G,"IChO · oltin ×2"],[S,"IMChO · kumush ×2"]],role:"IChO 2026 va ARBIChO ilmiy qo’mitasi"},
+    {ini:"AB",sym:"Ab",name:"Ahrorbek Bahodirov",n:2,photo:"https://i.ibb.co/pr9VgNKh/photo-2026-04-01-00-16-57.jpg",m:[[S,"IChO · kumush"],[S,"ARBIChO · kumush"]],role:"IChO 2026 va ARBIChO ilmiy qo’mitasi"},
+    {ini:"IT",sym:"It",name:"Ibrokhim Timurov",n:2,photo:"https://i.ibb.co/YFqSzJBW/photo-2026-04-01-00-14-13.jpg",m:[[G,"IChO · oltin"],[G,"IMChO · oltin"]],role:"IChO 2026 va ARBIChO ilmiy qo’mitasi"},
+    {ini:"BZ",sym:"Bz",name:"Biloliddin Zukhriddinov",n:2,photo:"https://i.ibb.co/BKyvkVQP/photo-2025-08-11-10-20-20.jpg",m:[[S,"IChO · kumush"],[G,"ARBIChO · oltin"]],role:"IChO 2026 va ARBIChO ilmiy qo’mitasi"},
+    {ini:"MM",sym:"Mm",name:"Mirjakhon Mukhammadov",n:2,photo:"https://i.ibb.co/9mQtNQ5R/image.png",m:[[G,"IChO · oltin"],[G,"IMChO · oltin"]],role:"IChO 2026 va ARBIChO ilmiy qo’mitasi"},
+    {ini:"MM",sym:"Mr",name:"Mirumid Mirakbarov",n:2,photo:"https://i.ibb.co/gZz4mDhQ/image.png",m:[[G,"IMChO · oltin"],[S,"IChO · kumush"],[I,"BSc, MSc — HSE"]],role:"IChO 2026 va ARBIChO ilmiy qo’mitasi"},
+    {ini:"EI",sym:"Ei",name:"Eldar Ilxambekov",n:"—",photo:"https://i.ibb.co/1Gmsf695/image.png",m:[[I,"Kimyo ta’limi"],[I,"Olimpiadalar tashkilotchisi"]],role:"Loyiha koordinatori"}
   ];
   function esc(s){ return String(s).replace(/[&<>"]/g,function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
   document.getElementById("ptable").innerHTML=TEAM.map(function(p){
-    var parts=p.name.split(" "), ph=p.photo? '<img src="'+esc(p.photo)+'" alt="'+esc(p.name)+'">' : '<b>'+p.ini+'</b><small>rasm</small>';
+    var parts=p.name.split(" "), ph='<b>'+p.ini+'</b>'+(p.photo? '<img src="'+esc(p.photo)+'" alt="'+esc(p.name)+'" loading="lazy" onerror="this.remove()">' : '<small>rasm</small>');
     return '<article class="pt" data-tilt data-hover>'+
       '<div class="pt-top"><div class="hex"><div class="ph">'+ph+'</div></div><div class="who"><b>'+esc(parts[0])+'</b><i>'+esc(parts.slice(1).join(" "))+'</i></div></div>'+
       '<ul>'+p.m.map(function(m){ return '<li><i style="background:'+m[0]+'" aria-hidden="true"></i>'+esc(m[1])+'</li>'; }).join("")+'</ul>'+
