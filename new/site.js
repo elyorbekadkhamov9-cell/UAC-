@@ -6,16 +6,6 @@
   var reduce = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
   UAC.reduce = reduce;
 
-  /* design variant B (one typeface) for side-by-side review: ?v=b turns it on for the visit, ?v=a turns it off */
-  (function(){
-    var v=(location.search.match(/[?&]v=([ab])\b/)||[])[1], on=false;
-    try{ if(v) sessionStorage.setItem("uac-v",v); on=(v||sessionStorage.getItem("uac-v"))==="b"; }catch(e){ on=v==="b"; }
-    if(!on) return;
-    document.documentElement.classList.add("vb");
-    var l=document.createElement("link"); l.rel="stylesheet"; l.href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..700&display=swap";
-    document.head.appendChild(l);
-  })();
-
   /* scroll to an element, through Lenis when it is running */
   UAC.scrollTo=function(el,instant){
     if(!el) return;
