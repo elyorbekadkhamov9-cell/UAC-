@@ -10,15 +10,29 @@
   gtag('config', 'G-8YB7JX7F8F');
 </script>
 <meta name="robots" content="noindex">
+<meta name="description" content="Olimpiadaga tayyorlanish uchun 16 ta darslik: Clayden, Atkins, Housecroft, Lehninger va boshqalar.">
+<link rel="icon" type="image/png" href="assets/logo-mark.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F2F7FB">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="UAC">
+<meta property="og:locale" content="uz_UZ">
+<meta property="og:title" content="UAC Kutubxona — olimpiada uchun darsliklar">
+<meta property="og:description" content="Olimpiadaga tayyorlanish uchun 16 ta darslik: Clayden, Atkins, Housecroft, Lehninger va boshqalar.">
+<meta property="og:url" content="https://elyorbekadkhamov9-cell.github.io/UAC-/new/kutubxona.html">
+<meta property="og:image" content="https://elyorbekadkhamov9-cell.github.io/UAC-/new/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>UAC Kutubxona</title>
+<title>UAC Kutubxona — olimpiada uchun darsliklar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Instrument+Serif:ital@0;1&family=Geologica:wght@300..700&family=Literata:ital,wght@0,400;1,400&display=swap">
 <link rel="stylesheet" href="site.css">
 <style>
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
-.filters button{min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid var(--line-strong);background:var(--surface);color:var(--ink);font:500 15px/1 var(--f-body);cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:border-color .2s}
+.filters button{min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid var(--line-strong);background:var(--surface);color:var(--ink);font:500 15px/1 var(--f-body);cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:border-color .2s var(--ease)}
 .filters button:hover{border-color:var(--navy)}
 .filters button i{width:12px;height:12px;border-radius:3px;display:inline-block}
 .filters button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
@@ -30,8 +44,8 @@
 .shelf-row{display:flex;gap:26px;align-items:flex-end;width:max-content;min-width:100%;padding:0 26px;position:relative}
 .shelf-row::after{content:"";position:absolute;left:0;right:0;bottom:-16px;height:16px;background:var(--navy);border-radius:4px;box-shadow:0 14px 22px -10px rgba(12,31,53,.45)}
 .book{perspective:900px;background:none;border:0;padding:0;cursor:pointer;font:inherit;color:inherit;text-align:left}
-.cover{position:relative;width:156px;height:220px;border-radius:4px 8px 8px 4px;padding:14px 14px 12px 20px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;box-shadow:0 1px 2px rgba(12,31,53,.15),0 12px 20px -10px rgba(12,31,53,.45);transform-origin:left center;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
-.cover::before{content:"";position:absolute;inset:0 auto 0 0;width:12px;background:linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,.05) 70%,rgba(255,255,255,.18))}
+.cover{position:relative;width:156px;height:220px;border-radius:4px 8px 8px 4px;padding:14px 14px 12px 20px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;box-shadow:0 1px 2px rgba(12,31,53,.15),0 12px 20px -10px rgba(12,31,53,.45);transform-origin:left center;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s var(--ease)}
+.cover::before{content:"";position:absolute;inset:0 auto 0 0;width:12px;background:rgba(0,0,0,.16);box-shadow:inset -1px 0 0 rgba(255,255,255,.22)}
 .cover img.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .book:hover .cover,.book:focus-visible .cover{transform:translateY(-14px) rotateY(-16deg) rotateX(3deg);box-shadow:0 1px 2px rgba(12,31,53,.15),22px 26px 34px -14px rgba(12,31,53,.5)}
 .cv-top{display:flex;justify-content:space-between;align-items:center;gap:6px;position:relative}
@@ -86,7 +100,7 @@
   <section class="wrap shelves" id="shelves" aria-label="Javonlar"></section>
 </main>
 
-<div class="modal" id="modal" hidden>
+<div class="modal" id="modal" hidden data-lenis-prevent>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="bookTitle">
     <button class="sheet-close" id="sheetClose" type="button" aria-label="Yopish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     <div class="detail" id="detail"></div>
@@ -101,12 +115,14 @@
       <nav aria-label="Pastki havolalar">
         <a href="index.html">Bosh sahifa</a><a href="masalalar.html">Masalalar</a><a href="jamoa.html">Jamoa</a>
         <a href="https://t.me/ChemistryUAC" target="_blank" rel="noopener">Telegram</a>
+        <a href="https://elyorbekadkhamov9-cell.github.io/UAC-/privacy.html">Maxfiylik</a>
       </nav>
     </div>
   </div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script src="site.js"></script>
 <script>
 (function(){
@@ -177,9 +193,9 @@
       '<div class="facts"><span>'+(bk.l==="EN"?"Inglizcha":"Ruscha")+'</span>'+(bk.p?'<span>'+bk.p+'</span>':'')+'<span>PDF</span></div>'+
       '<p class="about">'+esc(bk.d)+'</p>'+
       '<a class="btn btn-primary" href="'+D+bk.id+'" target="_blank" rel="noopener" data-sfx="click">Yuklab olish <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg></a></div>';
-    lastFocus=b; modal.hidden=false; requestAnimationFrame(function(){ modal.classList.add("open"); }); document.getElementById("sheetClose").focus();
+    lastFocus=b; modal.hidden=false; if(UAC.lenis) UAC.lenis.stop(); requestAnimationFrame(function(){ modal.classList.add("open"); }); document.getElementById("sheetClose").focus();
   });
-  function closeModal(){ modal.classList.remove("open"); setTimeout(function(){ modal.hidden=true; },250); if(lastFocus) lastFocus.focus(); }
+  function closeModal(){ modal.classList.remove("open"); if(UAC.lenis) UAC.lenis.start(); setTimeout(function(){ modal.hidden=true; },250); if(lastFocus) lastFocus.focus(); }
   document.getElementById("sheetClose").addEventListener("click",closeModal);
   modal.addEventListener("click",function(e){ if(e.target===modal) closeModal(); });
   document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&!modal.hidden) closeModal(); });

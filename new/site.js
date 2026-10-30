@@ -6,6 +6,23 @@
   var reduce = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
   UAC.reduce = reduce;
 
+  /* design variant B (one typeface) for side-by-side review: ?v=b turns it on for the visit, ?v=a turns it off */
+  (function(){
+    var v=(location.search.match(/[?&]v=([ab])\b/)||[])[1], on=false;
+    try{ if(v) sessionStorage.setItem("uac-v",v); on=(v||sessionStorage.getItem("uac-v"))==="b"; }catch(e){ on=v==="b"; }
+    if(!on) return;
+    document.documentElement.classList.add("vb");
+    var l=document.createElement("link"); l.rel="stylesheet"; l.href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..700&display=swap";
+    document.head.appendChild(l);
+  })();
+
+  /* scroll to an element, through Lenis when it is running */
+  UAC.scrollTo=function(el,instant){
+    if(!el) return;
+    if(UAC.lenis){ var m=parseFloat(getComputedStyle(el).scrollMarginTop)||0; UAC.lenis.scrollTo(el,{offset:-m,immediate:!!instant}); return; }
+    el.scrollIntoView({behavior:(reduce||instant)?"auto":"smooth",block:"start"});
+  };
+
   /* ---------------- sound ---------------- */
   var Sound = UAC.Sound = {
     ctx:null, on:true, last:0,
@@ -58,6 +75,43 @@
   function $$(s,r){ return [].slice.call((r||document).querySelectorAll(s)); }
 
   document.addEventListener("DOMContentLoaded", function(){
+    /* Lenis smooth scroll: wheel only (touch keeps the phone's own scrolling), off for reduced motion */
+    if(!reduce && typeof window.Lenis==="function"){
+      try{
+        var lenis=new window.Lenis({lerp:0.1,smoothWheel:true,prevent:function(n){ return !!(n&&n.closest&&n.closest("[data-lenis-prevent]")); }});
+        UAC.lenis=lenis;
+        (function raf(t){ lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+      }catch(e){ UAC.lenis=null; }
+    }
+
+    /* statement text: split into words, light them one by one as they cross 60% of the screen; once only */
+    $$("[data-words]").forEach(function(el){
+      var words=[];
+      (function split(node){
+        [].slice.call(node.childNodes).forEach(function(n){
+          if(n.nodeType===3){
+            var frag=document.createDocumentFragment();
+            n.textContent.split(/(\s+)/).forEach(function(t){
+              if(!t) return;
+              if(/^\s+$/.test(t)){ frag.appendChild(document.createTextNode(t)); return; }
+              var s=document.createElement("span"); s.className="w"; s.textContent=t; frag.appendChild(s); words.push(s);
+            });
+            node.replaceChild(frag,n);
+          } else if(n.nodeType===1){ split(n); }
+        });
+      })(el);
+      el.classList.add("words");
+      if(reduce || !("IntersectionObserver" in window)){ words.forEach(function(w){ w.classList.add("on"); }); return; }
+      var queue=[], timer=null;
+      function pump(){ var w=queue.shift(); if(!w){ timer=null; return; } w.classList.add("on"); timer=setTimeout(pump,70); }
+      var io=new IntersectionObserver(function(es){
+        es.forEach(function(en){ if(en.isIntersecting){ io.unobserve(en.target); queue.push(en.target); } });
+        queue.sort(function(a,b){ return words.indexOf(a)-words.indexOf(b); });
+        if(!timer) pump();
+      },{rootMargin:"0px 0px -40% 0px"});
+      words.forEach(function(w){ io.observe(w); });
+    });
+
     document.addEventListener("pointerdown",function(){ Sound.init(); },{passive:true});
     document.addEventListener("click",function(e){ var t=e.target.closest&&e.target.closest("[data-sfx]"); if(!t) return; Sound.init(); var k=t.getAttribute("data-sfx"); if(Sound[k]) Sound[k](); });
     document.addEventListener("pointerover",function(e){ if(e.pointerType!=="mouse") return; var t=e.target.closest&&e.target.closest("[data-hover]"); if(!t||t.contains(e.relatedTarget)) return; Sound.tick(); });
