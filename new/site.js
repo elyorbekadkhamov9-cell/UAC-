@@ -235,7 +235,7 @@
       if(ds[0]>=0||ds.length===1) return {a:0,b:0,t:0};
       for(var i=0;i<ds.length-1;i++){ if(ds[i]<=0&&ds[i+1]>0) return {a:i,b:i+1,t:ease(Math.min(1,Math.max(0,-ds[i]/(ds[i+1]-ds[i]))))}; }
       return {a:ds.length-1,b:ds.length-1,t:0}; }
-    var t0=performance.now(), rot=0;
+    var t0=performance.now(), rot=0, foot=document.querySelector("footer");
     (function frame(now){
       requestAnimationFrame(frame); if(document.hidden) return;
       var time=(now-t0)/1000, st=stage(), A=shapes[st.a], B=shapes[st.b], t=st.t, narrow=innerWidth<820;
@@ -248,7 +248,9 @@
         col[i]=A.C[i]+(B.C[i]-A.C[i])*t; col[i+1]=A.C[i+1]+(B.C[i+1]-A.C[i+1])*t; col[i+2]=A.C[i+2]+(B.C[i+2]-A.C[i+2])*t; }
       geo.attributes.position.needsUpdate=true; geo.attributes.color.needsUpdate=true;
       rot+=reduce?0:0.0028; pts.rotation.y=rot+mx*0.5; pts.rotation.x=my*0.25;
-      pts.position.set(L[0],L[1],0); pts.scale.setScalar(L[2]); mat.opacity=L[3];
+      pts.position.set(L[0],L[1],0); pts.scale.setScalar(L[2]);
+      var fade=1; if(foot){ var ft=foot.getBoundingClientRect().top; fade=Math.max(0,Math.min(1,(ft-innerHeight*0.75)/(innerHeight*0.2))); }
+      mat.opacity=L[3]*fade;
       renderer.render(scene,camera);
     })(t0);
   }
