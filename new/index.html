@@ -74,7 +74,10 @@
 .marquee-track span.m{font-family:var(--f-body);font-style:normal;font-weight:600;font-size:13px;letter-spacing:.16em;color:var(--sky-ink);align-self:center;text-transform:uppercase}
 
 .story{background:var(--band);color:var(--ink);position:relative;z-index:1;border-bottom:1px solid var(--line)}
-.story .wrap{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:40px 72px;padding-block:96px 104px;align-items:center}
+.story .wrap{display:block;padding-block:96px 104px}
+.story blockquote{max-width:30ch}
+.facts-line{max-width:52ch;margin:44px 0 0;padding-top:26px;border-top:1px solid var(--line-strong);font-size:20px;line-height:1.55;color:var(--muted);text-wrap:pretty}
+.facts-line b{font-weight:650;color:var(--navy)}
 .story .eyebrow{color:var(--sky-ink)}
 .story blockquote{margin:18px 0 0;font-family:var(--f-serif);font-size:clamp(30px,3.3vw,46px);line-height:1.18;letter-spacing:-.005em;color:var(--navy)}
 .story blockquote em{font-style:normal;color:var(--sky-ink)}
@@ -203,7 +206,7 @@
 
   <section class="say" aria-label="UAC haqida qisqacha">
     <div class="wrap">
-      <h2 data-words>Masalani o‘nta kanaldan qidirib o‘tirmang. <span class="accent">Shartlari ham, yechimlari ham shu yerda.</span></h2>
+      <h2 data-words>Olimpiada masalalarining <span class="accent">sharti ham, yechimi ham bitta joyda.</span></h2>
     </div>
   </section>
 
@@ -213,14 +216,10 @@
     <div class="wrap">
       <div>
         <h2 class="sr" id="story-h">Nega UAC bor</h2>
-        <blockquote>Biz olimpiadaga tayyorlanganimizda o’zbek tilida material juda kam edi, yaxshi murabbiy topish ham qiyin edi. UAC’ni <em>shu to’siqlarni keyingi avlod uchun olib tashlash</em> uchun ochdik.</blockquote>
+        <blockquote>Biz olimpiadaga tayyorlanganimizda o‘zbek tilida material juda kam edi, yaxshi murabbiy topish ham qiyin edi. UAC’ni <em>shu to‘siqlarni keyingi avlod uchun olib tashlash</em> uchun ochdik.</blockquote>
         <div class="sign"><img src="assets/logo-mark.png" alt=""><div><b>Daler Rahimov</b><span>UAC asoschisi</span></div></div>
       </div>
-      <ul class="facts">
-        <li><b class="num">100+</b><span>video dars</span></li>
-        <li><b class="num">300+</b><span>o’zbek tiliga tarjima qilingan masala</span></li>
-        <li><b class="num">2 000+</b><span>o’quvchi</span></li>
-      </ul>
+      <p class="facts-line">Hozircha <b class="num">100 dan ortiq</b> video dars, o‘zbekchaga tarjima qilingan <b class="num">300 dan ortiq</b> masala va <b class="num">2 000 dan ortiq</b> o‘quvchi.</p>
     </div>
   </section>
 
@@ -232,9 +231,9 @@
       </div>
       <div>
         <h2 class="cta-title" id="cta-h">Har kuni bitta masala.<em>Telegramda.</em></h2>
-        <p class="cta-copy">Kanalda masala tahlillari, bepul materiallar va darslar haqida e’lonlar chiqadi.</p>
+        <p class="cta-copy">@ChemistryUAC kanalida masala tahlillari, bepul materiallar va darslar haqida e’lonlar chiqadi.</p>
         <div class="cta-row">
-          <a class="btn btn-primary" href="https://t.me/ChemistryUAC" target="_blank" rel="noopener" data-sfx="click" data-hover>@ChemistryUAC
+          <a class="btn btn-primary" href="https://t.me/ChemistryUAC" target="_blank" rel="noopener" data-sfx="click" data-hover>Kanalga qo‘shilish
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           <a class="btn btn-ghost" href="https://www.instagram.com/uac_uz" target="_blank" rel="noopener" data-sfx="click" data-hover>Instagram</a>
         </div>
