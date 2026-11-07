@@ -41,7 +41,10 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);fo
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:70;background:var(--bg)}
 img{max-width:100%}
 [hidden]{display:none!important}
-a{color:inherit}
+a{color:inherit;text-underline-offset:.18em;text-decoration-thickness:1.5px}
+::selection{background:var(--sun);color:var(--ink)}
+html{scrollbar-color:var(--line-strong) var(--bg);caret-color:var(--sky-ink)}
+::-webkit-scrollbar{width:12px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--line-strong);border-radius:8px;border:3px solid var(--bg)}
 b,strong{font-weight:600}
 :focus-visible{outline:3px solid var(--sky-ink);outline-offset:3px;border-radius:6px}
 h1,h2,h3{margin:0;text-wrap:balance;font-weight:inherit}
@@ -89,12 +92,12 @@ main{position:relative;z-index:1;overflow-x:clip}
 /* inner page header */
 .page-head{padding-block:clamp(64px,10vh,110px) 40px}
 .page-title{font-family:var(--f-display);font-weight:900;font-size:clamp(44px,7.4vw,112px);line-height:.92;letter-spacing:-.045em;margin-top:18px;color:var(--navy)}
-.page-title em{font-family:var(--f-serif);font-weight:400;letter-spacing:-.01em;color:var(--sky-ink)}
+.page-title em{font-style:normal;color:var(--sky-ink)}
 .page-sub{color:var(--muted);max-width:34em;margin-top:22px;font-size:19px}
 
 /* footer */
 footer{position:relative;z-index:1;border-top:1px solid var(--line);background:var(--surface);padding-block:44px 36px;overflow:hidden}
-.ft-big{font-family:var(--f-display);font-weight:900;font-size:clamp(100px,26vw,360px);line-height:.8;letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.5px var(--sky);user-select:none;margin-bottom:26px}
+.ft-big{font-family:var(--f-display);font-weight:900;font-size:clamp(56px,11vw,150px);line-height:.8;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px var(--sky);user-select:none;margin-bottom:22px}
 .ft-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;color:var(--muted);font-size:15px}
 .ft-row nav{display:flex;flex-wrap:wrap;gap:8px 22px}
 .ft-row a{text-decoration:none;display:inline-flex;align-items:center;min-height:36px}.ft-row a:hover{color:var(--ink);text-decoration:underline}
@@ -130,3 +133,5 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);background:v
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
   .cursor{display:none!important}
 }
+
+.num,.mono,.count-title,time{font-variant-numeric:tabular-nums}

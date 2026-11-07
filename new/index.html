@@ -51,13 +51,13 @@
 .doors{padding-block:40px 100px}
 .doors-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px 40px;margin-bottom:32px}
 .doors-title{font-family:var(--f-display);font-weight:700;font-size:clamp(34px,4.6vw,64px);line-height:1;letter-spacing:-.035em;color:var(--navy)}
-.doors-title em{font-family:var(--f-serif);font-weight:400;color:var(--sky-ink);letter-spacing:-.01em}
+.doors-title em{font-style:normal;color:var(--sky-ink)}
 .door-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
 .door{position:relative;display:grid;grid-template-columns:minmax(0,1fr) clamp(130px,16vw,200px);gap:16px;align-items:center;padding:28px 28px 28px 32px;min-height:230px;background:var(--surface);border:1.5px solid var(--line);border-radius:26px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow);transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .25s var(--ease),box-shadow .35s var(--ease)}
 .door:hover{transform:translateY(-6px);border-color:var(--sky);box-shadow:0 2px 4px rgba(12,31,53,.06),0 24px 50px -18px rgba(22,103,158,.35)}
 .door .lbl{color:var(--sky-ink)}
 .door h3{font-family:var(--f-display);font-weight:700;font-size:clamp(28px,2.8vw,40px);line-height:1;letter-spacing:-.03em;margin-top:14px;color:var(--ink)}
-.door .fact{font-family:var(--f-serif);font-style:italic;font-size:26px;line-height:1.15;color:var(--navy);margin-top:10px}
+.door .fact{font-family:var(--f-body);font-weight:600;font-size:19px;line-height:1.3;color:var(--sky-ink);margin-top:8px}
 .door .desc{color:var(--muted);font-size:16px;margin-top:10px;max-width:24em}
 .door .art{aspect-ratio:1/1;max-width:100%;border-radius:50%;background:#EAF3FA;position:relative}
 
@@ -77,7 +77,7 @@
 .story .wrap{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);gap:40px 72px;padding-block:96px 104px;align-items:center}
 .story .eyebrow{color:var(--sky-ink)}
 .story blockquote{margin:18px 0 0;font-family:var(--f-serif);font-size:clamp(30px,3.3vw,46px);line-height:1.18;letter-spacing:-.005em;color:var(--navy)}
-.story blockquote em{color:var(--sky-ink)}
+.story blockquote em{font-style:normal;color:var(--sky-ink)}
 .sign{display:flex;align-items:center;gap:14px;margin-top:30px}
 .sign img{width:46px;height:48px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:5px}
 .sign b{display:block;font-weight:600}
@@ -95,18 +95,19 @@
 @keyframes bob{50%{transform:translateY(-14px) rotate(1.5deg)}}
 .mascot.boing{animation:boing .6s cubic-bezier(.3,1.6,.5,1)}
 @keyframes boing{30%{transform:scale(1.1,.9)}60%{transform:scale(.95,1.06) translateY(-18px)}}
-.bubble{position:absolute;top:2%;right:-6%;background:var(--navy);color:#fff;font-family:var(--f-serif);font-style:italic;font-size:24px;padding:10px 18px;border-radius:20px 20px 20px 4px;transform:rotate(4deg);white-space:nowrap}
+.bubble{position:absolute;top:2%;right:-6%;background:var(--navy);color:#fff;font-family:var(--f-body);font-weight:600;font-size:18px;padding:10px 18px;border-radius:20px 20px 20px 4px;transform:rotate(4deg);white-space:nowrap}
 .cta-title{font-family:var(--f-display);font-weight:900;font-size:clamp(46px,7vw,104px);line-height:.9;letter-spacing:-.05em;color:var(--navy)}
-.cta-title em{display:block;font-family:var(--f-serif);font-weight:400;font-size:.62em;letter-spacing:-.01em;color:var(--sky-ink);margin-top:10px}
+.cta-title em{display:block;font-style:normal;color:var(--sky-ink)}
 .cta-copy{color:var(--muted);margin-top:22px;max-width:30em}
 
 @media (max-width:980px){
   .hero .wrap,.cta-box,.story .wrap{grid-template-columns:minmax(0,1fr)}
   .tiles{justify-self:start}
   .door-grid{grid-template-columns:minmax(0,1fr)}
-  .bubble{right:0;font-size:20px}
+  .bubble{right:0;font-size:16px}
 }
 @media (max-width:520px){
+  .cta-row{flex-direction:column;align-items:stretch}.cta-row .btn{justify-content:center;min-height:48px}
   .door{grid-template-columns:minmax(0,1fr) 104px;padding:22px}
   .door .go{display:none}
 }
@@ -135,7 +136,6 @@
   <section class="hero" data-shape="flask" data-look="2.35,-0.1,1,0.95" data-look-n="0.8,1.5,0.48,0.32" aria-labelledby="h1">
     <div class="wrap">
       <div>
-        <p class="mono eyebrow">O’zbekiston Kimyogarlar Assotsiatsiyasi</p>
         <h1 id="h1"><span class="h-kimyo">Kimyo</span> <span class="h-italic">hammaga tushunarli.</span></h1>
         <p class="hero-copy">Olimpiadaga tayyorlanayotganlar uchun masalalar arxivi: <b>2000-yildan beri IChO</b>, Mendeleyev va milliy saralash masalalari, yechimlari bilan. Yuklab olish bepul.</p>
         <div class="cta-row">
@@ -159,7 +159,7 @@
       <div class="door-grid">
         <a class="door" href="masalalar.html" data-mini-host data-hover>
           <span>
-            <span class="mono lbl">Arxiv</span>
+            
             <h3>Masalalar</h3>
             <p class="fact">341 ta fayl, 4 ta olimpiada</p>
             <p class="desc">IChO, Mendeleyev, ARBIChO va milliy saralash. Yangi qo’shilganlar ham shu yerda.</p>
@@ -169,7 +169,7 @@
         </a>
         <a class="door" href="masalalar.html#icho-2026" data-mini-host data-hover>
           <span>
-            <span class="mono lbl">Yilnoma</span>
+            
             <h3>Yilma-yil</h3>
             <p class="fact">2000-yildan 2026-yilgacha</p>
             <p class="desc">Har bir olimpiadani yil bo’yicha oching va o’sha yilning barcha fayllarini shu yerning o’zida yuklab oling.</p>
@@ -179,7 +179,7 @@
         </a>
         <a class="door" href="kutubxona.html" data-mini-host data-hover>
           <span>
-            <span class="mono lbl">Kutubxona</span>
+            
             <h3>Darsliklar</h3>
             <p class="fact">16 ta kitob, EN va RU</p>
             <p class="desc">Clayden, Atkins, Housecroft, Lehninger va boshqalar, bo’limlar bo’yicha javonda.</p>
@@ -189,7 +189,7 @@
         </a>
         <a class="door" href="jamoa.html" data-mini-host data-hover>
           <span>
-            <span class="mono lbl">Jamoa</span>
+            
             <h3>Bizning jamoa</h3>
             <p class="fact">Xalqaro olimpiada sovrindorlari</p>
             <p class="desc">UAC’ni yuritadigan sakkiz kishi. Yettitasi IChO 2026 va ARBIChO ilmiy qo’mitasi a’zolari.</p>
@@ -212,7 +212,7 @@
   <section class="story" aria-labelledby="story-h">
     <div class="wrap">
       <div>
-        <p class="mono eyebrow" id="story-h">Nega UAC bor</p>
+        <h2 class="sr" id="story-h">Nega UAC bor</h2>
         <blockquote>Biz olimpiadaga tayyorlanganimizda o’zbek tilida material juda kam edi, yaxshi murabbiy topish ham qiyin edi. UAC’ni <em>shu to’siqlarni keyingi avlod uchun olib tashlash</em> uchun ochdik.</blockquote>
         <div class="sign"><img src="assets/logo-mark.png" alt=""><div><b>Daler Rahimov</b><span>UAC asoschisi</span></div></div>
       </div>
