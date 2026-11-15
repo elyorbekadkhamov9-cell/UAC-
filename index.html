@@ -70,6 +70,13 @@
 .say{padding-block:clamp(88px,14vh,150px)}
 .say h2{font-family:var(--f-display);font-weight:700;font-size:clamp(34px,5vw,60px);line-height:1.08;letter-spacing:-.035em;color:var(--navy);max-width:15.5em;text-wrap:balance}
 .say h2 .accent{color:var(--sky-ink)}
+.fresh{position:relative;z-index:1;padding-block:20px 96px}
+.fresh-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 24px;margin-bottom:26px}
+.fresh-head h2{font-family:var(--f-display);font-weight:700;font-size:clamp(28px,3.4vw,44px);letter-spacing:-.035em;line-height:1.05;color:var(--navy)}
+.fresh-head h2 em{font-style:normal;color:var(--sky-ink)}
+.fresh-head a{display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--sky-ink);font-weight:550;text-decoration:none}
+.fresh-head a svg{width:18px;height:18px;transition:transform .25s var(--ease)}
+.fresh-head a:hover svg{transform:translateX(4px)}
 .door .go{position:absolute;right:22px;top:22px;width:44px;height:44px;border-radius:50%;background:var(--bg);border:1px solid var(--line);display:grid;place-items:center;transition:transform .35s var(--ease),background .25s var(--ease),color .25s var(--ease)}
 .door:hover .go,.door:focus-visible .go{transform:rotate(-45deg);background:var(--navy);color:#fff;border-color:var(--navy)}
 .door .go svg{width:18px;height:18px}
@@ -144,7 +151,11 @@
       <a href="index.html" aria-current="page">Bosh sahifa</a>
       <a class="nav-daily" href="kunlik.html" data-hover>Kunlik masala</a>
       <a href="masalalar.html" data-hover>Masalalar</a>
-      <a href="kutubxona.html" data-hover>Kutubxona</a>
+      <div class="nav-group">
+        <button class="nav-btn" type="button" aria-expanded="false" aria-controls="nav-learn">O‘rganish<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="nav-menu" id="nav-learn"><a href="konsepsiyalar.html" data-hover>Konsepsiyalar</a><a href="videolar.html" data-hover>Videolar</a><a href="kutubxona.html" data-hover>Kutubxona</a></div>
+      </div>
+      <a href="yangiliklar.html" data-hover>Yangiliklar</a>
       <a href="jamoa.html" data-hover>Jamoa</a>
     </nav>
     <a class="nav-tg" href="https://t.me/ChemistryUAC" target="_blank" rel="noopener" data-sfx="click" data-hover>Telegram
@@ -225,6 +236,16 @@
     </div>
   </section>
 
+  <section class="fresh" aria-labelledby="fresh-h">
+    <div class="wrap">
+      <div class="fresh-head">
+        <h2 id="fresh-h">So‘nggi <em>yangiliklar</em></h2>
+        <a href="yangiliklar.html" data-hover>Barcha yangiliklar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <div class="ngrid" id="fresh"></div>
+    </div>
+  </section>
+
   <section class="say" aria-label="UAC haqida qisqacha">
     <div class="wrap">
       <h2 data-words>Olimpiada masalalarining <span class="accent">sharti ham, yechimi ham bitta joyda.</span></h2>
@@ -278,9 +299,8 @@
     <div class="ft-row">
       <span>© 2026 UAC — O’zbekiston Kimyogarlar Assotsiatsiyasi</span>
       <nav aria-label="Pastki havolalar">
-        <a href="kunlik.html">Kunlik masala</a><a href="masalalar.html">Masalalar</a><a href="kutubxona.html">Kutubxona</a><a href="jamoa.html">Jamoa</a>
-        <a href="https://t.me/ChemistryUAC" target="_blank" rel="noopener">Telegram</a>
-        <a href="https://www.instagram.com/uac_uz" target="_blank" rel="noopener">Instagram</a>
+        <a href="kunlik.html">Kunlik masala</a><a href="masalalar.html">Masalalar</a><a href="konsepsiyalar.html">Konsepsiyalar</a><a href="videolar.html">Videolar</a><a href="kutubxona.html">Kutubxona</a><a href="yangiliklar.html">Yangiliklar</a><a href="jamoa.html">Jamoa</a>
+        <a href="https://t.me/ChemistryUAC" target="_blank" rel="noopener">Telegram</a><a href="https://www.instagram.com/uac_uz" target="_blank" rel="noopener">Instagram</a><a href="https://youtube.com/@chemistryuac" target="_blank" rel="noopener">YouTube</a>
         <a href="https://elyorbekadkhamov9-cell.github.io/UAC-/privacy.html">Maxfiylik</a>
       </nav>
     </div>
@@ -290,6 +310,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script src="site.js"></script>
+<script src="news-uac.js"></script>
+<script src="news-world.js"></script>
+<script src="concepts-data.js"></script>
+<script src="feed.js"></script>
+<script>
+(function(){ var box=document.getElementById("fresh"); if(!box||!window.UACFeed) return;
+  UACFeed.mixed(box);
+  var C=window.CONCEPTS||[], c=C[C.length-1];
+  if(c){ var a=document.createElement("a"); a.className="ncard"; a.href="konsepsiya-"+c.slug+".html";
+    var cv=document.createElement("span"); cv.className="nc-cover"; var big=document.createElement("span"); big.className="nc-big"; big.textContent=c.cover||""; var lb=document.createElement("span"); lb.className="nc-lbl"; lb.textContent="Konsepsiya";
+    cv.appendChild(big); cv.appendChild(lb);
+    var b=document.createElement("span"); b.className="nc-body";
+    [["nc-meta",UACFeed.nice(c.date)+" · "+c.topic],["nc-title",c.title],["nc-text",c.card]].forEach(function(x){ var e=document.createElement("span"); e.className=x[0]; e.textContent=x[1]; b.appendChild(e); });
+    a.appendChild(cv); a.appendChild(b); box.appendChild(a); }
+})();
+</script>
 <script>
 (function(){
   var items=["IChO 2026","ΔG = ΔH − TΔS","Mendeleyev olimpiadasi","pV = nRT","ARBIChO","k = A·e^(−Ea/RT)","Milliy saralash","pH = −lg[H⁺]","Clayden","Atkins","E = E° − (RT/nF)·lnQ"];

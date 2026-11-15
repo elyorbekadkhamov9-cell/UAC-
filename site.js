@@ -166,6 +166,17 @@
     initMinis();
   });
 
+  /* ---------------- nav dropdown groups ---------------- */
+  (function(){ var groups=[].slice.call(document.querySelectorAll(".nav-group"));
+    function close(g){ g.classList.remove("open"); var b=g.querySelector(".nav-btn"); if(b) b.setAttribute("aria-expanded","false"); }
+    groups.forEach(function(g){ var b=g.querySelector(".nav-btn"); if(!b) return;
+      b.addEventListener("click",function(e){ e.stopPropagation(); var o=!g.classList.contains("open"); groups.forEach(close); if(o){ g.classList.add("open"); b.setAttribute("aria-expanded","true"); } });
+      g.addEventListener("keydown",function(e){ if(e.key==="Escape"){ close(g); b.focus(); } });
+      g.addEventListener("focusout",function(e){ if(!g.contains(e.relatedTarget)) close(g); });
+    });
+    document.addEventListener("click",function(e){ groups.forEach(function(g){ if(!g.contains(e.target)) close(g); }); });
+  })();
+
   /* ---------------- phone nav row: show the current page, fade the side that scrolls ---------------- */
   (function(){ var nl=document.querySelector(".nav-links"); if(!nl) return;
     function edges(){ var o=nl.scrollWidth>nl.clientWidth+2; nl.classList.toggle("fade-l",o&&nl.scrollLeft>2); nl.classList.toggle("fade-r",o&&nl.scrollLeft+nl.clientWidth<nl.scrollWidth-2); }

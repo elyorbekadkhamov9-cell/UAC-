@@ -1,0 +1,55 @@
+/* Dunyo kimyosi yangiliklari. Har bir yozuv tools/NEWS_GUIDE.md qoidalari bo‘yicha yoziladi:
+   manbalar ochib tekshirilgan, matn o‘z so‘zimiz bilan, manba havolalari ko‘rsatilgan. Yangi yozuvlar boshiga qo‘shiladi. */
+window.NEWS_WORLD=[
+ {
+  "id": "oksoboran",
+  "date": "2026-10-27",
+  "cat": "Noorganik kimyo",
+  "cover": "B≡O",
+  "title": "Bor va kislorod orasidagi uchlamchi bog‘li molekula birinchi marta barqaror holda ajratib olindi",
+  "lead": "Vyursburg universiteti kimyogarlari oksoboranlarni xona haroratida barqaror kristall holida oldi. Bunday moddalarni olishga kamida 1960-yillar boshidan beri urinib kelingan.",
+  "body": [
+   "Oksoboran — bor atomi kislorod bilan uchlamchi bog‘ orqali bog‘langan molekula. Shu paytgacha bunday zarrachalar faqat gaz fazasida yoki o‘ta past haroratli matritsada kuzatilgan, kolbada saqlab bo‘lmagan.",
+   "Holger Braunschweig guruhi diborakumulenning ketonlar bilan reaksiyasini o‘rganayotgan edi. Kutilmaganda sariq va to‘q sariq qattiq moddalar hosil bo‘ldi, ular oksoboran bo‘lib chiqdi. Guruh shu usulda uchta oksoboran oldi. Ulardagi B–O bog‘ juda qisqa: 1,208–1,217 Å.",
+   "Solishtirish uchun: R–B≡O zarrachasi nitrillar (R–C≡N) bilan izoelektron, ikkalasida ham uchlamchi bog‘dagi atomlarning valent elektronlari yig‘indisi 9 ta."
+  ],
+  "src": [
+   {"name": "Nature Chemistry, 2026", "url": "https://doi.org/10.1038/s41557-026-02272-w"},
+   {"name": "ScienceDaily", "url": "https://www.sciencedaily.com/releases/2026/11/261103003205.htm"}
+  ]
+ },
+ {
+  "id": "nobel-2026",
+  "date": "2026-10-07",
+  "cat": "Nobel mukofoti",
+  "cover": "99,5%",
+  "title": "Kimyo bo‘yicha 2026-yilgi Nobel mukofoti ko‘zgu molekulalar uchun berildi",
+  "lead": "Mukofotni Henri Kagan (Parij-Sud universiteti) va Kenso Soai (Tokio fan universiteti) oldi: asimmetrik organik sintezda nochiziqli effektlar va avtokatalizni kashf etgani uchun.",
+  "body": [
+   "Ko‘p molekulalar ikki ko‘zgu shaklda, ya’ni ikki enantiomer holida mavjud. Dori sintezida odatda ulardan faqat bittasi kerak bo‘ladi.",
+   "Kagan 1986-yilda kutilmagan hodisani ko‘rsatdi: enantiomerlar aralashmasidan tayyorlangan katalizator mahsulotni o‘zidan ham tozaroq berishi mumkin. Sababi, metall bir nechta ligandni bog‘laydi va “mos kelmagan” juftlar sustroq ishlaydi. Bu nochiziqli effekt deb ataladi.",
+   "Soai 1995-yilda mahsulot o‘zining hosil bo‘lishini katalizlaydigan reaksiyani e’lon qildi. Har bir siklda enantiomer ortiqligi (ee) o‘sib boradi: tajribalardan birida boshlang‘ich 0,00005% ee uch sikldan keyin 99,5% dan oshgan. Bu tabiatda nega aminokislotalarning faqat bitta shakli ustun ekanini tushuntirishga yordam beradi.",
+   "Mukofot miqdori 12 million shved kronasi, u ikki olim o‘rtasida teng bo‘linadi."
+  ],
+  "src": [
+   {"name": "Shvetsiya Qirollik Fanlar akademiyasi", "url": "https://www.kva.se/en/news/the-nobel-prize-in-chemistry-2026/"},
+   {"name": "ACS Axial", "url": "https://axial.acs.org/multidisciplinary/nobel-prize-chemistry-2026"}
+  ]
+ },
+ {
+  "id": "icho-2026",
+  "date": "2026-07-19",
+  "cat": "Olimpiada",
+  "cover": "IChO 58",
+  "title": "IChO 2026 Toshkentda yakunlandi: O‘zbekiston jamoasida bitta oltin va uchta kumush",
+  "lead": "58-Xalqaro kimyo olimpiadasi 10–19-iyul kunlari Toshkentda o‘tdi. Rasmiy natijalarga ko‘ra, unda 93 mamlakatdan 363 o‘quvchi qatnashdi.",
+  "body": [
+   "Jami 41 ta oltin, 74 ta kumush va 112 ta bronza medal topshirildi.",
+   "O‘zbekiston jamoasining to‘rt a’zosi ham medal oldi. Rasmiy natijalar jadvalida ular shunday yozilgan: Rayhona Tuymuradova oltin medal (27-o‘rin), Mirjalol Khomidjonov (42-o‘rin), Azizmuhammad Khafizov (62-o‘rin) va Jasur Mustafoev (86-o‘rin) kumush medal."
+  ],
+  "src": [
+   {"name": "IChO rasmiy natijalari", "url": "https://www.icho-official.org/results/results.php?id=58&year=2026"},
+   {"name": "O‘zA", "url": "https://uza.uz/en/posts/58th-international-chemistry-olympiad-concludes-in-uzbekistan_884223"}
+  ]
+ }
+];
