@@ -182,6 +182,17 @@
       else if(k<0.66){ var a2=r()*Math.PI*2; x=Math.cos(a2)*0.34; z=Math.sin(a2)*0.34; y=1.87; var p2=neck(x,y,-0.45); x=p2[0]; y=p2[1]; c=NAVY; }
       else { do{ d=sph(r); var s=Math.cbrt(r())*0.97; x=d[0]*R*s; y=cyc+d[1]*R*s; z=d[2]*R*s; }while(y>cyc-0.05+0.12*Math.sin(x*3)); c=(r()<0.06)?SUN:SKY; }
       return [x,y,z,c]; }); },
+    ferrocene:function(N){ var r=rnd(71), S=0.62, Rc=1.44/(2*Math.sin(Math.PI/5)), Rh=Rc+1.08, Z=1.66, C=[], H=[];
+      /* eclipsed D5h, gas phase: Fe-ring 1.66 A, C-C 1.44 A, C-H 1.08 A; ring axis along y */
+      for(var s2=-1;s2<=1;s2+=2) for(var a=0;a<5;a++){ var t=a*2*Math.PI/5; C.push([Math.cos(t)*Rc,s2*Z,Math.sin(t)*Rc]); H.push([Math.cos(t)*Rh,s2*Z,Math.sin(t)*Rh]); }
+      return make(N,function(i){ var k=i/N, v, c;
+        if(k<0.08){ var d=sph(r), q=Math.cbrt(r())*0.42; v=[d[0]*q,d[1]*q,d[2]*q]; c=(i%3)?SUN:[0.85,0.45,0.2]; }
+        else if(k<0.42){ var j=i%10, e=sph(r); v=[C[j][0]+e[0]*0.26,C[j][1]+e[1]*0.26,C[j][2]+e[2]*0.26]; c=NAVY; }
+        else if(k<0.54){ var h=i%10, f=sph(r); v=[H[h][0]+f[0]*0.16,H[h][1]+f[1]*0.16,H[h][2]+f[2]*0.16]; c=SKY; }
+        else if(k<0.76){ var b=i%10, ring=b<5?0:5; v=seg(r,C[b],C[ring+((b-ring+1)%5)],0.045); c=MID; }
+        else if(k<0.86){ var b2=i%10; v=seg(r,C[b2],H[b2],0.035); c=MID; }
+        else { var b3=i%10; v=seg(r,[0,0,0],C[b3],0.012); c=(r()<0.5)?LIGHT:MID; }
+        var tl=0.38; return [v[0]*S, (v[1]*Math.cos(tl)-v[2]*Math.sin(tl))*S, (v[1]*Math.sin(tl)+v[2]*Math.cos(tl))*S, c]; }); },
     benzene:function(N){ var r=rnd(21), Cp=[], Hp=[]; for(var a=0;a<6;a++){ var t=a*Math.PI/3+Math.PI/6; Cp.push([Math.cos(t)*1.15,Math.sin(t)*1.15,0]); Hp.push([Math.cos(t)*2.05,Math.sin(t)*2.05,0]); }
       return make(N,function(i){ var k=i/N, v, c;
         if(k<0.40){ var j=i%6, d=sph(r); v=[Cp[j][0]+d[0]*0.27,Cp[j][1]+d[1]*0.27,d[2]*0.27]; c=NAVY; }
@@ -236,9 +247,15 @@
       for(var i=0;i<ds.length-1;i++){ if(ds[i]<=0&&ds[i+1]>0) return {a:i,b:i+1,t:ease(Math.min(1,Math.max(0,-ds[i]/(ds[i+1]-ds[i]))))}; }
       return {a:ds.length-1,b:ds.length-1,t:0}; }
     var t0=performance.now(), rot=0, foot=document.querySelector("footer");
+    var dz=document.querySelector("[data-drag]"), dYaw=0, dPitch=0, vYaw=0, vPitch=0, dragging=false, lx=0, ly=0;
+    if(dz){ dz.hidden=false; document.querySelectorAll("[data-drag-hint]").forEach(function(e){ e.hidden=false; });
+      dz.addEventListener("pointerdown",function(e){ dragging=true; lx=e.clientX; ly=e.clientY; dz.setPointerCapture(e.pointerId); dz.classList.add("on"); });
+      dz.addEventListener("pointermove",function(e){ if(!dragging) return; vYaw=(e.clientX-lx)*0.012; vPitch=(e.clientY-ly)*0.012; dYaw+=vYaw; dPitch=Math.max(-1.2,Math.min(1.2,dPitch+vPitch)); lx=e.clientX; ly=e.clientY; });
+      ["pointerup","pointercancel"].forEach(function(n){ dz.addEventListener(n,function(){ dragging=false; dz.classList.remove("on"); }); });
+    }
     (function frame(now){
       requestAnimationFrame(frame); if(document.hidden) return;
-      var time=(now-t0)/1000, st=stage(), A=shapes[st.a], B=shapes[st.b], t=st.t, narrow=innerWidth<820;
+      var time=(now-t0)/1000, st=stage(), A=shapes[st.a], B=shapes[st.b], t=st.t, narrow=innerWidth<980;
       var la=look(anchors[st.a],narrow), lb=look(anchors[st.b],narrow), L=[0,1,2,3].map(function(k){ return la[k]+(lb[k]-la[k])*t; });
       var wob=reduce?0:0.012;
       for(var i=0,n3=N*3;i<n3;i+=3){ var j=i/3;
@@ -247,8 +264,10 @@
         pos[i+2]=A.P[i+2]+(B.P[i+2]-A.P[i+2])*t;
         col[i]=A.C[i]+(B.C[i]-A.C[i])*t; col[i+1]=A.C[i+1]+(B.C[i+1]-A.C[i+1])*t; col[i+2]=A.C[i+2]+(B.C[i+2]-A.C[i+2])*t; }
       geo.attributes.position.needsUpdate=true; geo.attributes.color.needsUpdate=true;
-      rot+=reduce?0:0.0028; pts.rotation.y=rot+mx*0.5; pts.rotation.x=my*0.25;
-      pts.position.set(L[0],L[1],0); pts.scale.setScalar(L[2]);
+      if(!dragging){ dYaw+=vYaw; dPitch=Math.max(-1.2,Math.min(1.2,dPitch+vPitch)); vYaw*=0.94; vPitch*=0.94; }
+      var hw=(st.a===0)?(1-t):0; if(!dragging) rot+=reduce?0:0.0028;
+      pts.rotation.y=rot+mx*0.5+dYaw*hw; pts.rotation.x=my*0.25+dPitch*hw;
+      pts.position.set(narrow?L[0]:L[0]*Math.min(1,camera.aspect/1.6),L[1],0); pts.scale.setScalar(L[2]);
       var fade=1; if(foot){ var ft=foot.getBoundingClientRect().top; fade=Math.max(0,Math.min(1,(ft-innerHeight*0.75)/(innerHeight*0.2))); }
       mat.opacity=L[3]*fade;
       renderer.render(scene,camera);
