@@ -177,7 +177,7 @@ button.btn{font-family:var(--f-body)}
   function streak(){ var n=0, d=st.solved[today]?today:add(today,-1); while(st.solved[d]){ n++; d=add(d,-1); } return n; }
   function side(){ var n=streak(); $("streak").innerHTML=n?'<b>'+n+'</b>kun ketma-ket yechildi':'Bugungi masalani yechib, ketma-ketlikni boshlang'; }
   function showSol(){ $("sol").hidden=false; $("solBtn").hidden=true; }
-  function done(){ var f=$("form"); f.querySelectorAll("input,button[type=submit]").forEach(function(e){ e.disabled=true; }); $("hintBtn").hidden=true; showSol(); }
+  function done(){ var f=$("form"); f.querySelectorAll("input,button[type=submit]").forEach(function(e){ e.disabled=true; }); $("hintBtn").hidden=true; f.querySelector("button[type=submit]").hidden=true; showSol(); }
   function parse(s){ s=String(s||"").trim().replace(/\s+/g,"").replace(",","."); return /^[-+]?\d*\.?\d+(e[-+]?\d+)?$/i.test(s)?parseFloat(s):NaN; }
 
   $("form").addEventListener("submit",function(e){ e.preventDefault(); var ok, fb=$("fb");

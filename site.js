@@ -166,6 +166,13 @@
     initMinis();
   });
 
+  /* ---------------- phone nav row: show the current page, fade the side that scrolls ---------------- */
+  (function(){ var nl=document.querySelector(".nav-links"); if(!nl) return;
+    function edges(){ var o=nl.scrollWidth>nl.clientWidth+2; nl.classList.toggle("fade-l",o&&nl.scrollLeft>2); nl.classList.toggle("fade-r",o&&nl.scrollLeft+nl.clientWidth<nl.scrollWidth-2); }
+    function show(){ var cur=nl.querySelector('[aria-current="page"]'); if(cur && nl.scrollWidth>nl.clientWidth){ var x=cur.getBoundingClientRect().left-nl.getBoundingClientRect().left+nl.scrollLeft; nl.scrollLeft=Math.max(0,x-(nl.clientWidth-cur.offsetWidth)/2); } edges(); }
+    nl.addEventListener("scroll",edges,{passive:true}); window.addEventListener("resize",edges); show(); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(show);
+  })();
+
   /* ---------------- shapes (point clouds) ---------------- */
   var NAVY=[0.11,0.23,0.36], SKY=[0.24,0.6,0.85], LIGHT=[0.5,0.73,0.89], SUN=[0.97,0.68,0.1], MID=[0.42,0.56,0.69], INK=[0.05,0.12,0.21];
   function rnd(seed){ return function(){ seed|=0; seed=seed+0x6D2B79F5|0; var t=Math.imul(seed^seed>>>15,1|seed); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
@@ -249,7 +256,7 @@
     var t0=performance.now(), rot=0, foot=document.querySelector("footer");
     var dz=document.querySelector("[data-drag]"), dYaw=0, dPitch=0, vYaw=0, vPitch=0, dragging=false, lx=0, ly=0;
     if(dz){ dz.hidden=false; document.querySelectorAll("[data-drag-hint]").forEach(function(e){ e.hidden=false; });
-      dz.addEventListener("pointerdown",function(e){ dragging=true; lx=e.clientX; ly=e.clientY; dz.setPointerCapture(e.pointerId); dz.classList.add("on"); });
+      dz.addEventListener("pointerdown",function(e){ e.preventDefault(); dragging=true; lx=e.clientX; ly=e.clientY; dz.setPointerCapture(e.pointerId); dz.classList.add("on"); });
       dz.addEventListener("pointermove",function(e){ if(!dragging) return; vYaw=(e.clientX-lx)*0.012; vPitch=(e.clientY-ly)*0.012; dYaw+=vYaw; dPitch=Math.max(-1.2,Math.min(1.2,dPitch+vPitch)); lx=e.clientX; ly=e.clientY; });
       ["pointerup","pointercancel"].forEach(function(n){ dz.addEventListener(n,function(){ dragging=false; dz.classList.remove("on"); }); });
     }
