@@ -88,10 +88,12 @@ def main():
     if local: page = open(sys.argv[sys.argv.index("--html") + 1], encoding="utf-8").read()
     else:
         req = urllib.request.Request(f"https://t.me/s/{CHANNEL}", headers={"User-Agent": "Mozilla/5.0 (UAC site feed)"})
-        page = urllib.request.urlopen(req, timeout=30).read().decode("utf-8", "replace")
+        try: page = urllib.request.urlopen(req, timeout=30).read().decode("utf-8", "replace")
+        except Exception as e:
+            print(f"::warning::Telegram page could not be fetched ({e}); feed left unchanged"); return
     items, seen = build(page)
     if not items:
-        print(f"no posts parsed ({seen} messages seen); feed left unchanged"); sys.exit(1)
+        print(f"::warning::no posts parsed ({seen} messages seen); feed left unchanged"); sys.exit(1 if local else 0)
     img_dir = os.path.join(ROOT, "assets", "news"); wanted = set()
     for it in items:
         src = it.pop("img_src"); it.pop("ts"); it.pop("cyr"); it["img"] = ""

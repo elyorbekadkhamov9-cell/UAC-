@@ -368,12 +368,12 @@ UACFeed.worldArticles(document.getElementById("worldFeed"));
 
 # ---------------------------------------------------------------- videos
 VIDEOS = [  # every id was checked through YouTube oEmbed on 2026-11-15 (title, channel, embeddable)
- dict(id="H6_E6C_e_fg", t="Ferrotsen", ch="Periodic Videos", topic="Metallorganik kimyo", d="Ferrotsen qanday modda va u nega kimyo tarixida muhim. Konsepsiyalardagi ferrotsen mavzusiga qo‘shimcha."),
- dict(id="WrsROtPSeuA", t="SN2 stereokimyosi", ch="Khan Academy", topic="Organik kimyo", d="Orqadan hujum va konfiguratsiya inversiyasi doskada, qadamma-qadam."),
- dict(id="yrvV85H737o", t="SN1 va SN2 mexanizmlari", ch="The Organic Chemistry Tutor", topic="Organik kimyo", d="Ikki mexanizm yonma-yon: substrat, nukleofil va erituvchi qanday ta’sir qiladi."),
- dict(id="lLdPSLNxDqA", t="Kristall maydon nazariyasi, 1-qism", ch="MIT OpenCourseWare", topic="Koordinatsion kimyo", d="MIT 5.111 kursining 28-ma’ruzasi: d-orbitallarning ajralishi va komplekslar rangi."),
- dict(id="Ja9eEQQzTic", t="Molekula shakli: VSEPR", ch="MIT OpenCourseWare", topic="Umumiy kimyo", d="MIT 5.111 kursining 12-ma’ruzasi: elektron juftlar soni bo‘yicha molekula shaklini aniqlash."),
- dict(id="Hc5ODj1Ml6c", t="Formal zaryad va rezonans", ch="MIT OpenCourseWare", topic="Umumiy kimyo", d="MIT 5.111 kursining 11-ma’ruzasi: Lyuis tuzilmalari, formal zaryad va rezonans shakllari."),
+ dict(id="H6_E6C_e_fg", t="Ferrotsen", ch="Periodic Videos", topic="Metallorganik kimyo", d="Periodic Videos jamoasining ferrotsen haqidagi videosi. Konsepsiyalardagi ferrotsen mavzusiga qo‘shimcha."),
+ dict(id="WrsROtPSeuA", t="SN2 stereokimyosi", ch="Khan Academy", topic="Organik kimyo", d="SN2 reaksiyasining stereokimyosi haqida dars."),
+ dict(id="yrvV85H737o", t="SN1 va SN2 mexanizmlari", ch="The Organic Chemistry Tutor", topic="Organik kimyo", d="Nukleofil almashinish reaksiyalari: SN1 va SN2 mexanizmlari bitta darsda."),
+ dict(id="lLdPSLNxDqA", t="Kristall maydon nazariyasi, 1-qism", ch="MIT OpenCourseWare", topic="Koordinatsion kimyo", d="MIT 5.111 kursining 28-ma’ruzasi: o‘tish metallari va kristall maydon nazariyasi."),
+ dict(id="Ja9eEQQzTic", t="Molekula shakli: VSEPR", ch="MIT OpenCourseWare", topic="Umumiy kimyo", d="MIT 5.111 kursining 12-ma’ruzasi: VSEPR nazariyasi va molekulalar shakli."),
+ dict(id="Hc5ODj1Ml6c", t="Formal zaryad va rezonans", ch="MIT OpenCourseWare", topic="Umumiy kimyo", d="MIT 5.111 kursining 11-ma’ruzasi: formal zaryad va rezonans."),
 ]
 EVENT = dict(id="7QqwFxdXp3s", t="ARBIChO 2026: taqdirlash marosimi", ch="Fan olimpiadalari markazi")
 

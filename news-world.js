@@ -6,16 +6,17 @@ window.NEWS_WORLD=[
   "date": "2026-10-27",
   "cat": "Noorganik kimyo",
   "cover": "B≡O",
-  "title": "Bor va kislorod orasidagi uchlamchi bog‘li molekula birinchi marta barqaror holda ajratib olindi",
-  "lead": "Vyursburg universiteti kimyogarlari oksoboranlarni xona haroratida barqaror kristall holida oldi. Bunday moddalarni olishga kamida 1960-yillar boshidan beri urinib kelingan.",
+  "title": "Erkin oksoboranlar birinchi marta barqaror kristall holida ajratib olindi",
+  "lead": "Vyursburg universiteti kimyogarlari bor va kislorod uchlamchi bog‘ bilan bog‘langan oksoboranlarni xona haroratida barqaror kristall holida oldi. Bunday moddalarni olishga kamida 1960-yillar boshidan beri urinib kelingan.",
   "body": [
-   "Oksoboran — bor atomi kislorod bilan uchlamchi bog‘ orqali bog‘langan molekula. Shu paytgacha bunday zarrachalar faqat gaz fazasida yoki o‘ta past haroratli matritsada kuzatilgan, kolbada saqlab bo‘lmagan.",
+   "Oksoboran — bor atomi kislorod bilan uchlamchi bog‘ orqali bog‘langan molekula. Shu paytgacha erkin oksoboranlar faqat gaz fazasida yoki past haroratli matritsada kuzatilgan. Shu guruhning o‘zi 2010-yilda B≡O bog‘ni platina kompleksi tarkibida barqarorlashtirgan edi, endi esa metallsiz, alohida molekula olindi.",
    "Holger Braunschweig guruhi diborakumulenning ketonlar bilan reaksiyasini o‘rganayotgan edi. Kutilmaganda sariq va to‘q sariq qattiq moddalar hosil bo‘ldi, ular oksoboran bo‘lib chiqdi. Guruh shu usulda uchta oksoboran oldi. Ulardagi B–O bog‘ juda qisqa: 1,208–1,217 Å.",
    "Solishtirish uchun: R–B≡O zarrachasi nitrillar (R–C≡N) bilan izoelektron, ikkalasida ham uchlamchi bog‘dagi atomlarning valent elektronlari yig‘indisi 9 ta."
   ],
   "src": [
    {"name": "Nature Chemistry, 2026", "url": "https://doi.org/10.1038/s41557-026-02272-w"},
-   {"name": "ScienceDaily", "url": "https://www.sciencedaily.com/releases/2026/11/261103003205.htm"}
+   {"name": "ScienceDaily", "url": "https://www.sciencedaily.com/releases/2026/11/261103003205.htm"},
+   {"name": "Science, 2010", "url": "https://doi.org/10.1126/science.1186028"}
   ]
  },
  {
@@ -45,7 +46,7 @@ window.NEWS_WORLD=[
   "lead": "58-Xalqaro kimyo olimpiadasi 10–19-iyul kunlari Toshkentda o‘tdi. Rasmiy natijalarga ko‘ra, unda 93 mamlakatdan 363 o‘quvchi qatnashdi.",
   "body": [
    "Jami 41 ta oltin, 74 ta kumush va 112 ta bronza medal topshirildi.",
-   "O‘zbekiston jamoasining to‘rt a’zosi ham medal oldi. Rasmiy natijalar jadvalida ular shunday yozilgan: Rayhona Tuymuradova oltin medal (27-o‘rin), Mirjalol Khomidjonov (42-o‘rin), Azizmuhammad Khafizov (62-o‘rin) va Jasur Mustafoev (86-o‘rin) kumush medal."
+   "O‘zbekiston jamoasining to‘rt a’zosi ham medal oldi. Rasmiy natijalar jadvaliga ko‘ra: Rayhona Tuymurodova oltin medal (27-o‘rin), Mirjalol Homidjonov (42-o‘rin), Azizmuhammad Hafizov (62-o‘rin) va Jasur Mustafoev (86-o‘rin) kumush medal."
   ],
   "src": [
    {"name": "IChO rasmiy natijalari", "url": "https://www.icho-official.org/results/results.php?id=58&year=2026"},
