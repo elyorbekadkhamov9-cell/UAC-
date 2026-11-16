@@ -367,7 +367,7 @@ UACFeed.worldArticles(document.getElementById("worldFeed"));
           "UAC kanalidagi so‘nggi postlar va dunyo kimyosidagi yangiliklar, manbalari bilan.", NEWS_CSS, main, scripts))
 
 # ---------------------------------------------------------------- videos
-VIDEOS = [  # every id was checked through YouTube oEmbed on 2026-11-15 (title, channel, embeddable); covers are our own renders (tools/covers.py)
+VIDEOS = [  # every id was checked through YouTube oEmbed on 2026-11-15 (title, channel, embeddable); the card shows the video's own YouTube thumbnail, with our render (tools/covers.py) underneath as the fallback
  dict(id="H6_E6C_e_fg", img="assets/c/ferrotsen.jpg", t="Ferrotsen", ch="Periodic Videos", topic="Metallorganik kimyo", d="Periodic Videos jamoasining ferrotsen haqidagi videosi. Konsepsiyalardagi ferrotsen mavzusiga qo‘shimcha."),
  dict(id="WrsROtPSeuA", img="assets/c/sn2.jpg", t="SN2 stereokimyosi", ch="Khan Academy", topic="Organik kimyo", d="SN2 reaksiyasining stereokimyosi haqida dars."),
  dict(id="yrvV85H737o", img="assets/c/tbubr.jpg", t="SN1 va SN2 mexanizmlari", ch="The Organic Chemistry Tutor", topic="Organik kimyo", d="Nukleofil almashinish reaksiyalari: SN1 va SN2 mexanizmlari bitta darsda."),
@@ -388,6 +388,7 @@ VID_CSS = '''
 .vthumb .lbl{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(12,31,53,0) 45%,rgba(12,31,53,.82));display:flex;flex-direction:column;justify-content:flex-end;padding:16px;font-family:var(--f-display);font-weight:700;font-size:18px;line-height:1.15;letter-spacing:-.02em;color:#fff}
 .vthumb .lbl small{font-family:var(--f-body);font-weight:500;font-size:13px;letter-spacing:0;color:#C9DDEE;margin-bottom:6px}
 .vthumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.witem .src+.src{margin-top:4px}
 .vthumb .play{z-index:2;position:absolute;right:14px;bottom:14px;width:46px;height:46px;border-radius:50%;background:var(--sun);display:grid;place-items:center;box-shadow:0 6px 16px rgba(0,0,0,.3)}
 .vthumb .play svg{width:18px;height:18px;margin-left:3px;color:var(--ink)}
 .vgrid{margin-top:56px}
@@ -411,6 +412,7 @@ PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d=
 def thumb(v):
     return (f'<span class="vthumb"><span class="lbl"><small>{v["ch"]}</small>{v["t"]}</span>'
             f'<img src="{v["img"]}" alt="" loading="lazy" onerror="this.remove()">'
+            f'<img class="yt" src="https://i.ytimg.com/vi/{v["id"]}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">'
             f'<span class="play">{PLAY}</span></span>')
 
 def videos_page():

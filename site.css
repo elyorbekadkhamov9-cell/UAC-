@@ -172,3 +172,8 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);background:v
 .nc-title{font-family:var(--f-display);font-weight:700;font-size:18px;line-height:1.2;letter-spacing:-.02em;color:var(--navy);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .nc-text{font-size:16px;line-height:1.5;color:var(--muted);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 @media (prefers-reduced-motion:reduce){ .ncard,.nc-cover img,.nav-btn svg{transition:none} }
+
+.nc-cover.nc-plain img{object-fit:contain}
+.nc-cover.nc-plain .nc-lbl{display:none}
+.nc-credit{font-size:12.5px;line-height:1.4;color:var(--muted)}
+.nc-cover.nc-plain::before{display:none}
