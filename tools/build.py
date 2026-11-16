@@ -412,7 +412,8 @@ PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d=
 def thumb(v):
     return (f'<span class="vthumb"><span class="lbl"><small>{v["ch"]}</small>{v["t"]}</span>'
             f'<img src="{v["img"]}" alt="" loading="lazy" onerror="this.remove()">'
-            f'<img class="yt" src="https://i.ytimg.com/vi/{v["id"]}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">'
+            f'<img class="yt" src="https://i.ytimg.com/vi/{v["id"]}/maxresdefault.jpg" alt="" loading="lazy" onerror="this.remove()" '
+            f'''onload="if(this.naturalWidth&lt;200&amp;&amp;this.src.indexOf('maxres')&gt;0)this.src=this.src.replace('maxresdefault','hqdefault')">'''
             f'<span class="play">{PLAY}</span></span>')
 
 def videos_page():
