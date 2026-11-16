@@ -367,13 +367,18 @@ UACFeed.worldArticles(document.getElementById("worldFeed"));
           "UAC kanalidagi so‘nggi postlar va dunyo kimyosidagi yangiliklar, manbalari bilan.", NEWS_CSS, main, scripts))
 
 # ---------------------------------------------------------------- videos
-VIDEOS = [  # every id was checked through YouTube oEmbed on 2026-11-15 (title, channel, embeddable); the card shows the video's own YouTube thumbnail, with our render (tools/covers.py) underneath as the fallback
+VIDEOS = [  # every id was checked through YouTube oEmbed on 2026-11-15 (first six, event) or 2026-11-16 (last five) (title, channel, embeddable); the card shows the video's own YouTube thumbnail, with our render (tools/covers.py) underneath as the fallback
  dict(id="H6_E6C_e_fg", img="assets/c/ferrotsen.jpg", t="Ferrotsen", ch="Periodic Videos", topic="Metallorganik kimyo", d="Periodic Videos jamoasining ferrotsen haqidagi videosi. Konsepsiyalardagi ferrotsen mavzusiga qo‘shimcha."),
  dict(id="WrsROtPSeuA", img="assets/c/sn2.jpg", t="SN2 stereokimyosi", ch="Khan Academy", topic="Organik kimyo", d="SN2 reaksiyasining stereokimyosi haqida dars."),
  dict(id="yrvV85H737o", img="assets/c/tbubr.jpg", t="SN1 va SN2 mexanizmlari", ch="The Organic Chemistry Tutor", topic="Organik kimyo", d="Nukleofil almashinish reaksiyalari: SN1 va SN2 mexanizmlari bitta darsda."),
  dict(id="lLdPSLNxDqA", img="assets/c/oktaedr.jpg", t="Kristall maydon nazariyasi, 1-qism", ch="MIT OpenCourseWare", topic="Koordinatsion kimyo", d="MIT 5.111 kursining 28-ma’ruzasi: o‘tish metallari va kristall maydon nazariyasi."),
  dict(id="Ja9eEQQzTic", img="assets/c/xef4.jpg", t="Molekula shakli: VSEPR", ch="MIT OpenCourseWare", topic="Umumiy kimyo", d="MIT 5.111 kursining 12-ma’ruzasi: VSEPR nazariyasi va molekulalar shakli."),
  dict(id="Hc5ODj1Ml6c", img="assets/c/karbonat.jpg", t="Formal zaryad va rezonans", ch="MIT OpenCourseWare", topic="Umumiy kimyo", d="MIT 5.111 kursining 11-ma’ruzasi: formal zaryad va rezonans."),
+ dict(id="O192jrR80oo", t="Molekulyar orbitallar nazariyasi", ch="MIT OpenCourseWare", topic="Umumiy kimyo", d="MIT 5.111 kursining 13-ma’ruzasi: molekulyar orbitallar nazariyasi."),
+ dict(id="RaBI3lAACKg", t="Aromatik birikmalar va Hückel qoidasi", ch="Khan Academy", topic="Organik kimyo", d="Aromatik birikmalar va Hückel qoidasi haqida dars. Konsepsiyalardagi siklopentadien mavzusiga qo‘shimcha."),
+ dict(id="3sLfG79NWOc", t="Diels–Alder va boshqa peritsiklik reaksiyalar", ch="CrashCourse", topic="Organik kimyo", d="Crash Course Organic Chemistry seriyasining 42-qismi: Diels–Alder va boshqa peritsiklik reaksiyalar."),
+ dict(id="4q0T9c7jotw", t="Kinetika: reaksiya mexanizmlari", ch="MIT OpenCourseWare", topic="Fizik kimyo", d="MIT 5.111 kursining 32-ma’ruzasi: kinetika va reaksiya mexanizmlari."),
+ dict(id="R0sw85RkKCY", t="Kristallografiyaga kirish", ch="MIT OpenCourseWare", topic="Qattiq jism kimyosi", d="MIT 3.091 (qattiq jism kimyosiga kirish) kursining 18-ma’ruzasi: kristallografiyaga kirish."),
 ]
 EVENT = dict(id="7QqwFxdXp3s", img="assets/news/843.jpg", t="ARBIChO 2026: taqdirlash marosimi", ch="Fan olimpiadalari markazi")
 
@@ -388,6 +393,7 @@ VID_CSS = '''
 .vthumb .lbl{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(12,31,53,0) 45%,rgba(12,31,53,.82));display:flex;flex-direction:column;justify-content:flex-end;padding:16px;font-family:var(--f-display);font-weight:700;font-size:18px;line-height:1.15;letter-spacing:-.02em;color:#fff}
 .vthumb .lbl small{font-family:var(--f-body);font-weight:500;font-size:13px;letter-spacing:0;color:#C9DDEE;margin-bottom:6px}
 .vthumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.vthumb.yt-on .lbl{display:none}
 .witem .src+.src{margin-top:4px}
 .vthumb .play{z-index:2;position:absolute;right:14px;bottom:14px;width:46px;height:46px;border-radius:50%;background:var(--sun);display:grid;place-items:center;box-shadow:0 6px 16px rgba(0,0,0,.3)}
 .vthumb .play svg{width:18px;height:18px;margin-left:3px;color:var(--ink)}
@@ -411,9 +417,9 @@ PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d=
 
 def thumb(v):
     return (f'<span class="vthumb"><span class="lbl"><small>{v["ch"]}</small>{v["t"]}</span>'
-            f'<img src="{v["img"]}" alt="" loading="lazy" onerror="this.remove()">'
+            + (f'<img src="{v["img"]}" alt="" loading="lazy" onerror="this.remove()">' if v.get("img") else "") +
             f'<img class="yt" src="https://i.ytimg.com/vi/{v["id"]}/maxresdefault.jpg" alt="" loading="lazy" onerror="this.remove()" '
-            f'''onload="if(this.naturalWidth&lt;200&amp;&amp;this.src.indexOf('maxres')&gt;0)this.src=this.src.replace('maxresdefault','hqdefault')">'''
+            f'''onload="if(this.naturalWidth&lt;200&amp;&amp;this.src.indexOf('maxres')&gt;0)this.src=this.src.replace('maxresdefault','hqdefault');else this.parentNode.classList.add('yt-on')">'''
             f'<span class="play">{PLAY}</span></span>')
 
 def videos_page():
