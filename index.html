@@ -320,7 +320,7 @@
   var C=window.CONCEPTS||[], c=C[C.length-1];
   if(c){ var a=document.createElement("a"); a.className="ncard"; a.href="konsepsiya-"+c.slug+".html";
     var cv=document.createElement("span"); cv.className="nc-cover"; var big=document.createElement("span"); big.className="nc-big"; big.textContent=c.cover||""; var lb=document.createElement("span"); lb.className="nc-lbl"; lb.textContent="Konsepsiya";
-    cv.appendChild(big); cv.appendChild(lb);
+    cv.appendChild(big); cv.appendChild(lb); var pi=new Image(); pi.alt=""; pi.loading="lazy"; pi.onerror=function(){ pi.remove(); }; pi.src="assets/k/"+c.slug+".jpg"; cv.appendChild(pi);
     var b=document.createElement("span"); b.className="nc-body";
     [["nc-meta",UACFeed.nice(c.date)+" · "+c.topic],["nc-title",c.title],["nc-text",c.card]].forEach(function(x){ var e=document.createElement("span"); e.className=x[0]; e.textContent=x[1]; b.appendChild(e); });
     a.appendChild(cv); a.appendChild(b); box.appendChild(a); }

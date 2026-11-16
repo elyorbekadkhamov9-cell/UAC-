@@ -97,10 +97,11 @@ def main():
     img_dir = os.path.join(ROOT, "assets", "news"); wanted = set()
     for it in items:
         src = it.pop("img_src"); it.pop("ts"); it.pop("cyr"); it["img"] = ""
-        if local or not src: continue
         name = f"{it['id']}.jpg"; path = os.path.join(img_dir, name); wanted.add(name)
+        if os.path.exists(path): it["img"] = f"assets/news/{name}"; continue
+        if local or not src: continue
         try:
-            if not os.path.exists(path):
+            if True:
                 os.makedirs(img_dir, exist_ok=True)
                 data = urllib.request.urlopen(urllib.request.Request(src, headers={"User-Agent": "Mozilla/5.0"}), timeout=30).read()
                 if len(data) < 2000 or len(data) > 3_000_000: raise ValueError("unexpected image size")

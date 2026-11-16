@@ -165,6 +165,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--line);background:v
 .nc-lbl{position:relative;align-self:flex-start;font-size:13px;font-weight:600;padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.14);color:#fff}
 .nc-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
 .nc-cover:has(img) .nc-lbl{z-index:1;margin-top:auto;background:rgba(12,31,53,.72)}
+.nc-cover:has(img) .nc-big{visibility:hidden}
 .ncard:hover .nc-cover img{transform:scale(1.03)}
 .nc-body{display:flex;flex-direction:column;gap:8px;padding:18px 20px 22px}
 .nc-meta{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}

@@ -21,7 +21,7 @@
   }
   function worldCard(it){
     var a=el("a","ncard"); a.href="yangiliklar.html#"+it.id;
-    a.appendChild(cover(it.cat,it.cover,""));
+    a.appendChild(cover(it.cat,it.cover,it.img||""));
     var b=el("span","nc-body"); b.appendChild(el("span","nc-meta",nice(it.date)+" · Dunyo kimyosi"));
     b.appendChild(el("span","nc-title",it.title)); b.appendChild(el("span","nc-text",it.lead));
     a.appendChild(b); return a;
@@ -35,7 +35,7 @@
     mixed:function(box){ var u=(window.NEWS_UAC||[])[0], w=(window.NEWS_WORLD||[])[0]; if(u) box.appendChild(uacCard(u)); if(w) box.appendChild(worldCard(w)); },
     worldArticles:function(box){ var L=window.NEWS_WORLD||[]; if(!L.length) return empty(box,"Hozircha yangilik yo‘q.");
       L.forEach(function(it){
-        var art=el("article","witem"); art.id=it.id; art.appendChild(cover(it.cat,it.cover,""));
+        var art=el("article","witem"); art.id=it.id; art.appendChild(cover(it.cat,it.cover,it.img||""));
         var d=el("div"); d.appendChild(el("span","nc-meta",nice(it.date)+" · "+it.cat)); d.appendChild(el("h3","",it.title)); d.appendChild(el("p","lead",it.lead));
         var det=el("details"), sum=el("summary","","To‘liq o‘qish"), more=el("div","more"); det.appendChild(sum);
         (it.body||[]).forEach(function(p){ more.appendChild(el("p","",p)); }); det.appendChild(more); d.appendChild(det);

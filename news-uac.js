@@ -7,7 +7,7 @@ window.NEWS_UAC=[
   "text": "Gulasal O‘zbekiston kimyogarlar assotsiatsiyasi (UAC) jamoasi bilan sentyabr oxirida, terma jamoa saralashidan so‘ng tayyorgarlikni boshladi. Saralashda u 16 kishidan 15-o‘rinda edi…",
   "media": "photo",
   "url": "https://t.me/ChemistryUAC/843",
-  "img": ""
+  "img": "assets/news/843.jpg"
  },
  {
   "id": "832",
@@ -16,7 +16,7 @@ window.NEWS_UAC=[
   "text": "Nega bunday? Proton ketgach, halqada 6 ta π-elektron qoladi: ikki qo‘sh bog‘dan 4 ta, juftdan 2 ta. Halqa tekis, 6 esa 4n+2 qoidasiga mos, demak anion aromatik va barqaror…",
   "media": "video",
   "url": "https://t.me/ChemistryUAC/832",
-  "img": ""
+  "img": "assets/news/832.jpg"
  },
  {
   "id": "827",
@@ -25,7 +25,7 @@ window.NEWS_UAC=[
   "text": "Mn(CO)₅ degan modda yo‘q. Mn₂(CO)₁₀ esa bor, va buning sababi bitta raqamda. Karbonillarda formulani tekshirishning eng tez yo‘li metall atrofidagi elektronlarni sanash. Kartochkalarda…",
   "media": "photo",
   "url": "https://t.me/ChemistryUAC/827",
-  "img": ""
+  "img": "assets/news/827.jpg"
  },
  {
   "id": "825",

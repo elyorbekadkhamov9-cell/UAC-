@@ -6,6 +6,7 @@ window.NEWS_WORLD=[
   "date": "2026-10-27",
   "cat": "Noorganik kimyo",
   "cover": "B≡O",
+  "img": "assets/c/oksoboran.jpg",
   "title": "Erkin oksoboranlar birinchi marta barqaror kristall holida ajratib olindi",
   "lead": "Vyursburg universiteti kimyogarlari bor va kislorod uchlamchi bog‘ bilan bog‘langan oksoboranlarni xona haroratida barqaror kristall holida oldi. Bunday moddalarni olishga kamida 1960-yillar boshidan beri urinib kelingan.",
   "body": [
@@ -24,6 +25,7 @@ window.NEWS_WORLD=[
   "date": "2026-10-07",
   "cat": "Nobel mukofoti",
   "cover": "99,5%",
+  "img": "assets/c/nobel-2026.jpg",
   "title": "Kimyo bo‘yicha 2026-yilgi Nobel mukofoti ko‘zgu molekulalar uchun berildi",
   "lead": "Mukofotni Henri Kagan (Parij-Sud universiteti) va Kenso Soai (Tokio fan universiteti) oldi: asimmetrik organik sintezda nochiziqli effektlar va avtokatalizni kashf etgani uchun.",
   "body": [
@@ -42,6 +44,7 @@ window.NEWS_WORLD=[
   "date": "2026-07-19",
   "cat": "Olimpiada",
   "cover": "IChO 58",
+  "img": "assets/c/oltin.jpg",
   "title": "IChO 2026 Toshkentda yakunlandi: O‘zbekiston jamoasida bitta oltin va uchta kumush",
   "lead": "58-Xalqaro kimyo olimpiadasi 10–19-iyul kunlari Toshkentda o‘tdi. Rasmiy natijalarga ko‘ra, unda 93 mamlakatdan 363 o‘quvchi qatnashdi.",
   "body": [
