@@ -1,0 +1,35 @@
+# Downloads each listed video's own YouTube cover into assets/yt/ and refreshes the Telegram feed with its photos.
+# Runs when the id list or this file changes on a push; the result is committed back to the same branch.
+name: Video covers and feed photos
+on:
+  push:
+    paths: ["tools/yt_ids.txt", ".github/workflows/covers.yml"]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  covers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: YouTube covers
+        run: |
+          mkdir -p assets/yt
+          while read -r id; do
+            [ -z "$id" ] && continue
+            [ -s "assets/yt/$id.jpg" ] && continue
+            curl -sfL "https://i.ytimg.com/vi/$id/maxresdefault.jpg" -o /tmp/c.jpg || rm -f /tmp/c.jpg
+            if [ ! -s /tmp/c.jpg ] || [ "$(stat -c%s /tmp/c.jpg)" -lt 5000 ]; then
+              curl -sfL "https://i.ytimg.com/vi/$id/hqdefault.jpg" -o /tmp/c.jpg
+            fi
+            mv /tmp/c.jpg "assets/yt/$id.jpg"; echo "$id $(stat -c%s assets/yt/$id.jpg)"
+          done < tools/yt_ids.txt
+      - name: Telegram feed photos
+        run: python3 tools/tg_feed.py
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/yt assets/news news-uac.js
+          git diff --cached --quiet || git commit -m "Add video covers and feed photos"
+          git push
