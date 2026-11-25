@@ -416,6 +416,10 @@ VID_CSS = '''
 PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4l14 8-14 8z"/></svg>'
 
 def thumb(v):
+    local = f'assets/yt/{v["id"]}.jpg'  # the video's own YouTube cover, stored by .github/workflows/covers.yml
+    if os.path.exists(os.path.join(ROOT, local)):
+        return (f'<span class="vthumb yt-on"><img src="{local}" alt="" loading="lazy">'
+                f'<span class="play">{PLAY}</span></span>')
     return (f'<span class="vthumb"><span class="lbl"><small>{v["ch"]}</small>{v["t"]}</span>'
             + (f'<img src="{v["img"]}" alt="" loading="lazy" onerror="this.remove()">' if v.get("img") else "") +
             f'<img class="yt" src="https://i.ytimg.com/vi/{v["id"]}/maxresdefault.jpg" alt="" loading="lazy" onerror="this.remove()" '
